@@ -20,12 +20,19 @@
       .text-position-center {
         margin-top: 13px;
       }
+      .header-fixed {
+        position: fixed;
+        width: 100%;
+      }
+      .body-position {
+        margin-top: 40px;
+      }
     </style>
 
     <title>Hello, world!</title>
   </head>
   <body onload="startTime()" >
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary header-fixed">
       <a class="navbar-brand" href="<?= site_url() ?>">
           <img src="<?= base_url('assets/dist/img/trusur_logo3.png') ?>" alt="">
         </a>
@@ -82,7 +89,7 @@
     </div>
 
     <!-- Optional JavaScript -->
-    <script src="<?= base_url('assets/dist/js/jquery-3.2.1.slim.min.js') ?>"></script>
+    <script src="<?= base_url('assets/dist/js/jquery.min.js') ?>"></script>
     <script src="<?= base_url('assets/dist/js/popper.min.js') ?>"></script>
     <script src="<?= base_url('assets/dist/js/bootstrap.min.js') ?>"></script>
     <script src="<?= base_url('assets/dist/js/font-awesome.js') ?>"></script>
@@ -103,7 +110,19 @@
       if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
       return i;
     }
+
+
+    function reload_sensor(){
+      $.ajax({url: "<?=site_url('sensors');?>", success: function(result){
+        var sensor = JSON.parse(result);
+        $("#pm10").html(sensor.pm10);
+      }});
+      setTimeout(function(){ reload_sensor() }, 1000);
+    }
+    reload_sensor();
     </script>
+
+
 
   </body>
 </html>

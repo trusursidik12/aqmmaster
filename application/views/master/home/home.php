@@ -22,11 +22,8 @@
             <div class="col-sm border border-success text-center">
               <div class="row p-1">
                 <div class="col-sm-12">
-                  <h2>
-                    <?php
-                      $get = substr($gas['PM10'], 2, 7);
-                      echo round($get);
-                    ?>
+                  <h2 id="pm10">
+                    
                   </h2>
                   <p>ppm</p>
                 </div>
