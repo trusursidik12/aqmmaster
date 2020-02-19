@@ -7,6 +7,12 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/dist/css/bootstrap.min.css') ?>">
+    <!-- Optional JavaScript -->
+    <script src="<?= base_url('assets/dist/js/jquery.min.js') ?>"></script>
+    <script src="<?= base_url('assets/dist/js/popper.min.js') ?>"></script>
+    <script src="<?= base_url('assets/dist/js/bootstrap.min.js') ?>"></script>
+    <script src="<?= base_url('assets/dist/js/font-awesome.js') ?>"></script>
+    
 
     <style>
       .footer {
@@ -29,10 +35,10 @@
       }
     </style>
 
-    <title>Hello, world!</title>
+    <title><?= $title; ?></title>
   </head>
   <body onload="startTime()" >
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary header-fixed">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <a class="navbar-brand" href="<?= site_url() ?>">
           <img src="<?= base_url('assets/dist/img/trusur_logo3.png') ?>" alt="">
         </a>
@@ -88,11 +94,7 @@
       echo $dayList[$day].', '.date("j").' '.$monthList[$month].' '.date("Y").' | <a id="clock"></a>'; ?>
     </div>
 
-    <!-- Optional JavaScript -->
-    <script src="<?= base_url('assets/dist/js/jquery.min.js') ?>"></script>
-    <script src="<?= base_url('assets/dist/js/popper.min.js') ?>"></script>
-    <script src="<?= base_url('assets/dist/js/bootstrap.min.js') ?>"></script>
-    <script src="<?= base_url('assets/dist/js/font-awesome.js') ?>"></script>
+    
 
     <script>
     function startTime() {
@@ -112,14 +114,7 @@
     }
 
 
-    function reload_sensor(){
-      $.ajax({url: "<?=site_url('sensors');?>", success: function(result){
-        var sensor = JSON.parse(result);
-        $("#pm10").html(sensor.pm10);
-      }});
-      setTimeout(function(){ reload_sensor() }, 1000);
-    }
-    reload_sensor();
+
     </script>
 
 

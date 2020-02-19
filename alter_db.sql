@@ -60,3 +60,5 @@ INSERT INTO `aqm_configuration` (`data`, `content`) VALUES
 ('formula_SolarRad', 'explode(\";\",$WS)[12]'),
 ('formula_HumIn', 'explode(\";\",$WS)[4]'),
 ('formula_HumOut', 'explode(\";\",$WS)[9]');
+
+ALTER TABLE aqm_params ADD satuan VARCHAR(20) NULL AFTER default_unit;
