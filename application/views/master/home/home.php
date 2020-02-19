@@ -1,224 +1,92 @@
-<?php foreach($all as $gas) : ?>
 <div class="container-fluid">
   <br>
-  <h3 class="text-center"><i class='fas fa-map-marker-alt' style='font-size:36px;color:red'></i> LAMPUNG</h3>
-  <br>
-  <div class="row">
-    <div class="col-sm-6 text-center border border-primary font-weight-bold" style="background-color:lavender;">
-      <h2>PARTIKULAT</h2>
-    </div>
-    <div class="col-sm-6 text-center border border-primary font-weight-bold" style="background-color:lavender;">
-      <h2>GAS</h2>
-    </div>
+  <h3 class="text-left"><i class='fas fa-map-marker-alt' style='font-size:36px;color:red'></i> LAMPUNG</h3>
+  <div class="text-center">
+    <h2>PARTIKULAT DAN GAS</h2>
   </div>
-  <div class="row">
-    <div class="col-sm-6 text-center border border-primary p-5" style="background-color:lavenderblush;">          
-      <div class="row p-1">
-        <div class="col-sm-6">
-          <div class="row p-3">
-            <div class="col-sm border border-success p-3">
-              <h3 class="text-position-center">PM10</h3>
-            </div>
-            <div class="col-sm border border-success text-center">
-              <div class="row p-1">
-                <div class="col-sm-12">
-                  <h2 id="pm10">
-                    
-                  </h2>
-                  <p>ppm</p>
-                </div>
-              </div>
-            </div>
+  <div class="row text-center">
+    <div class="col-sm-5">
+      <div class="row justify-content-center">
+      <?php foreach($partikulats as $partikulat) : ?>
+        <div class="col-sm-6 p-3">
+          <div class="card border border-success">
+            <h3 style="margin-top: 10px;"><?= $partikulat['caption'] ?></h3>
+            <hr style="margin-top: 2px; margin-bottom: 11px;">
+            <p class="font-weight-bold" style="font-size: 60px;" id="<?= $partikulat['param_id'] ?>"></p>
+            <hr style="margin-bottom: 4px;margin-top: 11px;">
+            <p><?= $partikulat['satuan'] ?></p>
+            <p id="pm10_flow" class="text-danger" style="margin-bottom: 12px;">l/mnt</p>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div class="row p-3">
-            <div class="col-sm border border-success p-3">
-              <h3 class="text-position-center">PM25</h3>
-            </div>
-            <div class="col-sm border border-success text-center">
-              <div class="row p-1">
-                <div class="col-sm-12">
-                  <h2>
-                    <?php
-                      $get = substr($gas['PM25'], 2, 7);
-                      echo round($get);
-                    ?>
-                  </h2>
-                  <p>ppm</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <?php endforeach ?>
       </div>
     </div>
-    <div class="col-sm-6 text-center border border-primary" style="background-color:lavenderblush;">
-      <div class="row p-1">
-        <div class="col-sm-6">
-          <div class="row p-2">
-            <div class="col-sm border border-success p-3">
-              <h3 class="text-position-center">CO</h3>
-            </div>
-            <div class="col-sm border border-success text-center">
-              <div class="row p-1">
-                <div class="col-sm-12">
-                  <h2><?= round($gas['AIN0'], 3) ?></h2>
-                  <p>ppm</p>
-                </div>
-              </div>
-            </div>
+    <div class="col-sm-7">
+      <div class="row justify-content-center">
+      <?php foreach($gass as $gas) : ?>
+        <div class="col-sm-3 p-3">
+          <div class="card border border-primary">
+            <h5 class="font-weight-bold" style="margin-top: 4px;"><?= $gas['caption'] ?></h5>
+            <hr style="margin-top: 0px; margin-bottom: -4px;">
+            <h1 id="<?= $gas['param_id'] ?>"></h1>
+            <hr style="margin-bottom: 0px; margin-top: -4px;">
+            <p style="margin-bottom: 4px"><?= $gas['satuan'] ?></p>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div class="row p-2">
-            <div class="col-sm border border-success p-3">
-              <h3 class="text-position-center">O3</h3>
-            </div>
-            <div class="col-sm border border-success text-center">
-              <div class="row p-1">
-                <div class="col-sm-12">
-                  <h2><?= round($gas['AIN1'], 3) ?></h2>
-                  <p>ppm</p>
-                </div>
-              </div>
-            </div>
+      <?php endforeach ?>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <h2>CUACA</h2>
+  </div>
+  <div class="row text-center">
+    <div class="col-sm">
+      <div class="row justify-content-center">
+      <?php foreach($cuacas as$cuaca) : ?>
+        <div class="col-sm p-3">
+          <div class="card border border-warning">
+            <h5 class="font-weight-bold" style="margin-top: 4px;"><?= $cuaca['caption'] ?></h5>
+            <hr style="margin-top: 0px; margin-bottom: -4px;">
+            <h1 id="<?= $cuaca['param_id'] ?>"></h1>
+            <hr style="margin-bottom: 0px; margin-top: -4px;">
+            <p style="margin-bottom: 4px"><?= $cuaca['satuan'] ?></p>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div class="row p-2">
-            <div class="col-sm border border-success p-3">
-              <h3 class="text-position-center">NO2</h3>
-            </div>
-            <div class="col-sm border border-success text-center">
-              <div class="row p-1">
-                <div class="col-sm-12">
-                  <h2><?= round($gas['AIN2'], 3) ?></h2>
-                  <p>ppm</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="row p-2">
-            <div class="col-sm border border-success p-3">
-              <h3 class="text-position-center">VOC</h3>
-            </div>
-            <div class="col-sm border border-success text-center">
-              <div class="row p-1">
-                <div class="col-sm-12">
-                  <h2><?= round($gas['AIN3'], 3) ?></h2>
-                  <p>ppm</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <?php endforeach ?>
       </div>
     </div>
   </div>
 </div>
-<br>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-12 text-center border border-primary font-weight-bold" style="background-color:lavender;">
-      <h2>CUACA</h2>
-    </div>
-  </div>
-  <div class="row text-center border border-primary" style="background-color: lavenderblush">
-    <div class="col-sm">
-      <div class="row p-1">
-        <div class="col-sm-12 border border-success p-1">
-          <h5>KECEPATAN ANGIN</h5>
-        </div>
-      </div>
-      <div class="row p-1">
-        <div class="col-sm-12">
-          <h3>0</h3>
-          <p>Km/jam</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm">
-      <div class="row p-1">
-        <div class="col-sm-12 border border-success p-1">
-          <h5>ARAH ANGIN</h5>
-        </div>
-      </div>
-      <div class="row p-1">
-        <div class="col-sm-12">
-          <h3>293</h3>
-          <p>WNM</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm">
-      <div class="row p-1">
-        <div class="col-sm-12 border border-success p-1">
-          <h5>TEMPERATUR</h5>
-        </div>
-      </div>
-      <div class="row p-1">
-        <div class="col-sm-12">
-          <h3>25</h3>
-          <p>Celcius</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm">
-      <div class="row p-1">
-        <div class="col-sm-12 border border-success p-1">
-          <h5>TEKANAN</h5>
-        </div>
-      </div>
-      <div class="row p-1">
-        <div class="col-sm-12">
-          <h3>78</h3>
-          <p>MBar</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm">
-      <div class="row p-1">
-        <div class="col-sm-12 border border-success p-1">
-          <h5>CURAH HUJAN</h5>
-        </div>
-      </div>
-      <div class="row p-1">
-        <div class="col-sm-12">
-          <h3>112</h3>
-          <p>mm/jam</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm">
-      <div class="row p-1">
-        <div class="col-sm-12 border border-success p-1">
-          <h5>SOLAR RADIASI</h5>
-        </div>
-      </div>
-      <div class="row p-1">
-        <div class="col-sm-12">
-          <h3>64</h3>
-          <p>watt/m2</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm">
-      <div class="row p-1">
-        <div class="col-sm-12 border border-success p-1">
-          <h5>KELEMBABAN</h5>
-        </div>
-      </div>
-      <div class="row p-1">
-        <div class="col-sm-12">
-          <h3>72</h3>
-          <p>%</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<?php endforeach ?>
+<script type="text/javascript">
+  function reload_sensor(){
+      $.ajax({url: "<?=site_url('sensors');?>", success: function(result){
+        var sensor = JSON.parse(result);
+        $("#pm10").html(sensor.pm10);
+        $("#pm10_flow").html(sensor.pm10_flow + " l/min");
+        $("#pm25").html(sensor.pm25);
+        $("#pm25_flow").html(sensor.pm25_flow + " l/min");
+        $("#so2").html(sensor.so2);
+        $("#co").html(sensor.co);
+        $("#o3").html(sensor.o3);
+        $("#no2").html(sensor.no2);
+        $("#voc").html(sensor.voc);
+        $("#hc").html(sensor.hc);
+        $("#h2s").html(sensor.h2s);
+        $("#cs2").html(sensor.cs2);
+        $("#WindSpeed").html(sensor.WindSpeed);
+        $("#WindDir").html(sensor.WindDir);
+        $("#TempIn").html(sensor.TempIn);
+        $("#TempOut").html(sensor.TempOut);
+        $("#Barometer").html(sensor.Barometer);
+        $("#RainDay").html(sensor.RainDay);
+        $("#RainRate").html(sensor.RainRate);
+        $("#SolarRad").html(sensor.SolarRad);
+        $("#HumIn").html(sensor.HumIn);
+        $("#HumOut").html(sensor.HumOut);
+      }});
+      setTimeout(function(){ reload_sensor() }, 1000);
+    }
+    reload_sensor();
+</script>

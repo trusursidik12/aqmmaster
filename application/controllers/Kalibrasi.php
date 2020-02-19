@@ -13,7 +13,7 @@ class Kalibrasi extends CI_Controller {
 
 	public function update(){
 		$data['alldata'] = $this->kalibrasi_m->getdata();
-		$data['titlebar'] = 'Kalibrasi';
+		$data['title'] = 'Aqm Master';
 
 		if(empty($data['alldata'])){
 			show_404();
