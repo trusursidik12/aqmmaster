@@ -5,6 +5,7 @@ class Sensors extends CI_Controller {
 
 	public function index(){
 		$values = new stdClass;
+		$formula = "";
 		$sensors = $this->sensors_m->getvalues();
 		$AIN0 		= $sensors["AIN0"];
 		$AIN1 		= $sensors["AIN1"];
@@ -15,11 +16,23 @@ class Sensors extends CI_Controller {
 		$WS	  		= $sensors["WS"];
 		$xtimestamp	= $sensors["xtimestamp"];
 		
-		$factor["ah2s"] = $this->sensors_m->getCalibrationFactor("ah2s")["nilai"];
+		$factors = $this->sensors_m->getFactors();
+		foreach($factors as $_factor){
+			$factor[$_factor["faktor"]] = $_factor["nilai"] * 1;
+		}
 		
-		$formula_h2s = $this->sensors_m->getFormula("formula_h2s")["content"];
-		eval("\$h2s = $formula_h2s;");
-		$values->h2s = $h2s;
+		$params = $this->sensors_m->getParams();
+		foreach($params as $_param){
+			$param_id = $_param["param_id"];
+			$formula = $this->sensors_m->getFormula("formula_".$param_id);
+			if(isset($formula["content"])){
+				$formula = $formula["content"];
+				eval("\$$param_id = $formula;");
+				eval("\$values->$param_id = \$$param_id;");
+			}
+			unset($formula);
+		}
+		
 		$data["values"] = json_encode($values);
 		
 		$this->load->view('master/ajax/sensor',$data);
