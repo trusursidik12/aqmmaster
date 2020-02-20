@@ -27,8 +27,8 @@ class sensors extends CI_Controller {
 			$formula = $this->sensors_m->getFormula("formula_".$param_id);
 			if(isset($formula["content"])){
 				$formula = $formula["content"];
-				eval("\$$param_id = $formula;");
-				eval("\$values->$param_id = \$$param_id;");
+				@eval("\$$param_id = $formula;");
+				@eval("\$values->$param_id = \$$param_id;");
 			}
 			unset($formula);
 		}
