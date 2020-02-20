@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <br>
-  <h3 class="text-center">Kalibrasi</h3>
+  <h3 class="text-center">Konfigurasi</h3>
 
   <div class="card">
   	<div class="row" style="padding-bottom: 50px;">
@@ -10,16 +10,18 @@
 		          <thead>
                 <thead class="thead-dark">
 		          <tr class="text-center">
-		            <th>DATA</th>
-                <th>KONTEN</th>
-                <th>ACTIONS</th>
+		            <th>Data</th>
+                <th>Konten</th>
+                <th>Aksi</th>
 		          </thead>
 		          <tbody>
 		          <?php foreach($alldata as $data) : ?>
 		          <tr>
-		            <td><?= $data['data']; ?></td>
-                <td style="color: red"><?= $data['content']; ?></td>
-                <td>ACTION</td>
+		            <td class="<?php if(empty($data['is_view'])) { ?>table-danger <?php } ?>"><?= $data['data']; ?></td>
+                <td class="<?php if(empty($data['is_view'])) { ?>table-danger <?php } ?>"><?= $data['content']; ?></td>
+                <td class="<?php if(empty($data['is_view'])) { ?>table-danger <?php } ?>">
+                  <a href="<?= site_url('/konfigurasi/edit/'.$data['id']) ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                </td>
 		          </tr>
 		          <?php endforeach ?>
 		          </tbody>
