@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Sensors extends CI_Controller {
+class sensors extends CI_Controller {
 
 	public function index(){
 		$values = new stdClass;
