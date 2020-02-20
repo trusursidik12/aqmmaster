@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS `aqm_configuration` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `data` varchar(50) DEFAULT NULL,
   `content` varchar(200) DEFAULT NULL,
+  `is_view` smallint DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=latin1 COMMENT='Cilegon: 1646510\r\nMakassar: 1622786	\r\nMataram: 1635882\r\nBatam: 1631761\r\nManado: 1636544\r\nAceh: 1215502\r\nJakarta: 1642911';
 
@@ -261,6 +262,7 @@ CREATE TABLE IF NOT EXISTS `aqm_params` (
   `param_id` varchar(10) NOT NULL,
   `caption` varchar(100) NOT NULL,
   `default_unit` varchar(10) NOT NULL,
+  `satuan` VARCHAR(20) NOT NULL,
   `is_view` smallint(6) NOT NULL,
   `xtimestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
@@ -310,7 +312,7 @@ CREATE TABLE IF NOT EXISTS `aqm_sensor_values` (
   `AIN3` double DEFAULT NULL,
   `PM25` varchar(255) NOT NULL,
   `PM10` varchar(255) NOT NULL,
-  `WS` varchar(255) DEFAULT NULL,
+  `WS` TEXT DEFAULT NULL,
   `xtimestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
