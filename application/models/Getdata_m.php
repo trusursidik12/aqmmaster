@@ -22,7 +22,23 @@ class Getdata_m extends CI_Model {
 		{
 			$partikulat = array('pm10','pm25');
 			$this->db->order_by('id', 'ASC');
+			$this->db->where('is_view', '1');
 			$this->db->where_in('param_id', $partikulat);
+			$query = $this->db->get('aqm_params');
+			return $query->result_array();
+		}
+		$query = $this->db->get_where('aqm_params', array('id' => $id));
+		return $query->row_array();
+	}
+
+	public function getParamsPartikulatFlow($id = FALSE)
+	{
+		if($id === FALSE)
+		{
+			$partikulatflow = array('pm10_flow','pm25_flow');
+			$this->db->order_by('id', 'ASC');
+			$this->db->where('is_view', '1');
+			$this->db->where_in('param_id', $partikulatflow);
 			$query = $this->db->get('aqm_params');
 			return $query->result_array();
 		}
@@ -34,9 +50,10 @@ class Getdata_m extends CI_Model {
 	{
 		if($id === FALSE)
 		{
-			$partikulat = array('so2','co','o3','no2','voc','hc','h2s','cs2');
+			$gas = array('so2','co','o3','no2','voc','hc','h2s','cs2');
 			$this->db->order_by('id', 'ASC');
-			$this->db->where_in('param_id', $partikulat);
+			$this->db->where('is_view', '1');
+			$this->db->where_in('param_id', $gas);
 			$query = $this->db->get('aqm_params');
 			return $query->result_array();
 		}
@@ -48,10 +65,10 @@ class Getdata_m extends CI_Model {
 	{
 		if($id === FALSE)
 		{
-			$partikulat = array('WindSpeed','WindDir','TempIn','TempOut','Barometer','RainDay','RainRate','SolarRad','HumIn','HumOut');
+			$cuaca = array('WindSpeed','WindDir','TempIn','TempOut','Barometer','RainDay','RainRate','SolarRad','HumIn','HumOut');
 			$this->db->order_by('id', 'ASC');
 			$this->db->where('is_view', '1');
-			$this->db->where_in('param_id', $partikulat);
+			$this->db->where_in('param_id', $cuaca);
 			$query = $this->db->get('aqm_params');
 			return $query->result_array();
 		}

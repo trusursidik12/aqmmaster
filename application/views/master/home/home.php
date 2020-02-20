@@ -3,6 +3,7 @@
   <h3 class="text-left"><i class='fas fa-map-marker-alt' style='font-size:36px;color:red'></i> LAMPUNG</h3>
   <div class="text-center">
     <h2>PARTIKULAT DAN GAS</h2>
+    <hr style="margin-top: -10px;margin-bottom: 0px;">
   </div>
   <div class="row text-center">
     <div class="col-sm-5">
@@ -15,7 +16,10 @@
             <p class="font-weight-bold" style="font-size: 60px;" id="<?= $partikulat['param_id'] ?>"></p>
             <hr style="margin-bottom: 4px;margin-top: 11px;">
             <p><?= $partikulat['satuan'] ?></p>
-            <p id="pm10_flow" class="text-danger" style="margin-bottom: 12px;">l/mnt</p>
+            <?php foreach($partikulatflows as $partikulatflow) : ?>
+            <p id="<?= $partikulatflow['param_id'] ?>" class="text-danger" style="margin-bottom: 12px;"><?= $partikulatflow['satuan'] ?></p>
+            <?php break;?>
+            <?php endforeach ?>
           </div>
         </div>
       <?php endforeach ?>
@@ -39,6 +43,7 @@
   </div>
   <div class="text-center">
     <h2>CUACA</h2>
+    <hr style="margin-top: -10px;margin-bottom: 0px;">
   </div>
   <div class="row text-center">
     <div class="col-sm">
