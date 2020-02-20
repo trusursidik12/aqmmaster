@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Sensors_m extends CI_Model {
+class sensors_m extends CI_Model {
 
 	public function getValues(){
 		$query = $this->db->get_where('aqm_sensor_values', ['id' => '1']);
