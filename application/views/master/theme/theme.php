@@ -59,11 +59,11 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item <?= $this->uri->uri_string() == 'konfigurasi' ? 'active' : ''; ?>">
             <a class="nav-link" href="<?= site_url('konfigurasi') ?>">Konfigurasi</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Database</a>
+          <li class="nav-item <?= $this->uri->uri_string() == 'parameter' ? 'active' : ''; ?>">
+            <a class="nav-link" href="<?= site_url('parameter') ?>">Parameter</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
