@@ -7,21 +7,19 @@
   		<div class="col-sm">
   			<div class="table-responsive">
 		        <table class="table">
-		          <thead>
-                <thead class="thead-dark">
-		          <tr class="text-center">
+		          <tr class="bg-primary text-center text-light">
 		            <th>Parameter Id</th>
                 <th>Keterangan</th>
                 <th>Satuan</th>
                 <th>Aksi</th>
-		          </thead>
+              </tr>
 		          <tbody>
 		          <?php foreach($alldata as $data) : ?>
 		          <tr>
-		            <td class="<?php if(empty($data['is_view'])) { ?>table-danger <?php } ?>"><?= $data['param_id']; ?></td>
-                <td class="<?php if(empty($data['is_view'])) { ?>table-danger <?php } ?>"><?= $data['caption']; ?></td>
-                <td class="<?php if(empty($data['is_view'])) { ?>table-danger <?php } ?>"><?= $data['satuan']; ?></td>
-                <td class="<?php if(empty($data['is_view'])) { ?>table-danger <?php } ?>">
+		            <td class="<?php if(empty($data['is_view'])) { ?>bg-danger <?php } ?>"><?= $data['param_id']; ?></td>
+                <td class="<?php if(empty($data['is_view'])) { ?>bg-danger <?php } ?>"><?= $data['caption']; ?></td>
+                <td class="<?php if(empty($data['is_view'])) { ?>bg-danger <?php } ?>"><?= $data['satuan']; ?></td>
+                <td class="<?php if(empty($data['is_view'])) { ?>bg-danger <?php } ?>">
                   <a href="<?= site_url('/parameter/edit/'.$data['id']) ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                 </td>
 		          </tr>

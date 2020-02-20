@@ -7,19 +7,17 @@
   		<div class="col-sm">
   			<div class="table-responsive">
 		        <table class="table">
-		          <thead>
-                <thead class="thead-dark">
-		          <tr class="text-center">
+		          <tr class="bg-primary text-center text-light">
 		            <th>Data</th>
                 <th>Konten</th>
                 <th>Aksi</th>
-		          </thead>
+              </tr>
 		          <tbody>
 		          <?php foreach($alldata as $data) : ?>
 		          <tr>
-		            <td class="<?php if(empty($data['is_view'])) { ?>table-danger <?php } ?>"><?= $data['data']; ?></td>
-                <td class="<?php if(empty($data['is_view'])) { ?>table-danger <?php } ?>"><?= $data['content']; ?></td>
-                <td class="<?php if(empty($data['is_view'])) { ?>table-danger <?php } ?>">
+		            <td class="<?php if(empty($data['is_view'])) { ?>bg-danger <?php } ?>"><?= $data['data']; ?></td>
+                <td class="<?php if(empty($data['is_view'])) { ?>bg-danger <?php } ?>"><?= $data['content']; ?></td>
+                <td class="<?php if(empty($data['is_view'])) { ?>bg-danger <?php } ?>">
                   <a href="<?= site_url('/konfigurasi/edit/'.$data['id']) ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                 </td>
 		          </tr>
