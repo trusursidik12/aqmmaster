@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('getdata_m','sensors_m','kalibrasi_m');
+$autoload['model'] = array('getdata_m','sensors_m','konfigurasi_m');

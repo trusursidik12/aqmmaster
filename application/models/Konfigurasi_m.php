@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Kalibrasi_m extends CI_Model {
+class Konfigurasi_m extends CI_Model {
 
 	public function getData($id = FALSE){
 		if($id === FALSE){
-			$this->db->where('is_view', '1');
+			$this->db->order_by('id', 'ASC');
 			$query = $this->db->get('aqm_configuration');
 			return $query->result_array();
 		}

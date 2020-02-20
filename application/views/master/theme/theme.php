@@ -7,11 +7,22 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/dist/css/bootstrap.min.css') ?>">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables-buttons/css/buttons.dataTables.min.css') ?>">
+
+
     <!-- Optional JavaScript -->
     <script src="<?= base_url('assets/dist/js/jquery.min.js') ?>"></script>
     <script src="<?= base_url('assets/dist/js/popper.min.js') ?>"></script>
     <script src="<?= base_url('assets/dist/js/bootstrap.min.js') ?>"></script>
     <script src="<?= base_url('assets/dist/js/font-awesome.js') ?>"></script>
+    <!-- data tables -->
+    <script src="<?= base_url('assets/plugins/datatables/jquery.dataTables.js') ?>"></script>
+    <script src="<?= base_url('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js') ?>"></script>
+    <script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.html5.min.js') ?>"></script>
+    <script src="<?= base_url('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') ?>"></script>
+
     
 
     <style>
@@ -38,7 +49,7 @@
     <title><?= $title; ?></title>
   </head>
   <body onload="startTime()" >
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
       <a class="navbar-brand" href="<?= site_url() ?>">
           <img src="<?= base_url('assets/dist/img/trusur_logo3.png') ?>" alt="">
         </a>
@@ -49,7 +60,7 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="<?= site_url('kalibrasi') ?>">Kalibrasi</a>
+            <a class="nav-link" href="<?= site_url('konfigurasi') ?>">Konfigurasi</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Database</a>
@@ -112,9 +123,6 @@
       if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
       return i;
     }
-
-
-
     </script>
 
 
