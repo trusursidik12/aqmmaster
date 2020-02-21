@@ -10,7 +10,6 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "+00:00";
 
 --
 -- Database: `trusur_aqm`
@@ -31,12 +30,6 @@ CREATE TABLE IF NOT EXISTS `aqm_authorized_number` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `aqm_authorized_number`
---
-
-INSERT INTO `aqm_authorized_number` (`id`, `number`) VALUES
-(1, '081231394658');
 
 -- --------------------------------------------------------
 
@@ -83,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `aqm_configuration` (
   `content` varchar(200) DEFAULT NULL,
   `is_view` smallint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=latin1 COMMENT='Cilegon: 1646510\r\nMakassar: 1622786	\r\nMataram: 1635882\r\nBatam: 1631761\r\nManado: 1636544\r\nAceh: 1215502\r\nJakarta: 1642911';
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `aqm_configuration`
@@ -235,21 +228,6 @@ CREATE TABLE IF NOT EXISTS `aqm_log` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Trigger `aqm_log`
---
-DROP TRIGGER IF EXISTS `HandleLog`;
-DELIMITER $$
-CREATE TRIGGER `HandleLog` BEFORE INSERT ON `aqm_log` FOR EACH ROW BEGIN
-	IF (SELECT COUNT(*) FROM aqm_log) = 100 THEN
-        DELETE FROM aqm_log
-        ORDER BY id 
-        LIMIT 1;
-    END IF;    
-END
-$$
-DELIMITER ;
-
 -- --------------------------------------------------------
 
 --
@@ -317,15 +295,6 @@ CREATE TABLE IF NOT EXISTS `aqm_sensor_values` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `aqm_sensor_values`
---
-
-INSERT INTO `aqm_sensor_values` (`id`, `AIN0`, `AIN1`, `AIN2`, `AIN3`, `PM25`, `PM10`, `WS`, `xtimestamp`) VALUES
-(1, 0.4, 4.293194770812988, 1.502382755279541, 1.7023757696151733, 'b\'000.025,2.0,+28.3,067,1007.4,00,*01543\\r\\n\'', 'b\'000.040,2.0,+28.3,067,1007.4,00,*01543\\r\\n\'', '2020-02-18 10:31:35.519638;255;29.702;82.0;71;80.2;77;0;302;76;0.0;0;0;0.0;2127-15-31;0.0;0.0;0.0;0.001;0.0;0.0;0;4.8515625;0;193;07:23;17:02;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0', '2020-02-19 06:53:33'),
-(2, 3.9226908683776855, 4.010066032409668, 1.58293616771698, 1.7379157543182373, '', 'b\'000.040,2.0,+28.3,066,1007.3,00,*01541\\r\\n\'', '2020-02-18 10:31:12.245940;255;29.703;82.0;71;80.2;0;0;302;76;0.0;0;0;0.0;2127-15-31;0.0;0.0;0.0;0.001;0.0;0.0;0;4.8515625;0;193;07:23;17:02;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;', '2020-02-18 03:31:12'),
-(3, 0, 0, 0, 0, '', '', '', '2020-02-19 03:41:57');
-
 -- --------------------------------------------------------
 
 --
@@ -351,8 +320,7 @@ CREATE TABLE IF NOT EXISTS `aqm_stasiun` (
 --
 
 INSERT INTO `aqm_stasiun` (`id`, `id_stasiun`, `nama`, `lat`, `lon`, `alamat`, `kota`, `provinsi`, `use_internet`) VALUES
-(1, 'SIMPANG_TIGA', 'Simpang Tiga Cilegon', -6.0113513, 106.0431854, 'Provinsi Banten', 'Cilegon', 'Banten', 1),
-(2, 'CIWANDAN', 'Kel.Gunung Sugih', -6.036452, 105.942915, 'Provinsi Banten', 'Cilegon', 'Banten', 1);
+(1, 'SIMPANG_TIGA', 'Simpang Tiga Cilegon', -6.0113513, 106.0431854, 'Provinsi Banten', 'Cilegon', 'Banten', 1);
 
 -- --------------------------------------------------------
 
@@ -372,11 +340,12 @@ CREATE TABLE IF NOT EXISTS `aqm_user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `aqm_user`
---
+DROP TABLE IF EXISTS `serial_ports`;
+CREATE TABLE IF NOT EXISTS `serial_ports` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `port` varchar(20) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
-INSERT INTO `aqm_user` (`id`, `email`, `password`, `nama`, `alamat`, `telepon`, `role`) VALUES
-(1, 'a', '47BCE5C74F589F4867DBD57E9CA9F808', 'Sakakyu', 'Jl. Kelapa Dua Wetan', '08664738929', 0),
-(3, 'b', '08F8E0260C64418510CEFB2B06EEE5CD', 'Bahadur', 'Jl merbabu', '089267456372', 1);
 COMMIT;
