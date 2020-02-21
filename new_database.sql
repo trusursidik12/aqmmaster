@@ -286,16 +286,16 @@ INSERT INTO `aqm_params` (`id`, `param_id`, `caption`, `default_unit`, `is_view`
 (10, 'hc', 'HC', '', 1, '2020-02-19 06:44:38'),
 (11, 'h2s', 'H2S', '', 1, '2020-02-19 06:44:38'),
 (12, 'cs2', 'CS2', '', 1, '2020-02-19 06:44:38'),
-(13, 'WindSpeed', 'Kecepatan Angin', '', 1, '2020-02-19 06:44:38'),
+(13, 'WindSpeed', 'Kecepatan&nbsp;Angin', '', 1, '2020-02-19 06:44:38'),
 (14, 'WindDir', 'Arah Angin', '', 1, '2020-02-19 06:44:38'),
-(15, 'TempIn', 'Temperatur Dalam', '', 1, '2020-02-19 06:44:38'),
-(16, 'TempOut', 'Temperatur Luar', '', 1, '2020-02-19 06:44:38'),
+(15, 'TempIn', 'Temperatur Dalam', '', 0, '2020-02-19 06:44:38'),
+(16, 'TempOut', 'Temperatur', '', 1, '2020-02-19 06:44:38'),
 (17, 'Barometer', 'Tekanan', '', 1, '2020-02-19 06:44:38'),
 (18, 'RainDay', 'Curah Hujan', '', 1, '2020-02-19 06:44:38'),
-(19, 'RainRate', 'Tingkat Hujan', '', 1, '2020-02-19 06:44:38'),
+(19, 'RainRate', 'Tingkat Hujan', '', 0, '2020-02-19 06:44:38'),
 (20, 'SolarRad', 'Solar Radiasi', '', 1, '2020-02-19 06:44:38'),
-(21, 'HumIn', 'Kelembapan Dalam', '', 1, '2020-02-19 06:44:38'),
-(22, 'HumOut', 'Kelembapan Luar', '', 1, '2020-02-19 06:44:38');
+(21, 'HumIn', 'Kelembaban Dalam', '', 0, '2020-02-19 06:44:38'),
+(22, 'HumOut', 'Kelembaban', '', 1, '2020-02-19 06:44:38');
 
 -- --------------------------------------------------------
 
