@@ -288,8 +288,8 @@ CREATE TABLE IF NOT EXISTS `aqm_sensor_values` (
   `AIN1` double DEFAULT NULL,
   `AIN2` double DEFAULT NULL,
   `AIN3` double DEFAULT NULL,
-  `PM25` varchar(255) NOT NULL,
-  `PM10` varchar(255) NOT NULL,
+  `PM25` varchar(255) DEFAULT NULL,
+  `PM10` varchar(255) DEFAULT NULL,
   `WS` TEXT DEFAULT NULL,
   `xtimestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
