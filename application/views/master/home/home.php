@@ -87,36 +87,36 @@
   function reload_sensor(){
       $.ajax({url: "<?=site_url('sensors');?>?unit=<?= $_GET["unit"]; ?>", success: function(result){
         var sensor = JSON.parse(result);
-        $("#pm10").html((sensor.pm10 * 1000) + " " + sensor.pm10_unit);
-        $("#pm10_flow").html(sensor.pm10_flow + " " + sensor.pm10_flow_unit);
-        $("#pm25").html((sensor.pm25 * 1000) + " " + sensor.pm25_unit);
-        $("#pm25_flow").html(sensor.pm25_flow + " " + sensor.pm25_flow_unit);
-        $("#so2").html(sensor.so2);
-        $("#unit_so2").html("(" + sensor.so2_unit + ")");
-        $("#co").html(sensor.co);
-        $("#unit_co").html("(" + sensor.co_unit + ")");
-        $("#o3").html(sensor.o3);
-        $("#unit_o3").html("(" + sensor.o3_unit + ")");
-        $("#no2").html(sensor.no2);
-        $("#unit_no2").html("(" + sensor.no2_unit + ")");
-        $("#voc").html(sensor.voc);
-        $("#unit_voc").html("(" + sensor.voc_unit + ")");
-        $("#hc").html(sensor.hc);
-        $("#unit_hc").html("(" + sensor.hc_unit + ")");
-        $("#h2s").html(sensor.h2s);
-        $("#unit_h2s").html("(" + sensor.h2s_unit + ")");
-        $("#cs2").html(sensor.cs2);
-        $("#unit_cs2").html("(" + sensor.cs2_unit + ")");
-        $("#WindSpeed").html(sensor.WindSpeed + "</h3><br><h6>" + sensor.WindSpeed_unit + "</h6>");
-        $("#WindDir").html(sensor.WindDir + sensor.WindDir_unit + "</h3><br><h6>&nbsp;</h6>");
-        $("#TempIn").html(sensor.TempIn + "</h3><br><h6>" + sensor.TempIn_unit + "</h6>");
-        $("#TempOut").html(sensor.TempOut + "</h3><br><h6>" + sensor.TempOut_unit + "</h6>");
-        $("#Barometer").html(sensor.Barometer + "</h3><br><h6>" + sensor.Barometer_unit + "</h6>");
-        $("#RainDay").html(sensor.RainDay + "</h3><br><h6>" + sensor.RainDay_unit + "</h6>");
-        $("#RainRate").html(sensor.RainRate + "</h3><br><h6>" + sensor.RainRate_unit + "</h6>");
-        $("#SolarRad").html(sensor.SolarRad + "</h3><br><h6>" + sensor.SolarRad_unit + "</h6>");
-        $("#HumIn").html(sensor.HumIn + "&nbsp;" + sensor.HumIn_unit + "</h3><br><h6>&nbsp;</h6>");
-        $("#HumOut").html(sensor.HumOut + "&nbsp;" + sensor.HumOut_unit + "</h3><br><h6>&nbsp;</h6>");
+        try { $("#pm10").html((sensor.pm10 * 1000) + " " + sensor.pm10_unit); } catch(ex){}
+        try { $("#pm10_flow").html(sensor.pm10_flow + " " + sensor.pm10_flow_unit); } catch(ex){}
+        try { $("#pm25").html((sensor.pm25 * 1000) + " " + sensor.pm25_unit); } catch(ex){}
+        try { $("#pm25_flow").html(sensor.pm25_flow + " " + sensor.pm25_flow_unit); } catch(ex){}
+        try { $("#so2").html(sensor.so2); } catch(ex){}
+        try { $("#unit_so2").html("(" + sensor.so2_unit + ")"); } catch(ex){}
+        try { $("#co").html(sensor.co); } catch(ex){}
+        try { $("#unit_co").html("(" + sensor.co_unit + ")"); } catch(ex){}
+        try { $("#o3").html(sensor.o3); } catch(ex){}
+        try { $("#unit_o3").html("(" + sensor.o3_unit + ")"); } catch(ex){}
+        try { $("#no2").html(sensor.no2); } catch(ex){}
+        try { $("#unit_no2").html("(" + sensor.no2_unit + ")"); } catch(ex){}
+        try { $("#voc").html(sensor.voc); } catch(ex){}
+        try { $("#unit_voc").html("(" + sensor.voc_unit + ")"); } catch(ex){}
+        try { $("#hc").html(sensor.hc); } catch(ex){}
+        try { $("#unit_hc").html("(" + sensor.hc_unit + ")"); } catch(ex){}
+        try { $("#h2s").html(sensor.h2s); } catch(ex){}
+        try { $("#unit_h2s").html("(" + sensor.h2s_unit + ")"); } catch(ex){}
+        try { $("#cs2").html(sensor.cs2); } catch(ex){}
+        try { $("#unit_cs2").html("(" + sensor.cs2_unit + ")"); } catch(ex){}
+        try { $("#WindSpeed").html(sensor.WindSpeed + "</h3><br><h6>" + sensor.WindSpeed_unit + "</h6>"); } catch(ex){}
+        try { $("#WindDir").html(sensor.WindDir + sensor.WindDir_unit + "</h3><br><h6>&nbsp;</h6>"); } catch(ex){}
+        try { $("#TempIn").html(sensor.TempIn + "</h3><br><h6>" + sensor.TempIn_unit + "</h6>"); } catch(ex){}
+        try { $("#TempOut").html(sensor.TempOut + "</h3><br><h6>" + sensor.TempOut_unit + "</h6>"); } catch(ex){}
+        try { $("#Barometer").html(sensor.Barometer + "</h3><br><h6>" + sensor.Barometer_unit + "</h6>"); } catch(ex){}
+        try { $("#RainDay").html(sensor.RainDay + "</h3><br><h6>" + sensor.RainDay_unit + "</h6>"); } catch(ex){}
+        try { $("#RainRate").html(sensor.RainRate + "</h3><br><h6>" + sensor.RainRate_unit + "</h6>"); } catch(ex){}
+        try { $("#SolarRad").html(sensor.SolarRad + "</h3><br><h6>" + sensor.SolarRad_unit + "</h6>"); } catch(ex){}
+        try { $("#HumIn").html(sensor.HumIn + "&nbsp;" + sensor.HumIn_unit + "</h3><br><h6>&nbsp;</h6>"); } catch(ex){}
+        try { $("#HumOut").html(sensor.HumOut + "&nbsp;" + sensor.HumOut_unit + "</h3><br><h6>&nbsp;</h6>"); } catch(ex){}
       }});
       setTimeout(function(){ reload_sensor() }, 1000);
     }
