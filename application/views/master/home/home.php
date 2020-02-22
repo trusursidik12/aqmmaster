@@ -1,76 +1,85 @@
 <div class="page-wrapper" style="display: block;">
 	<div class="container-fluid">
-	  <br>
-	  <h3 class="text-left"><i class='fas fa-map-marker-alt' style='font-size:36px;color:red'></i> <?=$configurations["sta_nama"];?></h3>
-	  <div style="margin-top: -20px;">
-		<div class="text-center">
-		  <h2>PARTIKULAT DAN GAS</h2>
-		  <hr style="margin-top: -10px;margin-bottom: 0px;">
+		<div class="page-breadcrumb">
+			<div class="row">
+				<div class="col-5 align-self-center">
+					<h4 class="page-title"><i class='fas fa-map-marker-alt' style='font-size:21px;color:red'></i> <?=$configurations["sta_nama"];?></h4>
+				</div>
+			</div>
 		</div>
-		<br>
+		
+		<div class="page-breadcrumb">
+			<div class="row">
+				<div class="col-12 align-self-center">
+					<h4 class="text-center page-title2">Partikulat dan Gas</h4>
+				</div>
+			</div>
+		</div>
+	
 		<div class="row text-center">
-		  <div class="col-sm-5">
-			<div class="row justify-content-center">
-			<?php foreach($partikulats as $partikulat) : ?>
-				<div class="col-6">
-					<div class="card">
-						<div class="card-body">
-							<h4 class="card-title"><?= $partikulat['caption'] ?></h4>
-							<div class="row">
-								<div class="col-12">
-									<h2 class="font-light text-right mb-0" id="<?= $partikulat['param_id'] ?>"></h2>
+			<div class="col-sm-5">
+				<div class="row justify-content-center">
+					<?php foreach($partikulats as $partikulat) : ?>
+						<div class="col-6">
+							<div class="card border border-success">
+								<div class="card-body">
+									<h4 class="card-title"><?= $partikulat['caption'] ?></h4>
+									<div class="row">
+										<div class="col-12">
+											<h2 class="font-light text-right mb-0" id="<?= $partikulat['param_id'] ?>"></h2>
+										</div>
+									</div>
+									<div class="row align-items-center">
+										<div class="col-12">
+											<p id="<?= $partikulat['param_id'] ?>_flow" class="text-danger" style="margin-bottom: 12px;"></p>
+										</div>
+									</div>
 								</div>
-							</div>
-							<div class="row align-items-center">
-								<div class="col-12">
-									<p id="<?= $partikulat['param_id'] ?>_flow" class="text-danger" style="margin-bottom: 12px;"></p>
+							</div>                        
+						</div>
+					<?php endforeach ?>
+				</div>
+			</div>
+			<div class="col-sm-7">
+				<div class="row justify-content-center">
+					<?php foreach($gass as $gas) : ?>
+						<div class="col-sm-3" style="padding:0px 20px 20px 0px;">
+							<div class="card border border-primary" style="padding:0px 5px 5px 0px;">
+								<h4 class="card-title">&nbsp;<?= $gas['caption'] ?></h4>
+								<div class="row">
+									<div class="col-12">
+										<h4 class="font-light text-right mb-0" id="<?= $gas['param_id'] ?>"></h4>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>                        
+				<?php endforeach ?>
 				</div>
-				
-			<?php endforeach ?>
 			</div>
-		  </div>
-		  <div class="col-sm-7">
-			<div class="row justify-content-center">
-			<?php foreach($gass as $gas) : ?>
-			  <div class="col-sm-3 p-3">
-				<div class="card border border-primary">
-				  <h5 class="font-weight-bold" style="margin-top: 4px;"><?= $gas['caption'] ?></h5>
-				  <hr style="margin-top: 0px; margin-bottom: -4px;">
-				  <h3 id="<?= $gas['param_id'] ?>"></h3>
-				  <hr style="margin-bottom: 0px; margin-top: -4px;">
-				  <p style="margin-bottom: 4px"><?= $gas['satuan'] ?></p>
+		</div>
+		
+		<div class="page-breadcrumb">
+			<div class="row">
+				<div class="col-12 align-self-center">
+					<h4 class="text-center page-title2">Cuaca</h4>
 				</div>
-			  </div>
-			<?php endforeach ?>
 			</div>
-		  </div>
 		</div>
-		<div class="text-center">
-		  <h2>CUACA</h2>
-		  <hr style="margin-top: -10px;margin-bottom: 0px;">
-		</div>
+		
 		<div class="row text-center">
-		  <div class="col-sm">
-			<div class="row justify-content-center">
-			<?php foreach($cuacas as$cuaca) : ?>
-			  <div class="col-sm p-3">
-				<div class="card border border-warning">
-				  <h6 class="font-weight-bold" style="margin-top: 4px;"><?= $cuaca['caption'] ?></h6>
-				  <hr style="margin-top: 0px; margin-bottom: -4px;">
-				  <h3 id="<?= $cuaca['param_id'] ?>"></h3>
-				  <hr style="margin-bottom: 0px; margin-top: -4px;">
-				  <p style="margin-bottom: 4px"><?= $cuaca['satuan'] ?></p>
+			<div class="col-sm">
+				<div class="row justify-content-center">
+					<?php foreach($cuacas as$cuaca) : ?>
+						<div class="col-sm" style="padding:0px 20px 20px 0px;">
+							<div class="card border border-warning">
+								<h6 class="card-title">&nbsp;<?= $cuaca['caption'] ?></h6>
+								<h3 id="<?= $cuaca['param_id'] ?>"></h3>
+							</div>
+						</div>
+					<?php endforeach ?>
 				</div>
-			  </div>
-			<?php endforeach ?>
 			</div>
-		  </div>
 		</div>
-	  </div>
 	</div>
 </div>
 

@@ -62,13 +62,30 @@
 			background-color: #fff;
 			background-clip: border-box;
 			border: 0 solid transparent;
-			border-radius: 0;
+			border-radius: .25rem;
 		}
 		
 		.card-title{
 			text-align:left;
 			font-size:16px;
 			color:grey;
+		}
+		
+		.page-title {
+			margin-bottom: 0;
+			font-weight: 500;
+			font-size: 21px;
+			color: #6a7a8c;
+		}
+		
+		.page-title2 {
+			margin-bottom: 0;
+			font-weight: 700;
+			color: #6a7a8c;
+		}
+		
+		.page-breadcrumb {
+			padding: 10px 0px 10px 0px;
 		}
     </style>
 

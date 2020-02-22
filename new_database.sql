@@ -50,18 +50,18 @@ CREATE TABLE IF NOT EXISTS `aqm_calibration_factor` (
 
 INSERT INTO `aqm_calibration_factor` (`faktor`, `nilai`) VALUES
 ('aco', 1),
-('acs2', -0.0343),
+('acs2', 0),
 ('ah2s', 1),
 ('ahc', 1),
 ('ano2', 1),
 ('ao3', 1),
 ('aso2', 1),
 ('bco', 0),
-('bh2s', 8.64),
+('bh2s', 0),
 ('bhc', 0),
-('bno2', -0.08282095100730658),
+('bno2', 0),
 ('bo3', 0),
-('bso2', 182.798);
+('bso2', 0);
 
 -- --------------------------------------------------------
 
@@ -247,8 +247,8 @@ INSERT INTO `aqm_params` (`param_id`, `caption`, `default_unit`, `formula`,`is_v
 ('TempIn', 'Temperatur Dalam', '','explode(";",$WS)[3]', 0, '2020-02-19 06:44:38'),
 ('HumIn', 'Kelembaban Dalam', '','explode(";",$WS)[4]', 0, '2020-02-19 06:44:38'),
 ('TempOut', 'Temperatur', '','explode(";",$WS)[5]', 1, '2020-02-19 06:44:38'),
-('WindSpeed', 'Kecepatan&nbsp;Angin', '','explode(";",$WS)[6]', 1, '2020-02-19 06:44:38'),
-('WindSpeed10Min', 'Kecepatan&nbsp;Angin&nbsp;10Min', '','explode(";",$WS)[7]', 1, '2020-02-19 06:44:38'),
+('WindSpeed', 'Kec.&nbsp;Angin', '','explode(";",$WS)[6]', 1, '2020-02-19 06:44:38'),
+('WindSpeed10Min', 'Kec.&nbsp;Angin&nbsp;10Min', '','explode(";",$WS)[7]', 1, '2020-02-19 06:44:38'),
 ('WindDir', 'Arah Angin', '','explode(";",$WS)[8]', 1, '2020-02-19 06:44:38'),
 ('HumOut', 'Kelembaban', '','explode(";",$WS)[9]', 1, '2020-02-19 06:44:38'),
 ('RainRate', 'Tingkat Hujan', '','explode(";",$WS)[10]', 0, '2020-02-19 06:44:38'),
