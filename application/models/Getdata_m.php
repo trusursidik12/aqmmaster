@@ -75,5 +75,11 @@ class Getdata_m extends CI_Model {
 		$query = $this->db->get_where('aqm_params', array('id' => $id));
 		return $query->row_array();
 	}
-
+	public function getConfigurations(){
+		$query = $this->db->get('aqm_configuration');
+		foreach($query->result_array() as $key => $configuration){
+			$return[$configuration["data"]] = $configuration["content"];
+		}
+		return $return;
+	}
 }

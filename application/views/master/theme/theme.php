@@ -66,9 +66,6 @@
             <a class="nav-link" href="<?= site_url('parameter') ?>">Parameter</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <button type="button" onclick="window.close();" class="btn btn-outline-light my-2 my-sm-0">EXIT</button>      
-        </form>
       </div>
     </nav>
 

@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <br>
-  <h3 class="text-left"><i class='fas fa-map-marker-alt' style='font-size:36px;color:red'></i> LAMPUNG</h3>
+  <h3 class="text-left"><i class='fas fa-map-marker-alt' style='font-size:36px;color:red'></i> <?=$configurations["sta_nama"];?></h3>
   <div style="margin-top: -20px;">
     <div class="text-center">
       <h2>PARTIKULAT DAN GAS</h2>
