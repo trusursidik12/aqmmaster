@@ -17,10 +17,7 @@
               <p class="font-weight-bold" style="font-size: 40px;" id="<?= $partikulat['param_id'] ?>"></p>
               <hr style="margin-bottom: 4px;margin-top: 11px;">
               <p><?= $partikulat['satuan'] ?></p>
-              <?php foreach($partikulatflows as $partikulatflow) : ?>
-              <p id="<?= $partikulatflow['param_id'] ?>" class="text-danger" style="margin-bottom: 12px;"><?= $partikulatflow['satuan'] ?></p>
-              <?php break;?>
-              <?php endforeach ?>
+              <p id="<?= $partikulat['param_id'] ?>_flow" class="text-danger" style="margin-bottom: 12px;"></p>
             </div>
           </div>
         <?php endforeach ?>
