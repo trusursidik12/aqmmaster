@@ -24,9 +24,12 @@ class sensors extends CI_Controller {
 		$params = $this->sensors_m->getParams();
 		foreach($params as $_param){
 			$param_id = $_param["param_id"];
+			$param_id_unit = $_param["param_id"]."_unit";
+			$default_unit = $_param["default_unit"];
 			@$formula = $this->sensors_m->getFormula($param_id)["formula"];
 			@eval("\$$param_id = $formula;");
 			@eval("\$values->$param_id = \$$param_id;");
+			$values->$param_id_unit = $default_unit;
 			unset($formula);
 		}
 		
