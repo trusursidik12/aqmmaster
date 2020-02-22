@@ -26,11 +26,22 @@ class sensors extends CI_Controller {
 			$param_id = $_param["param_id"];
 			$param_id_unit = $_param["param_id"]."_unit";
 			$default_unit = $_param["default_unit"];
+			$molecular_mass = $_param["molecular_mass"];
 			@$formula = $this->sensors_m->getFormula($param_id)["formula"];
 			@eval("\$$param_id = $formula;");
+			if(isset($_GET["unit"]) && $molecular_mass > 0 ){
+				if($_GET["unit"] == "ppb"){
+					@eval("\$$param_id = \$$param_id * 1000;");
+					$default_unit = "ppb";
+				}
+				if($_GET["unit"] == "ug"){
+					@eval("\$$param_id = round(\$$param_id * $molecular_mass / 24.45 * 1000,0);");
+					$default_unit = "ug/m3";
+				}
+			}
+			$values->$param_id_unit = $default_unit;
 			@eval("if(\$$param_id < 0) \$$param_id = 0;");
 			@eval("\$values->$param_id = \$$param_id;");
-			$values->$param_id_unit = $default_unit;
 			unset($formula);
 		}
 		

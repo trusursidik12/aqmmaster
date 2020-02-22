@@ -45,7 +45,7 @@
 					<?php foreach($gass as $gas) : ?>
 						<div class="col-sm-3" style="padding:0px 20px 20px 0px;">
 							<div class="card border border-primary" style="padding:0px 5px 5px 0px;">
-								<h4 class="card-title">&nbsp;<?= $gas['caption'] ?><div style="position:relative;float:right;">(<?= $gas['default_unit'] ?>)</div></h4>
+								<h4 class="card-title">&nbsp;<?= $gas['caption'] ?><div style="position:relative;float:right;" id="unit_<?= $gas['param_id'] ?>">(<?= $gas['default_unit'] ?>)</div></h4>
 								<div class="row">
 									<div class="col-12">
 										<h4 class="font-light text-right mb-0" id="<?= $gas['param_id'] ?>"></h4>
@@ -85,20 +85,28 @@
 
 <script type="text/javascript">
   function reload_sensor(){
-      $.ajax({url: "<?=site_url('sensors');?>", success: function(result){
+      $.ajax({url: "<?=site_url('sensors');?>?unit=<?= $_GET["unit"]; ?>", success: function(result){
         var sensor = JSON.parse(result);
         $("#pm10").html((sensor.pm10 * 1000) + " " + sensor.pm10_unit);
         $("#pm10_flow").html(sensor.pm10_flow + " " + sensor.pm10_flow_unit);
         $("#pm25").html((sensor.pm25 * 1000) + " " + sensor.pm25_unit);
         $("#pm25_flow").html(sensor.pm25_flow + " " + sensor.pm25_flow_unit);
         $("#so2").html(sensor.so2);
+        $("#unit_so2").html("(" + sensor.so2_unit + ")");
         $("#co").html(sensor.co);
+        $("#unit_co").html("(" + sensor.co_unit + ")");
         $("#o3").html(sensor.o3);
+        $("#unit_o3").html("(" + sensor.o3_unit + ")");
         $("#no2").html(sensor.no2);
+        $("#unit_no2").html("(" + sensor.no2_unit + ")");
         $("#voc").html(sensor.voc);
+        $("#unit_voc").html("(" + sensor.voc_unit + ")");
         $("#hc").html(sensor.hc);
+        $("#unit_hc").html("(" + sensor.hc_unit + ")");
         $("#h2s").html(sensor.h2s);
+        $("#unit_h2s").html("(" + sensor.h2s_unit + ")");
         $("#cs2").html(sensor.cs2);
+        $("#unit_cs2").html("(" + sensor.cs2_unit + ")");
         $("#WindSpeed").html(sensor.WindSpeed + "</h3><br><h6>" + sensor.WindSpeed_unit + "</h6>");
         $("#WindDir").html(sensor.WindDir + sensor.WindDir_unit + "</h3><br><h6>&nbsp;</h6>");
         $("#TempIn").html(sensor.TempIn + "</h3><br><h6>" + sensor.TempIn_unit + "</h6>");
