@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `aqm_configuration` (
   `content` varchar(200) DEFAULT NULL,
   `is_view` smallint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `aqm_configuration`
@@ -130,29 +130,7 @@ INSERT INTO `aqm_configuration` (`id`, `data`, `content`) VALUES
 (45, 'controller_baud', '9600'),
 (46, 'pump_interval', '185'),
 (47, 'pump_state', '1'),
-(48, 'pump_last', '2020-02-18 12:04:30'),
-(87, 'formula_pm10', 'substr($PM10,2,7)'),
-(88, 'formula_pm10_flow', 'substr($PM10,10,3)'),
-(89, 'formula_pm25', 'substr($PM25,2,7)'),
-(90, 'formula_pm25_flow', 'substr($PM10,10,3)'),
-(91, 'formula_so2', 'round((125 * $AIN2 - 5) * $factor[\'aso2\'] - $factor[\'bso2\'], 3)'),
-(92, 'formula_co', '0'),
-(93, 'formula_o3', '0'),
-(94, 'formula_no2', '0'),
-(95, 'formula_voc', '0'),
-(96, 'formula_hc', '0'),
-(97, 'formula_h2s', 'round(3.2 * ((8 + $factor[\'ah2s\']) * $AIN0) - $factor[\'bh2s\'], 3)'),
-(98, 'formula_cs2', '0'),
-(99, 'formula_WindSpeed', 'explode(\";\",$WS)[6]'),
-(100, 'formula_WindDir', 'explode(\";\",$WS)[8]'),
-(101, 'formula_TempIn', 'explode(\";\",$WS)[3]'),
-(102, 'formula_TempOut', 'explode(\";\",$WS)[5]'),
-(103, 'formula_Barometer', 'explode(\";\",$WS)[2]'),
-(104, 'formula_RainDay', 'explode(\";\",$WS)[15]'),
-(105, 'formula_RainRate', 'explode(\";\",$WS)[10]'),
-(106, 'formula_SolarRad', 'explode(\";\",$WS)[12]'),
-(107, 'formula_HumIn', 'explode(\";\",$WS)[4]'),
-(108, 'formula_HumOut', 'explode(\";\",$WS)[9]');
+(48, 'pump_last', '2020-02-18 12:04:30');
 
 -- --------------------------------------------------------
 
@@ -241,6 +219,7 @@ CREATE TABLE IF NOT EXISTS `aqm_params` (
   `caption` varchar(100) NOT NULL,
   `default_unit` varchar(10) NOT NULL,
   `satuan` VARCHAR(20) NOT NULL,
+  `formula` varchar(255) DEFAULT NULL,
   `is_view` smallint(6) NOT NULL,
   `xtimestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
@@ -251,29 +230,29 @@ CREATE TABLE IF NOT EXISTS `aqm_params` (
 -- Dumping data untuk tabel `aqm_params`
 --
 
-INSERT INTO `aqm_params` (`id`, `param_id`, `caption`, `default_unit`, `is_view`, `xtimestamp`) VALUES
-(1, 'pm10', 'PM10', '', 1, '2020-02-19 06:44:38'),
-(2, 'pm10_flow', 'PM10 Flow', '', 1, '2020-02-19 06:44:38'),
-(3, 'pm25', 'PM25', '', 1, '2020-02-19 06:44:38'),
-(4, 'pm25_flow', 'PM25 Flow', '', 1, '2020-02-19 06:44:38'),
-(5, 'so2', 'SO2', '', 1, '2020-02-19 06:44:38'),
-(6, 'co', 'CO', '', 1, '2020-02-19 06:44:38'),
-(7, 'o3', 'O3', '', 1, '2020-02-19 06:44:38'),
-(8, 'no2', 'NO2', '', 1, '2020-02-19 06:44:38'),
-(9, 'voc', 'VOC', '', 1, '2020-02-19 06:44:38'),
-(10, 'hc', 'HC', '', 1, '2020-02-19 06:44:38'),
-(11, 'h2s', 'H2S', '', 1, '2020-02-19 06:44:38'),
-(12, 'cs2', 'CS2', '', 1, '2020-02-19 06:44:38'),
-(13, 'WindSpeed', 'Kecepatan&nbsp;Angin', '', 1, '2020-02-19 06:44:38'),
-(14, 'WindDir', 'Arah Angin', '', 1, '2020-02-19 06:44:38'),
-(15, 'TempIn', 'Temperatur Dalam', '', 0, '2020-02-19 06:44:38'),
-(16, 'TempOut', 'Temperatur', '', 1, '2020-02-19 06:44:38'),
-(17, 'Barometer', 'Tekanan', '', 1, '2020-02-19 06:44:38'),
-(18, 'RainDay', 'Curah Hujan', '', 1, '2020-02-19 06:44:38'),
-(19, 'RainRate', 'Tingkat Hujan', '', 0, '2020-02-19 06:44:38'),
-(20, 'SolarRad', 'Solar Radiasi', '', 1, '2020-02-19 06:44:38'),
-(21, 'HumIn', 'Kelembaban Dalam', '', 0, '2020-02-19 06:44:38'),
-(22, 'HumOut', 'Kelembaban', '', 1, '2020-02-19 06:44:38');
+INSERT INTO `aqm_params` (`id`, `param_id`, `caption`, `default_unit`, `formula`,`is_view`, `xtimestamp`) VALUES
+(1, 'pm10', 'PM10', '','substr($PM10,2,7)', 1, '2020-02-19 06:44:38'),
+(2, 'pm10_flow', 'PM10 Flow', '','substr($PM10,10,3)', 1, '2020-02-19 06:44:38'),
+(3, 'pm25', 'PM25', '','substr($PM25,2,7)', 1, '2020-02-19 06:44:38'),
+(4, 'pm25_flow', 'PM25 Flow', '','substr($PM25,2,7)', 1, '2020-02-19 06:44:38'),
+(5, 'so2', 'SO2', '','round((125 * $AIN2 - 5) * $factor[''aso2''] - $factor[''bso2''], 3)', 1, '2020-02-19 06:44:38'),
+(6, 'co', 'CO', '','0', 1, '2020-02-19 06:44:38'),
+(7, 'o3', 'O3', '','0', 1, '2020-02-19 06:44:38'),
+(8, 'no2', 'NO2', '','0', 1, '2020-02-19 06:44:38'),
+(9, 'voc', 'VOC', '','0', 1, '2020-02-19 06:44:38'),
+(10, 'hc', 'HC', '','0', 1, '2020-02-19 06:44:38'),
+(11, 'h2s', 'H2S', '','round(3.2 * ((8 + $factor[''ah2s'']) * $AIN0) - $factor[''bh2s''], 3)', 1, '2020-02-19 06:44:38'),
+(12, 'cs2', 'CS2', '','0', 1, '2020-02-19 06:44:38'),
+(13, 'WindSpeed', 'Kecepatan&nbsp;Angin', '','explode(";",$WS)[6]', 1, '2020-02-19 06:44:38'),
+(14, 'WindDir', 'Arah Angin', '','explode(";",$WS)[8]', 1, '2020-02-19 06:44:38'),
+(15, 'TempIn', 'Temperatur Dalam', '','explode(";",$WS)[3]', 0, '2020-02-19 06:44:38'),
+(16, 'TempOut', 'Temperatur', '','explode(";",$WS)[5]', 1, '2020-02-19 06:44:38'),
+(17, 'Barometer', 'Tekanan', '','explode(";",$WS)[2]', 1, '2020-02-19 06:44:38'),
+(18, 'RainDay', 'Curah Hujan', '','explode(";",$WS)[15]', 1, '2020-02-19 06:44:38'),
+(19, 'RainRate', 'Tingkat Hujan', '','explode(";",$WS)[10]', 0, '2020-02-19 06:44:38'),
+(20, 'SolarRad', 'Solar Radiasi', '','explode(";",$WS)[12]', 1, '2020-02-19 06:44:38'),
+(21, 'HumIn', 'Kelembaban Dalam', '','explode(";",$WS)[4]', 0, '2020-02-19 06:44:38'),
+(22, 'HumOut', 'Kelembaban', '','explode(";",$WS)[9]', 1, '2020-02-19 06:44:38');
 
 -- --------------------------------------------------------
 

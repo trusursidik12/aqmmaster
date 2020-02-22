@@ -7,14 +7,14 @@ class sensors extends CI_Controller {
 		$values = new stdClass;
 		$formula = "";
 		$sensors = $this->sensors_m->getvalues();
-		$AIN0 		= $sensors["AIN0"];
-		$AIN1 		= $sensors["AIN1"];
-		$AIN2 		= $sensors["AIN2"];
-		$AIN3 		= $sensors["AIN3"];
-		$PM25 		= $sensors["PM25"];
-		$PM10 		= $sensors["PM10"];
-		$WS	  		= $sensors["WS"];
-		$xtimestamp	= $sensors["xtimestamp"];
+		@$AIN0 		= $sensors["AIN0"];
+		@$AIN1 		= $sensors["AIN1"];
+		@$AIN2 		= $sensors["AIN2"];
+		@$AIN3 		= $sensors["AIN3"];
+		@$PM25 		= $sensors["PM25"];
+		@$PM10 		= $sensors["PM10"];
+		@$WS	  		= $sensors["WS"];
+		@$xtimestamp	= $sensors["xtimestamp"];
 		
 		$factors = $this->sensors_m->getFactors();
 		foreach($factors as $_factor){
@@ -24,12 +24,9 @@ class sensors extends CI_Controller {
 		$params = $this->sensors_m->getParams();
 		foreach($params as $_param){
 			$param_id = $_param["param_id"];
-			$formula = $this->sensors_m->getFormula("formula_".$param_id);
-			if(isset($formula["content"])){
-				$formula = $formula["content"];
-				@eval("\$$param_id = $formula;");
-				@eval("\$values->$param_id = \$$param_id;");
-			}
+			@$formula = $this->sensors_m->getFormula($param_id)["formula"];
+			@eval("\$$param_id = $formula;");
+			@eval("\$values->$param_id = \$$param_id;");
 			unset($formula);
 		}
 		

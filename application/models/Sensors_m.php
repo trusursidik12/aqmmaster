@@ -13,8 +13,8 @@ class sensors_m extends CI_Model {
 		return $query->result_array();
 	}
 	
-	public function getFormula($formula_name){
-		$query = $this->db->get_where('aqm_configuration', ['data' => $formula_name]);
+	public function getFormula($param_id){
+		$query = $this->db->get_where('aqm_params', ['param_id' => $param_id]);
 		return $query->row_array();
 	}
 	
