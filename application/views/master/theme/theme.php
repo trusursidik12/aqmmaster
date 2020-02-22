@@ -26,24 +26,50 @@
     
 
     <style>
-      .footer {
-         position: fixed;
-         left: 0;
-         bottom: 0;
-         width: 100%;
-         color: white;
-         text-align: center;
-      }
-      .text-position-center {
-        margin-top: 13px;
-      }
-      .header-fixed {
-        position: fixed;
-        width: 100%;
-      }
-      .body-position {
-        margin-top: 40px;
-      }
+		body{
+			background: #f2f4f5;
+		}
+		.footer {
+			 position: fixed;
+			 left: 0;
+			 bottom: 0;
+			 width: 100%;
+			 color: white;
+			 text-align: center;
+		}
+		.text-position-center {
+			margin-top: 13px;
+		}
+		.header-fixed {
+			position: fixed;
+			width: 100%;
+		}
+		.body-position {
+			margin-top: 40px;
+		}
+		.page-wrapper {
+			background: #f2f4f5;
+			position: relative;
+			display: none;
+		}									
+	  
+		.card {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			min-width: 0;
+			word-wrap: break-word;
+			background-color: #fff;
+			background-clip: border-box;
+			border: 0 solid transparent;
+			border-radius: 0;
+		}
+		
+		.card-title{
+			text-align:left;
+			font-size:16px;
+			color:grey;
+		}
     </style>
 
     <title><?= $title; ?></title>
