@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/dist/css/bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/dist/css/bootstrap-toggle.min.css') ?>">
     <!-- DataTables -->
     <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables-buttons/css/buttons.dataTables.min.css') ?>">
@@ -16,6 +17,7 @@
     <script src="<?= base_url('assets/dist/js/jquery.min.js') ?>"></script>
     <script src="<?= base_url('assets/dist/js/popper.min.js') ?>"></script>
     <script src="<?= base_url('assets/dist/js/bootstrap.min.js') ?>"></script>
+    <script src="<?= base_url('assets/dist/js/bootstrap-toggle.min.js') ?>"></script>
     <script src="<?= base_url('assets/dist/js/font-awesome.js') ?>"></script>
     <!-- data tables -->
     <script src="<?= base_url('assets/plugins/datatables/jquery.dataTables.js') ?>"></script>

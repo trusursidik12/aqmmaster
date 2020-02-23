@@ -5,6 +5,10 @@
 				<div class="col-5 align-self-center">
 					<h4 class="page-title"><i class='fas fa-map-marker-alt' style='font-size:21px;color:red'></i> <?=$configurations["sta_nama"];?></h4>
 				</div>
+				<div class="col-5"></div>
+				<div class="col-2 align-self-right">
+					<input id="pump_state" type="checkbox" data-height="20" data-toggle="toggle" data-on="Pompa 1" data-off="Pompa 2" data-onstyle="success" data-offstyle="primary">
+				</div>
 			</div>
 		</div>
 		
@@ -84,6 +88,15 @@
 </div>
 
 <script type="text/javascript">
+
+  $(function() {
+    $('#pump_state').change(function() {
+		$.ajax({url: "<?=site_url('sensors/change_pump_state');?>?state=" + $('#pump_state').prop('checked'), success: function(result){
+			
+		}});
+    })
+  })
+  
   function reload_sensor(){
       $.ajax({url: "<?=site_url('sensors');?>?unit=<?= $_GET["unit"]; ?>", success: function(result){
         var sensor = JSON.parse(result);
@@ -117,6 +130,8 @@
         try { $("#SolarRad").html(sensor.SolarRad + "</h3><br><h6>" + sensor.SolarRad_unit + "</h6>"); } catch(ex){}
         try { $("#HumIn").html(sensor.HumIn + "&nbsp;" + sensor.HumIn_unit + "</h3><br><h6>&nbsp;</h6>"); } catch(ex){}
         try { $("#HumOut").html(sensor.HumOut + "&nbsp;" + sensor.HumOut_unit + "</h3><br><h6>&nbsp;</h6>"); } catch(ex){}
+		try { if(sensor.pump_state == "0" && $('#pump_state').prop('checked') == true) $("#pump_state").bootstrapToggle('off'); } catch(ex){}
+		try { if(sensor.pump_state == "1" && $('#pump_state').prop('checked') == false) $("#pump_state").bootstrapToggle('on'); } catch(ex){}
       }});
       setTimeout(function(){ reload_sensor() }, 1000);
     }

@@ -46,9 +46,19 @@ class sensors extends CI_Controller {
 			@eval("\$values->$param_id = \$$param_id;");
 			unset($formula);
 		}
+		$values->pump_state = $this->sensors_m->getPumpState();
+		$values->pump_last = $this->sensors_m->getPumpLast();
+		$values->pump_interval = $this->sensors_m->getPumpInterval();
 		
 		$data["values"] = json_encode($values);
 		
+		$this->load->view('master/ajax/sensor',$data);
+	}
+	
+	public function change_pump_state(){
+		$values = new stdClass;
+		$values->pump_state = $this->sensors_m->changePumpState($_GET["state"]);
+		$data["values"] = json_encode($values);
 		$this->load->view('master/ajax/sensor',$data);
 	}
 }
