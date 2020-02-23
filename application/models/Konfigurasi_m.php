@@ -3,6 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Konfigurasi_m extends CI_Model {
 
+	public function getSerialPorts(){
+		$query = $this->db->get('serial_ports');
+		return $query->result_array();
+	}
+	
 	public function getConfigurationContent($data){
 		$query = $this->db->get_where('aqm_configuration', ["data" => $data]);
 		return $query->row_array()['content'];
@@ -18,6 +23,11 @@ class Konfigurasi_m extends CI_Model {
 		return $query->row_array();
 	}
 
+	public function save_konfigurasi($data,$content){
+		$this->db->where('data', $data);
+		return $this->db->update('aqm_configuration', ["content" => $content]);
+	}
+	
 	public function update_konfigurasi(){
 		$data = array(
 			'data' 		=> $this->input->post('data'),

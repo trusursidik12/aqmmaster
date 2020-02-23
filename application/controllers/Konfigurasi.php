@@ -5,6 +5,12 @@ class Konfigurasi extends CI_Controller {
 
 	public function index()
 	{
+		if($this->input->post('simpan')){
+			foreach($_POST as $_data => $content){
+				$this->konfigurasi_m->save_konfigurasi($_data,$content);
+			}
+		}
+		
 		$data['title'] = 'Konfigurasi';
 		$data['configurations'][0]['id'] = "device_id";
 		$data['configurations'][0]['caption'] = "Device ID";
@@ -60,6 +66,24 @@ class Konfigurasi extends CI_Controller {
 		$data['serial_devices'][4]['caption'] = "Modem";
 		$data['serial_devices'][4]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_modem');
 		$data['serial_devices'][4]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_modem');
+		$serial_ports = $this->konfigurasi_m->getSerialPorts();
+		foreach($serial_ports as $serial_port){
+			$data['serial_ports'][$serial_port["port"]] = $serial_port["description"];
+		}
+		
+		$data['bauds'][] = 110;
+		$data['bauds'][] = 300;
+		$data['bauds'][] = 1200;
+		$data['bauds'][] = 2400;
+		$data['bauds'][] = 4800;
+		$data['bauds'][] = 9600;
+		$data['bauds'][] = 19200;
+		$data['bauds'][] = 38400;
+		$data['bauds'][] = 57600;
+		$data['bauds'][] = 115200;
+		$data['bauds'][] = 230400;
+		$data['bauds'][] = 460800;
+		$data['bauds'][] = 921600;
 		
 		$this->temp_frontend->load('master/theme/theme', 'master/konfigurasi/konfigurasi', $data);
 	}	
