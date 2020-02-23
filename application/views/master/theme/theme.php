@@ -109,9 +109,11 @@
             <a class="nav-link" href="<?= site_url('parameter') ?>">Parameter</a>
           </li>
         </ul>
-		<form class="form-inline my-2 my-lg-0">
-          <button type="button" onclick="window.location='?unit=<?= $nextunit; ?>';" class="btn btn-outline-light my-2 my-sm-0">Satuan</button>      
-        </form>
+		<?php if (isset($nextunit)): ?>
+			<form class="form-inline my-2 my-lg-0">
+			  <button type="button" onclick="window.location='?unit=<?= $nextunit; ?>';" class="btn btn-outline-light my-2 my-sm-0">Satuan</button>      
+			</form>
+		<?php endif; ?>
       </div>
     </nav>
 

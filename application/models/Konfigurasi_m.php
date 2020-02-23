@@ -3,6 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Konfigurasi_m extends CI_Model {
 
+	public function getConfigurationContent($data){
+		$query = $this->db->get_where('aqm_configuration', ["data" => $data]);
+		return $query->row_array()['content'];
+	}
+	
 	public function getDataKonfigurasi($id = FALSE){
 		if($id === FALSE){
 			$this->db->order_by('id', 'ASC');
