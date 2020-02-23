@@ -148,7 +148,7 @@
 			var remaining_m = Math.floor((remaining - (remaining_h*3600)) / 60);
 			var remaining_s = Math.floor(remaining % 60);
 			// $("#remaining").html(padnum(remaining_h) + ":" + padnum(remaining_m) + ":" + padnum(remaining_s));
-			$("#remaining").html(pump_last);
+			$("#remaining").html(sensor.pump_last);
 			if((sensor.pump_interval * 60) <= pump_state_time){
 				if($('#pump_state').prop('checked') == true) $("#pump_state").bootstrapToggle('off'); 
 				else if($('#pump_state').prop('checked') == false) $("#pump_state").bootstrapToggle('on');
