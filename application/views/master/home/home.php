@@ -26,7 +26,7 @@
 									<h4 class="card-title"><?= $partikulat['caption'] ?></h4>
 									<div class="row">
 										<div class="col-12">
-											<h2 class="font-light text-right mb-0" id="<?= $partikulat['param_id'] ?>"></h2>
+											<h3 class="font-light text-right mb-0" id="<?= $partikulat['param_id'] ?>"></h3>
 										</div>
 									</div>
 									<div class="row align-items-center">
