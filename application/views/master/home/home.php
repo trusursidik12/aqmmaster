@@ -140,16 +140,14 @@
 			else if(sensor.pump_state == "1" && $('#pump_state').prop('checked') == false) $("#pump_state").bootstrapToggle('on');
 		} catch(ex){}
 		try { 
-			var pump_last = new Date(sensor.pump_last);
-			// var current = new Date(sensor.now);
-			var current = new Date("2017-11-12T02:03:04");
+			var pump_last = new Date(sensor.pump_last.replace(" ","T"));
+			var current = new Date(sensor.now.replace(" ","T"));
 			var pump_state_time = (current - pump_last) / 1000;
 			var remaining = (sensor.pump_interval * 60) - pump_state_time;
 			var remaining_h = Math.floor(remaining / 3600);
 			var remaining_m = Math.floor((remaining - (remaining_h*3600)) / 60);
 			var remaining_s = Math.floor(remaining % 60);
-			// $("#remaining").html(padnum(remaining_h) + ":" + padnum(remaining_m) + ":" + padnum(remaining_s));
-			$("#remaining").html(current);
+			$("#remaining").html(padnum(remaining_h) + ":" + padnum(remaining_m) + ":" + padnum(remaining_s));
 			if((sensor.pump_interval * 60) <= pump_state_time){
 				if($('#pump_state').prop('checked') == true) $("#pump_state").bootstrapToggle('off'); 
 				else if($('#pump_state').prop('checked') == false) $("#pump_state").bootstrapToggle('on');
