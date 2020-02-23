@@ -89,7 +89,13 @@
 </div>
 
 <script type="text/javascript">
-
+	function padnum(number) {
+		if (number < 9)
+			return "0" + number;
+		else
+			return number;
+	}
+  
   $(function() {
     $('#pump_state').change(function() {
 		$.ajax({url: "<?=site_url('sensors/change_pump_state');?>?state=" + $('#pump_state').prop('checked'), success: function(result){}});
@@ -141,7 +147,7 @@
 			var remaining_h = Math.floor(remaining / 3600);
 			var remaining_m = Math.floor((remaining - (remaining_h*3600)) / 60);
 			var remaining_s = Math.floor(remaining % 60);
-			$("#remaining").html(String(remaining_h).padStart(2, '0') + ":" + String(remaining_m).padStart(2, '0') + ":" + String(remaining_s).padStart(2, '0'));
+			$("#remaining").html(padnum(remaining_h) + ":" + padnum(remaining_m) + ":" + padnum(remaining_s));
 			if((sensor.pump_interval * 60) <= pump_state_time){
 				if($('#pump_state').prop('checked') == true) $("#pump_state").bootstrapToggle('off'); 
 				else if($('#pump_state').prop('checked') == false) $("#pump_state").bootstrapToggle('on');
