@@ -13,6 +13,17 @@ class Parameter_m extends CI_Model {
 		return $query->row_array();
 	}
 
+	public function save_parameter($values){
+		$this->db->where('param_id', $values["param_id"]);
+		$data = ["caption" => $values["caption"]];
+		$data = $data + ["default_unit" => $values["default_unit"]];
+		$data = $data + ["molecular_mass" => $values["molecular_mass"]];
+		if(isset($data["formula"]))
+			$data = $data + ["formula" => $values["formula"]];
+		$data = $data + ["is_view" => $values["is_view"]];		
+		return $this->db->update('aqm_params', $data);
+	}
+	
 	public function update_parameter(){
 		$data = array(
 			'param_id' 	=> $this->input->post('param_id'),

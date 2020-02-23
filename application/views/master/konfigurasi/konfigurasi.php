@@ -46,7 +46,9 @@
 							</div>
 						</div>
 					<?php endforeach ?>
-					<input type="submit" name="simpan" value="Simpan" class="btn btn-primary">
+					<div class="card" style="padding:10px;">
+						<input type="submit" name="simpan" value="Simpan" class="btn btn-primary">
+					</div>
 				</form>
 			</div>
 		</div>

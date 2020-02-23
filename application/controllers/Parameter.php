@@ -5,7 +5,20 @@ class Parameter extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] = 'List Parameter';
+		if($this->input->post('simpan')){
+			foreach($_POST["caption"] as $param_id => $caption){
+				$values = ["param_id" => $param_id];
+				$values = $values + ["caption" => $caption];
+				$values = $values + ["default_unit" => $_POST["default_unit"][$param_id]];
+				$values = $values + ["molecular_mass" => $_POST["molecular_mass"][$param_id]];
+				if($_POST["molecular_mass"][$param_id] > 0)
+					$values = $values + ["formula" => $_POST["formula"][$param_id]];
+				$values = $values + ["is_view" => (@$_POST["is_view"][$param_id] * 1)];
+				$this->parameter_m->save_parameter($values);
+			}
+		}
+		
+		$data['title'] = 'Parameter';
 		$data['alldata'] = $this->parameter_m->getDataParameter();
 		$this->temp_frontend->load('master/theme/theme', 'master/parameter/parameter', $data);
 	}	
