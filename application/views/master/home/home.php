@@ -8,6 +8,7 @@
 				<div class="col-5"></div>
 				<div class="col-2 align-self-right">
 					<input id="pump_state" type="checkbox" data-height="20" data-toggle="toggle" data-on="Pompa 1" data-off="Pompa 2" data-onstyle="success" data-offstyle="primary">
+					<div class="text-center" id="remaining"></div>
 				</div>
 			</div>
 		</div>
@@ -131,6 +132,20 @@
 		try { 
 			if(sensor.pump_state == "0" && $('#pump_state').prop('checked') == true) $("#pump_state").bootstrapToggle('off'); 
 			else if(sensor.pump_state == "1" && $('#pump_state').prop('checked') == false) $("#pump_state").bootstrapToggle('on');
+		} catch(ex){}
+		try { 
+			var pump_last = new Date(sensor.pump_last);
+			var current = new Date(sensor.now);
+			var pump_state_time = (current - pump_last) / 1000;
+			var remaining = (sensor.pump_interval * 60) - pump_state_time;
+			var remaining_h = Math.floor(remaining / 3600);
+			var remaining_m = Math.floor((remaining - (remaining_h*3600)) / 60);
+			var remaining_s = Math.floor(remaining % 60);
+			$("#remaining").html(String(remaining_h).padStart(2, '0') + ":" + String(remaining_m).padStart(2, '0') + ":" + String(remaining_s).padStart(2, '0'));
+			if((sensor.pump_interval * 60) <= pump_state_time){
+				if($('#pump_state').prop('checked') == true) $("#pump_state").bootstrapToggle('off'); 
+				else if($('#pump_state').prop('checked') == false) $("#pump_state").bootstrapToggle('on');
+			}
 		} catch(ex){}
       }});
       setTimeout(function(){ reload_sensor() }, 1000);

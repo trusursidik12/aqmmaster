@@ -49,6 +49,7 @@ class sensors extends CI_Controller {
 		$values->pump_state = $this->sensors_m->getPumpState();
 		$values->pump_last = $this->sensors_m->getPumpLast();
 		$values->pump_interval = $this->sensors_m->getPumpInterval();
+		$values->now = date("Y-m-d H:i:s");
 		
 		$data["values"] = json_encode($values);
 		
