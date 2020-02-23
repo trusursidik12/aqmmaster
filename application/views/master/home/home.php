@@ -142,7 +142,7 @@
 		try { 
 			var pump_last = new Date(sensor.pump_last);
 			// var current = new Date(sensor.now);
-			var current = new Date();
+			var current = new Date("2017-11-12T02:03:04");
 			var pump_state_time = (current - pump_last) / 1000;
 			var remaining = (sensor.pump_interval * 60) - pump_state_time;
 			var remaining_h = Math.floor(remaining / 3600);
