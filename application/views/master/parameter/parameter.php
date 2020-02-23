@@ -30,6 +30,16 @@
 										<td align="right">Formula : </td>
 										<td colspan="3"><input class="form-control" id="formula[<?= $data["param_id"];?>]" name="formula[<?= $data["param_id"];?>]" value="<?= $data["formula"];?>"></td>
 									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td align="right">Gain : </td>
+										<td><input class="form-control" id="gain[<?= $data["param_id"];?>]" name="gain[<?= $data["param_id"];?>]" value="<?= $data["gain"];?>"></td>
+										<td align="right">Offset : </td>
+										<td><input class="form-control" id="offset[<?= $data["param_id"];?>]" name="offset[<?= $data["param_id"];?>]" value="<?= $data["offset"];?>"></td>
+									</tr>
+									<tr>
+										<td colspan="5" bgcolor="LightGray"></td>
+									</tr>
 								<?php endif ?>
 							<?php endforeach ?>
 						</tbody>

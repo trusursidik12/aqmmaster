@@ -27,6 +27,8 @@ class sensors extends CI_Controller {
 			$param_id_unit = $_param["param_id"]."_unit";
 			$default_unit = $_param["default_unit"];
 			$molecular_mass = $_param["molecular_mass"];
+			$gain = $_param["gain"];
+			$offset = $_param["offset"];
 			@$formula = $this->sensors_m->getFormula($param_id)["formula"];
 			@eval("\$$param_id = $formula;");
 			if(isset($_GET["unit"]) && $molecular_mass > 0 ){

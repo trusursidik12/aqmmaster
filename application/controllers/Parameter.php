@@ -13,6 +13,8 @@ class Parameter extends CI_Controller {
 				$values = $values + ["molecular_mass" => $_POST["molecular_mass"][$param_id]];
 				if($_POST["molecular_mass"][$param_id] > 0)
 					$values = $values + ["formula" => $_POST["formula"][$param_id]];
+				$values = $values + ["gain" => (@$_POST["gain"][$param_id] * 1)];
+				$values = $values + ["offset" => (@$_POST["offset"][$param_id] * 1)];
 				$values = $values + ["is_view" => (@$_POST["is_view"][$param_id] * 1)];
 				$this->parameter_m->save_parameter($values);
 			}

@@ -20,6 +20,8 @@ class Parameter_m extends CI_Model {
 		$data = $data + ["molecular_mass" => $values["molecular_mass"]];
 		if(isset($data["formula"]))
 			$data = $data + ["formula" => $values["formula"]];
+		$data = $data + ["gain" => $values["gain"]];		
+		$data = $data + ["offset" => $values["offset"]];		
 		$data = $data + ["is_view" => $values["is_view"]];		
 		return $this->db->update('aqm_params', $data);
 	}

@@ -223,6 +223,8 @@ CREATE TABLE IF NOT EXISTS `aqm_params` (
   `default_unit` varchar(10) NOT NULL,
   `molecular_mass` double NOT NULL,
   `formula` varchar(255) DEFAULT NULL,
+  `gain` double DEFAULT 0,
+  `offset` double DEFAULT 0,
   `is_view` smallint(6) NOT NULL,
   `xtimestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
