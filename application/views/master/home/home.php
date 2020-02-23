@@ -41,9 +41,9 @@
 				</div>
 			</div>
 			<div class="col-sm-7">
-				<div class="row justify-content-center">
+				<div class="row">
 					<?php foreach($gass as $gas) : ?>
-						<div class="col-sm-3" style="padding:0px 20px 20px 0px;">
+						<div class="<?php if(count($gass) > 6) : ?> col-3 <?php elseif (count($gass) > 4) : ?> col-4 <?php else : ?> col-6 <?php endif ?>" style="padding:0px 20px 20px 0px;">
 							<div class="card border border-primary" style="padding:0px 5px 5px 0px;">
 								<h4 class="card-title">&nbsp;<?= $gas['caption'] ?><div style="position:relative;float:right;" id="unit_<?= $gas['param_id'] ?>">(<?= $gas['default_unit'] ?>)</div></h4>
 								<div class="row">
