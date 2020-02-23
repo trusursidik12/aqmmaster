@@ -31,7 +31,7 @@ class sensors extends CI_Controller {
 			@eval("\$$param_id = $formula;");
 			if(isset($_GET["unit"]) && $molecular_mass > 0 ){
 				if($_GET["unit"] == "ppb"){
-					@eval("\$$param_id = \$$param_id * 1000;");
+					@eval("\$$param_id = round(\$$param_id * 1000,0);");
 					$default_unit = "ppb";
 				}
 				if($_GET["unit"] == "ug"){
