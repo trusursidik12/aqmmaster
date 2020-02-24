@@ -41,6 +41,9 @@ class sensors extends CI_Controller {
 					$default_unit = "ug/m3";
 				}
 			}
+			if($_param["param_id"] == "TempIn" || $_param["param_id"] == "TempOut"){
+				@eval("\$$param_id = round((\$$param_id - 32) * 5/9,1);");
+			}
 			$values->$param_id_unit = $default_unit;
 			@eval("if(\$$param_id < 0) \$$param_id = 0;");
 			@eval("\$values->$param_id = \$$param_id;");
