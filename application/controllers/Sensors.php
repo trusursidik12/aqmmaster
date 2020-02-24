@@ -46,6 +46,7 @@ class sensors extends CI_Controller {
 			}
 			$values->$param_id_unit = $default_unit;
 			@eval("if(\$$param_id < 0) \$$param_id = 0;");
+			@eval("if(!isset(\$$param_id)) \$$param_id = 0;");
 			@eval("\$values->$param_id = \$$param_id;");
 			unset($formula);
 		}
