@@ -163,6 +163,8 @@ CREATE TABLE IF NOT EXISTS `aqm_data` (
   `voc` double DEFAULT NULL,
   `nh3` double DEFAULT NULL,
   `rain_intensity` double DEFAULT NULL,
+  `h2s` double DEFAULT NULL,
+  `cs2` double DEFAULT NULL,
   `no` double DEFAULT NULL,
   `stat_pm10` tinyint(4) DEFAULT 1,
   `stat_so2` tinyint(4) DEFAULT 1,
@@ -279,7 +281,7 @@ CREATE TABLE IF NOT EXISTS `aqm_sensor_values` (
   `WS` TEXT DEFAULT NULL,
   `xtimestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -333,5 +335,38 @@ CREATE TABLE IF NOT EXISTS `serial_ports` (
   `description` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+
+--
+-- Struktur dari tabel `aqm_data_log`
+--
+
+DROP TABLE IF EXISTS `aqm_data_log`;
+CREATE TABLE IF NOT EXISTS `aqm_data_log` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `waktu` datetime NOT NULL,
+  `pm10` double DEFAULT NULL,
+  `pm25` double DEFAULT NULL,
+  `so2` double DEFAULT NULL,
+  `co` double DEFAULT NULL,
+  `o3` double DEFAULT NULL,
+  `no2` double DEFAULT NULL,
+  `hc` double DEFAULT NULL,
+  `ws` double DEFAULT NULL,
+  `wd` double DEFAULT NULL,
+  `humidity` double DEFAULT NULL,
+  `temperature` double DEFAULT NULL,
+  `pressure` double DEFAULT NULL,
+  `sr` double DEFAULT NULL,
+  `voc` double DEFAULT NULL,
+  `nh3` double DEFAULT NULL,
+  `rain_intensity` double DEFAULT NULL,
+  `h2s` double DEFAULT NULL,
+  `cs2` double DEFAULT NULL,
+  `no` double DEFAULT NULL,
+  `is_sent` int(11) DEFAULT '0',
+  `sent_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 COMMIT;

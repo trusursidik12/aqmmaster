@@ -46,4 +46,45 @@ class sensors_m extends CI_Model {
 		$this->db->update('aqm_configuration', ['content' => date("Y-m-d H:i:s")]);
 		return $pump_state;
 	}
+
+	public function insert_aqm_data_log($values){
+		$this->db->where("(waktu < ('".date("Y-m-d H:i:s")."' - INTERVAL 3 HOUR))");
+		$this->db->delete('aqm_data_log');
+		$this->db->insert('aqm_data_log', $values);
+		return 1;
+	}
+	
+	public function get_aqm_data_range($minute){
+		$query = $this->db->order_by('waktu DESC');
+		$query = $this->db->get('aqm_data_log');
+		$id_end = $query->row_array()["id"];
+		$lasttime = date("Y-m-d H:i:%",mktime(date("H"),date("i")-$minute));
+		$query = $this->db->where("waktu LIKE '".$lasttime."'");
+		$query = $this->db->where("is_sent=0");
+		$query = $this->db->order_by('waktu');
+		$query = $this->db->get('aqm_data_log');
+		$id_start = $query->row_array()["id"];
+		if($id_start > 0){
+			$query = $this->db->where("id BETWEEN '".$id_start."' AND '".$id_end."'");
+			$query = $this->db->get('aqm_data_log');
+			$data["id_start"] = $id_start;
+			$data["id_end"] = $id_end;
+			$data["data"] = $query->result_array();
+			return $data;
+		} else {
+			return 0;
+		}
+	}
+	
+	public function get_id_stasiun(){
+		$query = $this->db->get_where('aqm_configuration', ['data' => 'sta_id']);
+		return $query->row_array()["content"];
+	}
+
+	public function insert_aqm_data($values,$id_start,$id_end){
+		$this->db->where("id BETWEEN '".$id_start."' AND '".$id_end."'");
+		$this->db->update('aqm_data_log',["is_sent" => "1", "sent_at" => date("Y-m-d H:i:s")]);
+		$this->db->insert('aqm_data', $values);
+		return 1;
+	}
 }
