@@ -11,6 +11,8 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables-buttons/css/buttons.dataTables.min.css') ?>">
+    <!-- css date range -->
+    <link rel="stylesheet" href="<?= base_url('assets/plugins/daterangepicker/css/bootstrap-datepicker.css') ?>" />
 
 
     <!-- Optional JavaScript -->
@@ -21,11 +23,12 @@
     <script src="<?= base_url('assets/dist/js/font-awesome.js') ?>"></script>
     <!-- data tables -->
     <script src="<?= base_url('assets/plugins/datatables/jquery.dataTables.js') ?>"></script>
+    <script src="<?= base_url('assets/plugins/datatables/jquery.dataTables.min.js') ?>"></script>
     <script src="<?= base_url('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js') ?>"></script>
     <script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.html5.min.js') ?>"></script>
     <script src="<?= base_url('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') ?>"></script>
-
-    
+    <!-- js date picker-->
+    <script src="<?= base_url('assets/plugins/daterangepicker/js/bootstrap-datepicker.js') ?>"></script>    
 
     <style>
 		body{
@@ -109,6 +112,9 @@
           </li>
           <li class="nav-item <?= $this->uri->uri_string() == 'parameter' ? 'active' : ''; ?>">
             <a class="nav-link" href="<?= site_url('parameter') ?>">Parameter</a>
+          </li>
+          <li class="nav-item <?= $this->uri->uri_string() == 'export' ? 'active' : ''; ?>">
+            <a class="nav-link" href="<?= site_url('export') ?>">Export</a>
           </li>
         </ul>
 		<?php if (isset($nextunit)): ?>
