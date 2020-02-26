@@ -51,7 +51,10 @@
 					data.to = $('#datepicker2').val();
 				},
 			},
-			
+			dom: "lBfrtip",
+			buttons: [
+			'copy','excel','csv','pdf','print'
+			],
 		} );
 		
 		$('#search').on( 'click change', function (event) {
