@@ -3,27 +3,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Data extends CI_Controller {
 
-	function get_ajax() {
-        $aqm_data = $this->data_m->get_datatables();
+    public function index()
+    {
+        $data['title'] = 'Data';
+        $this->temp_frontend->load('master/theme/theme', 'master/data/data_export', $data);
+    }
+
+    public function ajax()
+    {
+
+        $from = $this->input->post('from');
+        $to = $this->input->post('to');
+
+        if($from!='' && $to!='')
+        {
+            $from = date('Y-m-d',strtotime($from));
+            $to = date('Y-m-d',strtotime($to));
+        }
+
+        $posts = $this->data_m->get_datatables($from,$to); 
+
         $data = array();
-        $no = @$_POST['start'];
-        foreach ($aqm_data as $dataexport) {
+        $no = $this->input->post('start');
+        foreach ($posts as $post) 
+        {
+            
             $no++;
             $row = array();
-            $row[] = $no.".";
-            $row[] = $dataexport->id_stasiun;
-            $row[] = $dataexport->waktu;
-            $row[] = $dataexport->pm10;
-            $row[] = $dataexport->pm25;
+            $row[] = $no;
+            $row[] = $post->id_stasiun;
+            $row[] = $post->waktu;
+            $row[] = $post->pm10;
+            $row[] = $post->pm25;
+            
             $data[] = $row;
         }
+        
         $output = array(
-                    "draw" => @$_POST['draw'],
-                    "recordsTotal" => $this->data_m->count_all(),
-                    "recordsFiltered" => $this->data_m->count_filtered(),
-                    "data" => $data,
-                );
-        // output to json format
+            "draw" => $this->input->post('draw'),
+            "recordsTotal" => $this->data_m->count_all(),
+            "recordsFiltered" => $this->data_m->count_filtered($from,$to),
+            "data" => $data,
+        );
+        //output to json format
         echo json_encode($output);
     }
 }

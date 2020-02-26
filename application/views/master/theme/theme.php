@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="shortcut icon" href="#">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/dist/css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/dist/css/bootstrap-toggle.min.css') ?>">
@@ -25,7 +25,6 @@
     <script src="<?= base_url('assets/plugins/datatables/jquery.dataTables.js') ?>"></script>
     <script src="<?= base_url('assets/plugins/datatables/jquery.dataTables.min.js') ?>"></script>
     <script src="<?= base_url('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js') ?>"></script>
-    <script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.html5.min.js') ?>"></script>
     <script src="<?= base_url('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') ?>"></script>
     <!-- js date picker-->
     <script src="<?= base_url('assets/plugins/daterangepicker/js/bootstrap-datepicker.js') ?>"></script>    
