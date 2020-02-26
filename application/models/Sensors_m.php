@@ -57,13 +57,13 @@ class sensors_m extends CI_Model {
 	public function get_aqm_data_range($minute){
 		$query = $this->db->order_by('waktu DESC');
 		$query = $this->db->get('aqm_data_log');
-		$id_end = $query->row_array()["id"];
+		@$id_end = $query->row_array()["id"];
 		$lasttime = date("Y-m-d H:i:%",mktime(date("H"),date("i")-$minute));
 		$query = $this->db->where("waktu LIKE '".$lasttime."'");
 		$query = $this->db->where("is_sent=0");
 		$query = $this->db->order_by('waktu');
 		$query = $this->db->get('aqm_data_log');
-		$id_start = $query->row_array()["id"];
+		@$id_start = $query->row_array()["id"];
 		if($id_start > 0){
 			$query = $this->db->where("id BETWEEN '".$id_start."' AND '".$id_end."'");
 			$query = $this->db->get('aqm_data_log');
