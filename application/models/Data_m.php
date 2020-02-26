@@ -7,7 +7,7 @@ class Data_m extends CI_Model {
     var $select = array('id_stasiun','waktu','pm10','pm25','so2','co','o3','no2');
     var $column_order = array('id','id_stasiun','waktu','pm10','pm25','so2','co','o3','no2');
     var $column_search = array('id','id_stasiun','waktu','pm10','pm25','so2','co','o3','no2');
-    var $order = array('waktu' => 'desc'); // default order
+    var $order = array('id' => 'desc'); // default order
 
     public function get_datatables($from, $to)
     {

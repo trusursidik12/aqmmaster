@@ -75,7 +75,7 @@
 			<div class="col-sm">
 				<div class="row justify-content-center">
 					<?php foreach($cuacas as$cuaca) : ?>
-						<div class="col-sm" style="padding:0px 20px 20px 0px;">
+						<div class="col-sm p-3" style="padding:0px 20px 20px 0px;">
 							<div class="card border border-warning">
 								<h6 class="card-title">&nbsp;<?= $cuaca['caption'] ?></h6>
 								<h3 id="<?= $cuaca['param_id'] ?>"></h3>
