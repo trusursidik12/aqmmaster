@@ -4,9 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Data_m extends CI_Model {
 
     var $table = 'aqm_data';
-    var $select = array('id_stasiun','waktu','pm10','pm25');
-    var $column_order = array('id','id_stasiun','waktu','pm10','pm25');
-    var $column_search = array('id','id_stasiun','waktu','pm10','pm25');
+    var $select = array('id_stasiun','waktu','pm10','pm25','so2','co','o3','no2');
+    var $column_order = array('id','id_stasiun','waktu','pm10','pm25','so2','co','o3','no2');
+    var $column_search = array('id','id_stasiun','waktu','pm10','pm25','so2','co','o3','no2');
     var $order = array('waktu' => 'desc'); // default order
 
     public function get_datatables($from, $to)

@@ -29,6 +29,10 @@
 	  						<th>Waktu</th>
 	  						<th>PM10</th>
 	  						<th>PM25</th>
+	  						<th>SO2</th>
+	  						<th>CO</th>
+	  						<th>O3</th>
+	  						<th>NO2</th>
 	  					</tr>
 	  				</thead>
   				</table>

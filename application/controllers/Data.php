@@ -35,6 +35,10 @@ class Data extends CI_Controller {
             $row[] = $post->waktu;
             $row[] = $post->pm10;
             $row[] = $post->pm25;
+            $row[] = $post->so2;
+            $row[] = $post->co;
+            $row[] = $post->o3;
+            $row[] = $post->no2;
             
             $data[] = $row;
         }
