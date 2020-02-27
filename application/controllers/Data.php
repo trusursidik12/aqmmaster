@@ -39,6 +39,13 @@ class Data extends CI_Controller {
             $row[] = $post->co;
             $row[] = $post->o3;
             $row[] = $post->no2;
+            $row[] = $post->ws;
+            $row[] = $post->wd;
+            $row[] = $post->humidity;
+            $row[] = $post->temperature;
+            $row[] = $post->pressure;
+            $row[] = $post->sr;
+            $row[] = $post->rain_intensity;
             
             $data[] = $row;
         }

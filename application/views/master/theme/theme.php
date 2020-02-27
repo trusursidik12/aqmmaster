@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="#">
+    <link rel="icon" href="<?= base_url('assets/dist/img/trusur_logo3.png') ?>">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/dist/css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/dist/css/bootstrap-toggle.min.css') ?>">

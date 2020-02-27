@@ -33,6 +33,13 @@
 	  						<th>CO</th>
 	  						<th>O3</th>
 	  						<th>NO2</th>
+	  						<th>KEC. ANGIN</th>
+	  						<th>ARAH ANGIN</th>
+	  						<th>KELEMBABAN</th>
+	  						<th>TEMPERATUR</th>
+	  						<th>TEKANAN</th>
+	  						<th>SOLAR RADIASI</th>
+	  						<th>CURAH HUJAN</th>
 	  					</tr>
 	  				</thead>
   				</table>
