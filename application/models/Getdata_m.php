@@ -98,7 +98,7 @@ class Getdata_m extends CI_Model {
 				}
 				return $fields;
 			} else {
-				return 0;
+				return [];
 			}
 		} else {
 			$this->db->order_by('id', 'DESC');

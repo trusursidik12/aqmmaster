@@ -11,6 +11,7 @@
 						<tbody>
 							<tr class="bg-primary text-center text-light">
 								<th>Show</th>
+								<th>w/ Graph</th>
 								<th>Id</th>
 								<th>Caption</th>
 								<th>Satuan</th>
@@ -19,6 +20,7 @@
 							<?php foreach($alldata as $data) : ?>
 								<tr>
 									<td><input type="checkbox" class="form-control" id="is_view[<?= $data["param_id"];?>]" name="is_view[<?= $data["param_id"];?>]" value="1" <?php if($data["is_view"] == "1") :?> checked <?php endif ?>></td>
+									<td><input type="checkbox" class="form-control" id="is_graph[<?= $data["param_id"];?>]" name="is_graph[<?= $data["param_id"];?>]" value="1" <?php if($data["is_graph"] == "1") :?> checked <?php endif ?>></td>
 									<td><?= $data['param_id']; ?></td>
 									<td><input class="form-control" id="caption[<?= $data["param_id"];?>]" name="caption[<?= $data["param_id"];?>]" value="<?= $data["caption"];?>"></td>
 									<td><input class="form-control" id="default_unit[<?= $data["param_id"];?>]" name="default_unit[<?= $data["param_id"];?>]" value="<?= $data["default_unit"];?>"></td>
@@ -27,10 +29,12 @@
 								<?php if($data["molecular_mass"] > 0) : ?>
 									<tr>
 										<td>&nbsp;</td>
+										<td>&nbsp;</td>
 										<td align="right">Formula : </td>
 										<td colspan="3"><input class="form-control" id="formula[<?= $data["param_id"];?>]" name="formula[<?= $data["param_id"];?>]" value="<?= $data["formula"];?>"></td>
 									</tr>
 									<tr>
+										<td>&nbsp;</td>
 										<td>&nbsp;</td>
 										<td align="right">Gain : </td>
 										<td><input class="form-control" id="gain[<?= $data["param_id"];?>]" name="gain[<?= $data["param_id"];?>]" value="<?= $data["gain"];?>"></td>
@@ -38,7 +42,7 @@
 										<td><input class="form-control" id="offset[<?= $data["param_id"];?>]" name="offset[<?= $data["param_id"];?>]" value="<?= $data["offset"];?>"></td>
 									</tr>
 									<tr>
-										<td colspan="5" bgcolor="LightGray"></td>
+										<td colspan="6" bgcolor="LightGray"></td>
 									</tr>
 								<?php endif ?>
 							<?php endforeach ?>

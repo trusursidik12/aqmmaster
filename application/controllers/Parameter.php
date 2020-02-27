@@ -16,6 +16,7 @@ class Parameter extends CI_Controller {
 				$values = $values + ["gain" => (@$_POST["gain"][$param_id] * 1)];
 				$values = $values + ["offset" => (@$_POST["offset"][$param_id] * 1)];
 				$values = $values + ["is_view" => (@$_POST["is_view"][$param_id] * 1)];
+				$values = $values + ["is_graph" => (@$_POST["is_graph"][$param_id] * 1)];
 				$this->parameter_m->save_parameter($values);
 			}
 		}

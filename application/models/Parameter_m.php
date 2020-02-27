@@ -18,11 +18,12 @@ class Parameter_m extends CI_Model {
 		$data = ["caption" => $values["caption"]];
 		$data = $data + ["default_unit" => $values["default_unit"]];
 		$data = $data + ["molecular_mass" => $values["molecular_mass"]];
-		if(isset($data["formula"]))
+		if(isset($values["formula"]))
 			$data = $data + ["formula" => $values["formula"]];
 		$data = $data + ["gain" => $values["gain"]];		
 		$data = $data + ["offset" => $values["offset"]];		
 		$data = $data + ["is_view" => $values["is_view"]];		
+		$data = $data + ["is_graph" => $values["is_graph"]];		
 		return $this->db->update('aqm_params', $data);
 	}
 	
