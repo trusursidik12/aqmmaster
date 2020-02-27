@@ -46,20 +46,29 @@
 				</div>
 			</div>
 			<div class="col-sm-7">
-				<div class="row">
-					<?php foreach($gass as $gas) : ?>
-						<div class="<?php if(count($gass) > 6) : ?> col-3 <?php elseif (count($gass) > 4) : ?> col-4 <?php else : ?> col-6 <?php endif ?>" style="padding:0px 20px 20px 0px;">
-							<div class="card border border-primary" style="padding:0px 5px 5px 0px;">
-								<h4 class="card-title">&nbsp;<?= $gas['caption'] ?><div style="position:relative;float:right;" id="unit_<?= $gas['param_id'] ?>">(<?= $gas['default_unit'] ?>)</div></h4>
-								<div class="row">
-									<div class="col-12">
-										<h4 class="font-light text-right mb-0" id="<?= $gas['param_id'] ?>"></h4>
+				<?php if(count($gass) > 0) : ?>
+					<div class="row">
+						<?php foreach($gass as $gas) : ?>
+							<div class="<?php if(count($gass) > 6) : ?> col-3 <?php elseif (count($gass) > 4) : ?> col-4 <?php else : ?> col-6 <?php endif ?>" style="padding:0px 20px 20px 0px;">
+								<div class="card border border-primary" style="padding:0px 5px 5px 0px;">
+									<h4 class="card-title">&nbsp;<?= $gas['caption'] ?><div style="position:relative;float:right;" id="unit_<?= $gas['param_id'] ?>">(<?= $gas['default_unit'] ?>)</div></h4>
+									<div class="row">
+										<div class="col-12">
+											<h4 class="font-light text-right mb-0" id="<?= $gas['param_id'] ?>"></h4>
+										</div>
 									</div>
 								</div>
 							</div>
+						<?php endforeach ?>
+					</div>
+				<?php endif ?>
+				<?php if($is_graph) : ?>
+					<div class="row">
+						<div class="card">
+							<div id="graph" style="height:200px;"></div>
 						</div>
-				<?php endforeach ?>
-				</div>
+					</div>
+				<?php endif ?>
 			</div>
 		</div>
 		
@@ -101,6 +110,26 @@
 		$.ajax({url: "<?=site_url('sensors/change_pump_state');?>?state=" + $('#pump_state').prop('checked'), success: function(result){}});
     })
   })
+  
+  <?php if($is_graph) : ?>
+		var chart = Morris.Line({
+			element: 'graph',
+			data: [
+					{ year: '2008', value: 20 },
+					{ year: '2009', value: 10 },
+					{ year: '2010', value: 5 },
+					{ year: '2011', value: 5 },
+					{ year: '2012', value: 20 },
+					{ year: '2013', value: 20 },
+					{ year: '2014', value: 20 },
+					{ year: '2015', value: 20 },
+				  ],
+			xkey: 'year',
+			ykeys: ['value'],
+			labels: ['Value'],
+			resize: true
+		});
+	<?php endif ?>
   
   function reload_sensor(){
       $.ajax({url: "<?=site_url('sensors');?>?unit=<?= $_GET["unit"]; ?>", success: function(result){
@@ -157,4 +186,12 @@
       setTimeout(function(){ reload_sensor() }, 1000);
     }
     reload_sensor();
+	
+	/* chart.setData([
+		{ year: '2008', value: 20 },
+		{ year: '2009', value: 10 },
+		{ year: '2010', value: 25 },
+		{ year: '2011', value: 25 },
+		{ year: '2012', value: 20 }
+	  ]); */
 </script>

@@ -16,6 +16,7 @@ class Home extends CI_Controller {
 		$data['gass'] = $this->getdata_m->getParamsGas();
 		$data['cuacas'] = $this->getdata_m->getParamsCuaca();
 		$data['configurations'] = $this->getdata_m->getConfigurations();
+		$data['is_graph'] = false;
 		$this->temp_frontend->load('master/theme/theme', 'master/home/home', $data);
 	}
 }
