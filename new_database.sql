@@ -228,6 +228,7 @@ CREATE TABLE IF NOT EXISTS `aqm_params` (
   `gain` double DEFAULT 0,
   `offset` double DEFAULT 0,
   `is_view` smallint(6) NOT NULL,
+  `is_graph` smallint(6) DEFAULT 0,
   `xtimestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `param_id` (`param_id`)

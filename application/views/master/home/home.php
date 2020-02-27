@@ -64,8 +64,10 @@
 				<?php endif ?>
 				<?php if($is_graph) : ?>
 					<div class="row">
-						<div class="card">
-							<div id="graph" style="height:200px;"></div>
+						<div class="col-12">
+							<div class="card">
+								<div id="graph" style="height:200px;"></div>
+							</div>
 						</div>
 					</div>
 				<?php endif ?>
@@ -111,27 +113,10 @@
     })
   })
   
-  <?php if($is_graph) : ?>
-		var chart = Morris.Line({
-			element: 'graph',
-			data: [
-					{ year: '2008', value: 20 },
-					{ year: '2009', value: 10 },
-					{ year: '2010', value: 5 },
-					{ year: '2011', value: 5 },
-					{ year: '2012', value: 20 },
-					{ year: '2013', value: 20 },
-					{ year: '2014', value: 20 },
-					{ year: '2015', value: 20 },
-				  ],
-			xkey: 'year',
-			ykeys: ['value'],
-			labels: ['Value'],
-			resize: true
-		});
-	<?php endif ?>
-  
   function reload_sensor(){
+      $.ajax({url: "<?=site_url('home/graph');?>", success: function(graphview){
+        try { $("#graph").html(graphview); } catch(ex){}
+	  }});
       $.ajax({url: "<?=site_url('sensors');?>?unit=<?= $_GET["unit"]; ?>", success: function(result){
         var sensor = JSON.parse(result);
         try { $("#pm10").html((sensor.pm10 * 1000) + " " + sensor.pm10_unit); } catch(ex){}
@@ -186,12 +171,4 @@
       setTimeout(function(){ reload_sensor() }, 1000);
     }
     reload_sensor();
-	
-	/* chart.setData([
-		{ year: '2008', value: 20 },
-		{ year: '2009', value: 10 },
-		{ year: '2010', value: 25 },
-		{ year: '2011', value: 25 },
-		{ year: '2012', value: 20 }
-	  ]); */
 </script>

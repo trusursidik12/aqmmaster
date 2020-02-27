@@ -75,11 +75,36 @@ class Getdata_m extends CI_Model {
 		$query = $this->db->get_where('aqm_params', array('id' => $id));
 		return $query->row_array();
 	}
+	
 	public function getConfigurations(){
 		$query = $this->db->get('aqm_configuration');
 		foreach($query->result_array() as $key => $configuration){
 			$return[$configuration["data"]] = $configuration["content"];
 		}
 		return $return;
+	}
+	
+	public function getGraph($getparams = false){
+		if($getparams){
+			$this->db->order_by('id', 'ASC');
+			$this->db->where('is_view', '1');
+			$this->db->where('is_graph', '1');
+			$query = $this->db->get('aqm_params');
+			$params = $query->result_array();
+			if(count($params) > 0){
+				$param_id_in = array();
+				foreach($params as $param){
+					$fields[] = $param["param_id"];
+				}
+				return $fields;
+			} else {
+				return 0;
+			}
+		} else {
+			$this->db->order_by('id', 'DESC');
+			$this->db->limit("30");
+			$query = $this->db->get('aqm_data_log');
+			return $query->result_array();
+		}
 	}
 }

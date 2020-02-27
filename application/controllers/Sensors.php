@@ -135,4 +135,27 @@ class sensors extends CI_Controller {
 		$data["values"] = json_encode($values);
 		$this->load->view('master/ajax/sensor',$data);
 	}
+
+	public function graph_data(){
+		$data["is_graph"] = false;
+		$graph_fields = $this->getdata_m->getGraph(true);
+		if(count($graph_fields) > 0){
+			$data["is_graph"] = true;
+			foreach($graph_fields as $graph_field){
+				@$data["graph_fields"] .= "'".$graph_field."',";
+			}
+			$data["graph_fields"] = substr($data["graph_fields"],0,-1);
+		}
+		
+		$graphs = $this->getdata_m->getGraph();
+		foreach($graphs as $key => $graph){
+			$graph_data = ["time" => $graph["waktu"]];
+			foreach($graph_fields as $graph_field){
+				$graph_data = $graph_data + [$graph_field => $graph[$graph_field]];
+			}
+			$chart_data [] = $graph_data;
+		}
+		$data["values"] = json_encode($chart_data);
+		$this->load->view('master/ajax/sensor',$data);
+	}
 }
