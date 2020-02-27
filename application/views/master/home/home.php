@@ -1,4 +1,4 @@
-<meta http-equiv="refresh" content="30">
+<?php if($is_graph) : ?> <meta http-equiv="refresh" content="30"> <?php endif ?>
 <div class="page-wrapper" style="display: block;">
 	<div class="container-fluid">
 		<div class="page-breadcrumb">
