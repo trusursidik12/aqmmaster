@@ -1,3 +1,4 @@
+<meta http-equiv="refresh" content="30">
 <div class="page-wrapper" style="display: block;">
 	<div class="container-fluid">
 		<div class="page-breadcrumb">
