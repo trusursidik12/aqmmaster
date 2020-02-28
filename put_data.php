@@ -2,7 +2,8 @@
 $server_host = "103.247.11.149";
 define('BASEPATH', 'http://127.0.0.1/aqmmaster');
 define('ENVIRONMENT', 'production');
-include_once "application\config\database.php";
+include_once "application/config/database.php";
+print_r($db['default']);
 $db = new mysqli($db['default']['hostname'], $db['default']['username'], $db['default']['password'], $db['default']['database']);
 
 if($result = $db->query("SELECT * FROM aqm_data WHERE (sent is NULL OR sent = 0) ORDER BY id LIMIT 50")){
