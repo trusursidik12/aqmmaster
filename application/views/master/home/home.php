@@ -114,6 +114,11 @@
     })
   })
   
+  function put_data_to_vps(){
+	$.ajax({url: "http://127.0.0.1/aqmmaster/put_data.php", success: function(result){}});
+	setTimeout(function(){ put_data_to_vps() }, 15000);
+  }
+  
   function reload_sensor(){
       $.ajax({url: "<?=site_url('home/graph');?>", success: function(graphview){
         try { $("#graph").html(graphview); } catch(ex){}
@@ -172,4 +177,5 @@
       setTimeout(function(){ reload_sensor() }, 1000);
     }
     reload_sensor();
+    put_data_to_vps();
 </script>
