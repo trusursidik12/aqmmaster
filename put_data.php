@@ -3,7 +3,6 @@ $server_host = "103.247.11.149";
 define('BASEPATH', 'http://127.0.0.1/aqmmaster');
 define('ENVIRONMENT', 'production');
 include_once "application/config/database.php";
-print_r($db['default']);
 $db = new mysqli($db['default']['hostname'], $db['default']['username'], $db['default']['password'], $db['default']['database']);
 
 if($result = $db->query("SELECT * FROM aqm_data WHERE (sent is NULL OR sent = 0) ORDER BY id LIMIT 50")){
@@ -33,9 +32,6 @@ if($result = $db->query("SELECT * FROM aqm_data WHERE (sent is NULL OR sent = 0)
 		$arr[$key]["data"]["cs2"] = $data->cs2;
 	}
 }
-echo "<pre>";
-print_r($arr);
-echo "</pre>";
 if(isset($arr)){
 	foreach($arr as $key => $_data){
 		$data = json_encode($_data["data"]);
@@ -67,7 +63,6 @@ if(isset($arr)){
 		} else {
 			if(strpos(" ".$response,"success") > 0){
 				$db->query("UPDATE aqm_data SET sent=1 WHERE id = '".$_data["data"]["id"]."'");
-				echo $response;
 			} else {
 				echo $response;
 			}
