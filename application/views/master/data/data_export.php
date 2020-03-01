@@ -63,9 +63,7 @@
 				},
 			},
 			dom: "lBfrtip",
-			buttons: [
-			'copy','excel','csv','pdf','print'
-			],
+			buttons: ['excel','pdf','print'],
 		} );
 		
 		$('#search').on( 'click change', function (event) {
