@@ -63,7 +63,7 @@
 				},
 			},
 			dom: "lBfrtip",
-			buttons: ['excel','pdf','print'],
+			buttons: ['excel','pdf'],
 		} );
 		
 		$('#search').on( 'click change', function (event) {
