@@ -39,6 +39,9 @@ class Konfigurasi extends CI_Controller {
 		$data['configurations'][8]['id'] = "pump_interval";
 		$data['configurations'][8]['caption'] = "Interval Pompa (menit)";
 		$data['configurations'][8]['value'] = $this->konfigurasi_m->getConfigurationContent('pump_interval');
+		$data['configurations'][9]['id'] = "pump_control";
+		$data['configurations'][9]['caption'] = "Kontroler Pompa (1=Show ; 0=Hide)";
+		$data['configurations'][9]['value'] = $this->konfigurasi_m->getConfigurationContent('pump_control');
 		
 		$data['serial_devices'][0]['com_id'] = "com_pm10";
 		$data['serial_devices'][0]['baud_id'] = "baud_pm10";

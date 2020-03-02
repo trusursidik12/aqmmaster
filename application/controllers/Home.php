@@ -18,6 +18,8 @@ class Home extends CI_Controller {
 		$data['cuacas'] = $this->getdata_m->getParamsCuaca();
 		$data['configurations'] = $this->getdata_m->getConfigurations();
 		
+		$data["pump_control"] = $this->konfigurasi_m->getConfigurationContent('pump_control');
+		
 		$data["title_partikulat_gas"] = "";
 		if(count($data['partikulats']) > 0) $data["title_partikulat_gas"] .= "Partikulat dan ";
 		if(count($data['gass']) > 0) $data["title_partikulat_gas"] .= "Gas";
