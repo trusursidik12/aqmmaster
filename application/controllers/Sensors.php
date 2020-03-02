@@ -48,6 +48,13 @@ class sensors extends CI_Controller {
 			if($_param["param_id"] == "TempIn" || $_param["param_id"] == "TempOut"){
 				@eval("\$$param_id = round((\$$param_id - 32) * 5/9,1);");
 			}
+			
+			if($_param["param_id"] == "pm25_temp" || $_param["param_id"] == "pm10_temp")
+				@eval("\$$param_id = str_replace('+','',\$$param_id);");
+
+			if($_param["param_id"] == "pm25_humid" || $_param["param_id"] == "pm10_humid")
+				@eval("\$$param_id = \$$param_id * 1;");
+			
 			$values->$param_id_unit = $default_unit;
 			@eval("if(\$$param_id < 0) \$$param_id = 0;");
 			@eval("if(!isset(\$$param_id)) \$$param_id = 0;");
@@ -61,6 +68,11 @@ class sensors extends CI_Controller {
 			}
 			unset($formula);
 		}
+		
+		
+		
+		if(@$data["HumOut"] * 1 == 0) $data["HumOut"] = $data["pm25_humid"];
+		if(@$data["TempOut"] * 1 == 0) $data["TempOut"] = $data["pm25_temp"];
 		$values->pump_state = $this->sensors_m->getPumpState();
 		$values->pump_last = $this->sensors_m->getPumpLast();
 		$values->pump_interval = $this->sensors_m->getPumpInterval();
