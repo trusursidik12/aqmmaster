@@ -86,7 +86,7 @@ class sensors extends CI_Controller {
 		@$insertvalue = $insertvalue + ["h2s" => $data["h2s"]];
 		@$insertvalue = $insertvalue + ["cs2" => $data["cs2"]];
 		$this->sensors_m->insert_aqm_data_log($insertvalue);
-		$aqm_data_ranges = $this->sensors_m->get_aqm_data_range("15");
+		$aqm_data_ranges = $this->sensors_m->get_aqm_data_range("30");
 		if($aqm_data_ranges != 0){
 			
 			foreach($aqm_data_ranges["data"] as $aqm_data){
