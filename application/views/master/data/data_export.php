@@ -9,37 +9,42 @@
   				<div class="row p-1">
 					<form class="form-inline"  method="post" >
 		                <div class="form-group">
-		                  <label for="fromdate">&emsp;Mulai Dari : </label>
-		                  <input type="date"  id="datepicker1" value="<?php echo set_value('fromdate'); ?>" class="form-control"  placeholder="FROM DATE" required>
+		                  <label for="fromdate">&emsp;Mulai Dari&nbsp;&nbsp;:&nbsp;&nbsp;</label>
+		                  <input type="date"  id="datepicker1" value="<?php echo $from; ?>" class="form-control"  placeholder="FROM DATE" required>
 		                </div>
 		                <div class="form-group">
-		                  <label for="todate">&emsp;Sampai Dengan : </label>
-		                    <input type="date"  id="datepicker2" value="<?php echo set_value('todate'); ?>" class="form-control"  placeholder="TO DATE" required>
+		                  <label for="todate">&emsp;Sampai Dengan&nbsp;&nbsp;:&nbsp;&nbsp;</label>
+		                    <input type="date"  id="datepicker2" value="<?php echo $to; ?>" class="form-control"  placeholder="TO DATE" required>
 		                </div>
 		                <div class="form-group">
 		                    &emsp;&emsp;&emsp;<button type="submit" id="search"  class="btn btn-primary">SEARCH</button>
 		                </div>
 	               </form>
 				</div>
-  				<table id="myTable" class="table table-bordered table-striped">
+  				<table id="myTable" class="table table-bordered table-striped" style="white-space: nowrap;">
   					<thead>
 	  					<tr>
 	  						<th>No.</th>
 	  						<th>Stasiun</th>
 	  						<th>Waktu</th>
-	  						<th>PM10</th>
-	  						<th>PM25</th>
-	  						<th>SO2</th>
-	  						<th>CO</th>
-	  						<th>O3</th>
-	  						<th>NO2</th>
-	  						<th>KEC. ANGIN</th>
-	  						<th>ARAH ANGIN</th>
-	  						<th>KELEMBABAN</th>
-	  						<th>TEMPERATUR</th>
-	  						<th>TEKANAN</th>
-	  						<th>SOLAR RADIASI</th>
-	  						<th>CURAH HUJAN</th>
+							<?php if(@$params["pm10"]) : ?> <th>PM10</th> <?php endif ?>
+	  						<?php if(@$params["pm25"]) : ?> <th>PM2.5</th> <?php endif ?>
+	  						<?php if(@$params["so2"]) : ?> <th>SO2</th> <?php endif ?>
+	  						<?php if(@$params["co"]) : ?> <th>CO</th> <?php endif ?>
+	  						<?php if(@$params["o3"]) : ?> <th>O3</th> <?php endif ?>
+	  						<?php if(@$params["no2"]) : ?> <th>NO2</th> <?php endif ?>
+	  						<?php if(@$params["hc"]) : ?> <th>HC</th> <?php endif ?>
+	  						<?php if(@$params["voc"]) : ?> <th>VOC</th> <?php endif ?>
+	  						<?php if(@$params["nh3"]) : ?> <th>NH3</th> <?php endif ?>
+	  						<?php if(@$params["h2s"]) : ?> <th>H2S</th> <?php endif ?>
+	  						<?php if(@$params["cs2"]) : ?> <th>CS2</th> <?php endif ?>
+	  						<?php if(@$params["ws"]) : ?> <th>Kec. Angin</th> <?php endif ?>
+	  						<?php if(@$params["wd"]) : ?> <th>Arah Angin</th> <?php endif ?>
+	  						<?php if(@$params["humidity"]) : ?> <th>Kelembaban</th> <?php endif ?>
+	  						<?php if(@$params["temperature"]) : ?> <th>Temperatur</th> <?php endif ?>
+	  						<?php if(@$params["pressure"]) : ?> <th>Tekanan</th> <?php endif ?>
+	  						<?php if(@$params["sr"]) : ?> <th>Solar Radiasi</th> <?php endif ?>
+	  						<?php if(@$params["rain_intensity"]) : ?> <th>Curah Hujan</th> <?php endif ?>
 	  					</tr>
 	  				</thead>
   				</table>
@@ -54,6 +59,9 @@
         var dataTable =  $('#myTable').DataTable( {
 			processing:true,
 			serverSide: true,
+			"pageLength": 50,
+			"searching": false,
+			"lengthChange": false,
 			"ajax": {
 				"url": "<?php echo base_url('data/ajax'); ?>",
 				"type": "POST",

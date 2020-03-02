@@ -4,17 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Data_m extends CI_Model {
 
     var $table = 'aqm_data';
-    var $select = array('id_stasiun','waktu','pm10','pm25','so2','co','o3','no2','ws','wd','humidity','temperature','pressure','sr','rain_intensity');
-    var $column_order = array('id','id_stasiun','waktu','pm10','pm25','so2','co','o3','no2','ws','wd','humidity','temperature','pressure','sr','rain_intensity');
-    var $column_search = array('id','id_stasiun','waktu','pm10','pm25','so2','co','o3','no2','ws','wd','humidity','temperature','pressure','sr','rain_intensity');
+    var $column_order = array('id_stasiun','waktu');
+    var $column_search = array('id_stasiun','waktu');
     var $order = array('id' => 'desc'); // default order
 
     public function get_datatables($from, $to)
     {
         $this->_get_datatables_query($from, $to);
        
-        if($_POST['length'] != -1)
-            $this->db->limit($_POST['length'], $_POST['start']);
+        if(@$_POST['length'] != -1)
+            $this->db->limit(@$_POST['length'], @$_POST['start']);
         
         $query = $this->db->get();
         
@@ -40,9 +39,7 @@ class Data_m extends CI_Model {
     private function _get_datatables_query($from,$to)
     {
 
-        $this->db
-             ->select($this->select)
-             ->from($this->table);
+        $this->db->from($this->table);
 
         if($from!='' && $to!='' || $from!= NULL) // To process our custom input parameter
         {
@@ -53,7 +50,7 @@ class Data_m extends CI_Model {
         $i = 0;
         foreach ($this->column_search as $item) // loop column
         {
-            if($_POST['search']['value']) // if datatable send POST for search
+            if(@$_POST['search']['value']) // if datatable send POST for search
             {
 
                 if($i===0) // first loop

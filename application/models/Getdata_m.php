@@ -60,7 +60,7 @@ class Getdata_m extends CI_Model {
 			@$return[$param["param_id"]]["default_unit"] = $param["default_unit"];
 			@$return[$param["param_id"]]["formula"] = $param["formula"];
 		}
-		return $return;
+		return @$return;
 	}
 
 	public function getParamsGas($id = FALSE)
