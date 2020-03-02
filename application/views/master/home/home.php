@@ -1,4 +1,4 @@
-<?php if($is_graph) : ?> <meta http-equiv="refresh" content="30"> <?php endif ?>
+<?php if($is_graph) : ?> <meta http-equiv="refresh" content="300"> <?php endif ?>
 <div class="page-wrapper" style="display: block;">
 	<div class="container-fluid">
 		<div class="page-breadcrumb">
@@ -188,7 +188,7 @@
   
   function put_data_to_vps(){
 	$.ajax({url: "http://127.0.0.1/aqmmaster/put_data.php", success: function(result){}});
-	setTimeout(function(){ put_data_to_vps() }, 15000);
+	setTimeout(function(){ put_data_to_vps() }, 60000);
   }
   
   function reload_sensor(){
