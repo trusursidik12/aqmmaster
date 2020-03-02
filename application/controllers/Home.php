@@ -17,6 +17,14 @@ class Home extends CI_Controller {
 		$data['cuacas'] = $this->getdata_m->getParamsCuaca();
 		$data['configurations'] = $this->getdata_m->getConfigurations();
 		
+		$data["title_partikulat_gas"] = "";
+		if(count($data['partikulats']) > 0) $data["title_partikulat_gas"] .= "Partikulat dan ";
+		if(count($data['gass']) > 0) $data["title_partikulat_gas"] .= "Gas";
+		if(substr($data["title_partikulat_gas"],-4) == "dan ") $data["title_partikulat_gas"] = "Partikulat";
+		
+		$data["title_cuacas"] = "";
+		if(count($data['cuacas']) > 0) $data["title_cuacas"] = "Cuaca";
+		
 		$data["is_graph"] = false;
 		$graph_fields = $this->getdata_m->getGraph(true);
 		if(count($graph_fields) > 0){

@@ -14,89 +14,93 @@
 			</div>
 		</div>
 		
-		<div class="page-breadcrumb">
-			<div class="row">
-				<div class="col-12 align-self-center">
-					<h4 class="text-center page-title2">Partikulat dan Gas</h4>
+		<?php if($title_partikulat_gas != "") : ?>
+			<div class="page-breadcrumb">
+				<div class="row">
+					<div class="col-12 align-self-center">
+						<h4 class="text-center page-title2"><?= $title_partikulat_gas; ?></h4>
+					</div>
 				</div>
 			</div>
-		</div>
-	
-		<div class="row text-center">
-			<div class="col-sm-5">
-				<div class="row justify-content-center">
-					<?php foreach($partikulats as $partikulat) : ?>
-						<div class="col-6">
-							<div class="card border border-success">
-								<div class="card-body">
-									<h4 class="card-title"><?= $partikulat['caption'] ?></h4>
-									<div class="row">
-										<div class="col-12">
-											<h3 class="font-light text-right mb-0" id="<?= $partikulat['param_id'] ?>"></h3>
+		
+			<div class="row text-center">
+				<div class="col-sm-5">
+					<div class="row justify-content-center">
+						<?php foreach($partikulats as $partikulat) : ?>
+							<div class="col-6">
+								<div class="card border border-success">
+									<div class="card-body">
+										<h4 class="card-title"><?= $partikulat['caption'] ?></h4>
+										<div class="row">
+											<div class="col-12">
+												<h3 class="font-light text-right mb-0" id="<?= $partikulat['param_id'] ?>"></h3>
+											</div>
+										</div>
+										<div class="row align-items-center">
+											<div class="col-12">
+												<p id="<?= $partikulat['param_id'] ?>_flow" class="text-danger" style="margin-bottom: 12px;"></p>
+											</div>
 										</div>
 									</div>
-									<div class="row align-items-center">
-										<div class="col-12">
-											<p id="<?= $partikulat['param_id'] ?>_flow" class="text-danger" style="margin-bottom: 12px;"></p>
+								</div>                        
+							</div>
+						<?php endforeach ?>
+					</div>
+				</div>
+				<div class="col-sm-7">
+					<?php if(count($gass) > 0) : ?>
+						<div class="row">
+							<?php foreach($gass as $gas) : ?>
+								<div class="<?php if(count($gass) > 6) : ?> col-3 <?php elseif (count($gass) > 4) : ?> col-4 <?php else : ?> col-6 <?php endif ?>" style="padding:0px 20px 20px 0px;">
+									<div class="card border border-primary" style="padding:0px 5px 5px 0px;">
+										<h4 class="card-title">&nbsp;<?= $gas['caption'] ?><div style="position:relative;float:right;" id="unit_<?= $gas['param_id'] ?>">(<?= $gas['default_unit'] ?>)</div></h4>
+										<div class="row">
+											<div class="col-12">
+												<h4 class="font-light text-right mb-0" id="<?= $gas['param_id'] ?>"></h4>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>                        
+							<?php endforeach ?>
 						</div>
-					<?php endforeach ?>
+					<?php endif ?>
+					<?php if($is_graph) : ?>
+						<div class="row">
+							<div class="col-12">
+								<div class="card">
+									<div id="graph" style="height:200px;"></div>
+								</div>
+							</div>
+						</div>
+					<?php endif ?>
 				</div>
 			</div>
-			<div class="col-sm-7">
-				<?php if(count($gass) > 0) : ?>
-					<div class="row">
-						<?php foreach($gass as $gas) : ?>
-							<div class="<?php if(count($gass) > 6) : ?> col-3 <?php elseif (count($gass) > 4) : ?> col-4 <?php else : ?> col-6 <?php endif ?>" style="padding:0px 20px 20px 0px;">
-								<div class="card border border-primary" style="padding:0px 5px 5px 0px;">
-									<h4 class="card-title">&nbsp;<?= $gas['caption'] ?><div style="position:relative;float:right;" id="unit_<?= $gas['param_id'] ?>">(<?= $gas['default_unit'] ?>)</div></h4>
-									<div class="row">
-										<div class="col-12">
-											<h4 class="font-light text-right mb-0" id="<?= $gas['param_id'] ?>"></h4>
-										</div>
-									</div>
+		<?php endif ?>
+		
+		<?php if($title_cuacas != "") : ?>
+			<div class="page-breadcrumb">
+				<div class="row">
+					<div class="col-12 align-self-center">
+						<h4 class="text-center page-title2">Cuaca</h4>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row text-center">
+				<div class="col-sm">
+					<div class="row justify-content-center">
+						<?php foreach($cuacas as$cuaca) : ?>
+							<div class="col-sm p-3" style="padding:0px 20px 20px 0px;">
+								<div class="card border border-warning">
+									<h6 class="card-title">&nbsp;<?= $cuaca['caption'] ?></h6>
+									<h3 id="<?= $cuaca['param_id'] ?>"></h3>
 								</div>
 							</div>
 						<?php endforeach ?>
 					</div>
-				<?php endif ?>
-				<?php if($is_graph) : ?>
-					<div class="row">
-						<div class="col-12">
-							<div class="card">
-								<div id="graph" style="height:200px;"></div>
-							</div>
-						</div>
-					</div>
-				<?php endif ?>
-			</div>
-		</div>
-		
-		<div class="page-breadcrumb">
-			<div class="row">
-				<div class="col-12 align-self-center">
-					<h4 class="text-center page-title2">Cuaca</h4>
 				</div>
 			</div>
-		</div>
-		
-		<div class="row text-center">
-			<div class="col-sm">
-				<div class="row justify-content-center">
-					<?php foreach($cuacas as$cuaca) : ?>
-						<div class="col-sm p-3" style="padding:0px 20px 20px 0px;">
-							<div class="card border border-warning">
-								<h6 class="card-title">&nbsp;<?= $cuaca['caption'] ?></h6>
-								<h3 id="<?= $cuaca['param_id'] ?>"></h3>
-							</div>
-						</div>
-					<?php endforeach ?>
-				</div>
-			</div>
-		</div>
+		<?php endif ?>
 	</div>
 </div>
 
