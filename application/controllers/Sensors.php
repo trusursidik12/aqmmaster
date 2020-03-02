@@ -73,6 +73,12 @@ class sensors extends CI_Controller {
 		
 		if(@$data["HumOut"] * 1 == 0) $data["HumOut"] = $data["pm25_humid"];
 		if(@$data["TempOut"] * 1 == 0) $data["TempOut"] = $data["pm25_temp"];
+		if(@$data["Barometer"] * 1 == 0) $data["Barometer"] = $data["pm25_bar"];
+		
+		if(@$data["HumOut"] * 1 == 0) $data["HumOut"] = $data["pm10_humid"];
+		if(@$data["TempOut"] * 1 == 0) $data["TempOut"] = $data["pm10_temp"];
+		if(@$data["Barometer"] * 1 == 0) $data["Barometer"] = $data["pm10_bar"];
+		
 		$values->pump_state = $this->sensors_m->getPumpState();
 		$values->pump_last = $this->sensors_m->getPumpLast();
 		$values->pump_interval = $this->sensors_m->getPumpInterval();
