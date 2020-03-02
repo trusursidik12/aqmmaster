@@ -77,6 +77,72 @@
 			</div>
 		<?php endif ?>
 		
+		<?php if(@$partikulatattr["pm25_bar"]["is_view"]) : ?>
+			<div class="row text-center">
+				<div class="col-sm">
+					<div class="row justify-content-center">
+						
+						<div class="col-sm p-3" style="padding:0px 20px 20px 0px;">
+							<div class="card border border-warning">
+								<h6 class="card-title">&nbsp;<?= $partikulatattr["pm25_bar"]["caption"] ?></h6>
+								<h3 id="<?= $partikulatattr["pm25_bar"]['param_id'] ?>"></h3>
+							</div>
+						</div>
+						<?php if(@$partikulatattr["pm25_humid"]["is_view"]) : ?>
+							<div class="col-sm p-3" style="padding:0px 20px 20px 0px;">
+								<div class="card border border-warning">
+									<h6 class="card-title">&nbsp;<?= $partikulatattr["pm25_humid"]["caption"] ?></h6>
+									<h3 id="<?= $partikulatattr["pm25_humid"]['param_id'] ?>"></h3>
+								</div>
+							</div>
+						<?php endif ?>
+						<?php if(@$partikulatattr["pm25_temp"]["is_view"]) : ?>
+							<div class="col-sm p-3" style="padding:0px 20px 20px 0px;">
+								<div class="card border border-warning">
+									<h6 class="card-title">&nbsp;<?= $partikulatattr["pm25_temp"]["caption"] ?></h6>
+									<h3 id="<?= $partikulatattr["pm25_temp"]['param_id'] ?>"></h3>
+								</div>
+							</div>
+						<?php endif ?>
+						
+					</div>
+				</div>
+			</div>
+		<?php endif ?>
+		
+		<?php if(@$partikulatattr["pm10_bar"]["is_view"]) : ?>
+			<div class="row text-center">
+				<div class="col-sm">
+					<div class="row justify-content-center">
+						
+						<div class="col-sm p-3" style="padding:0px 20px 20px 0px;">
+							<div class="card border border-warning">
+								<h6 class="card-title">&nbsp;<?= $partikulatattr["pm10_bar"]["caption"] ?></h6>
+								<h3 id="<?= $partikulatattr["pm10_bar"]['param_id'] ?>"></h3>
+							</div>
+						</div>
+						<?php if(@$partikulatattr["pm10_humid"]["is_view"]) : ?>
+							<div class="col-sm p-3" style="padding:0px 20px 20px 0px;">
+								<div class="card border border-warning">
+									<h6 class="card-title">&nbsp;<?= $partikulatattr["pm10_humid"]["caption"] ?></h6>
+									<h3 id="<?= $partikulatattr["pm10_humid"]['param_id'] ?>"></h3>
+								</div>
+							</div>
+						<?php endif ?>
+						<?php if(@$partikulatattr["pm10_temp"]["is_view"]) : ?>
+							<div class="col-sm p-3" style="padding:0px 20px 20px 0px;">
+								<div class="card border border-warning">
+									<h6 class="card-title">&nbsp;<?= $partikulatattr["pm10_temp"]["caption"] ?></h6>
+									<h3 id="<?= $partikulatattr["pm10_temp"]['param_id'] ?>"></h3>
+								</div>
+							</div>
+						<?php endif ?>
+						
+					</div>
+				</div>
+			</div>
+		<?php endif ?>
+		
 		<?php if($title_cuacas != "") : ?>
 			<div class="page-breadcrumb">
 				<div class="row">
@@ -131,8 +197,14 @@
         var sensor = JSON.parse(result);
         try { $("#pm10").html((sensor.pm10 * 1000) + " " + sensor.pm10_unit); } catch(ex){}
         try { $("#pm10_flow").html(sensor.pm10_flow + " " + sensor.pm10_flow_unit); } catch(ex){}
-        try { $("#pm25").html((sensor.pm25 * 1000) + " " + sensor.pm25_unit); } catch(ex){}
+		try { $("#pm10_bar").html(sensor.pm10_bar + "</h3><br><h6>" + sensor.pm10_bar_unit + "</h6>"); } catch(ex){}
+		try { $("#pm10_humid").html(sensor.pm10_humid + "&nbsp;" + sensor.pm10_humid_unit + "</h3><br><h6>&nbsp;</h6>"); } catch(ex){}
+        try { $("#pm10_temp").html(sensor.pm10_temp + "</h3><br><h6>" + sensor.pm10_temp_unit + "</h6>"); } catch(ex){}
+		try { $("#pm25").html((sensor.pm25 * 1000) + " " + sensor.pm25_unit); } catch(ex){}
         try { $("#pm25_flow").html(sensor.pm25_flow + " " + sensor.pm25_flow_unit); } catch(ex){}
+		try { $("#pm25_bar").html(sensor.pm25_bar + "</h3><br><h6>" + sensor.pm25_bar_unit + "</h6>"); } catch(ex){}
+		try { $("#pm25_humid").html(sensor.pm25_humid + "&nbsp;" + sensor.pm25_humid_unit + "</h3><br><h6>&nbsp;</h6>"); } catch(ex){}
+        try { $("#pm25_temp").html(sensor.pm25_temp + "</h3><br><h6>" + sensor.pm25_temp_unit + "</h6>"); } catch(ex){}
         try { $("#so2").html(sensor.so2); } catch(ex){}
         try { $("#unit_so2").html("(" + sensor.so2_unit + ")"); } catch(ex){}
         try { $("#co").html(sensor.co); } catch(ex){}

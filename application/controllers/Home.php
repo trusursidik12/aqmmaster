@@ -13,6 +13,7 @@ class Home extends CI_Controller {
 		$data['all'] = $this->getdata_m->getall();
 		$data['partikulats'] = $this->getdata_m->getParamsPartikulat();
 		$data['partikulatflows'] = $this->getdata_m->getParamsPartikulatFlow();
+		$data['partikulatattr'] = $this->getdata_m->getParamsPartikulatAttr();
 		$data['gass'] = $this->getdata_m->getParamsGas();
 		$data['cuacas'] = $this->getdata_m->getParamsCuaca();
 		$data['configurations'] = $this->getdata_m->getConfigurations();

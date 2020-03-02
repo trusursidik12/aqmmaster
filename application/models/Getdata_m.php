@@ -46,6 +46,23 @@ class Getdata_m extends CI_Model {
 		return $query->row_array();
 	}
 
+	public function getParamsPartikulatAttr()
+	{
+		$partikulatattr = array('pm10_bar','pm10_humid','pm10_temp','pm25_bar','pm25_humid','pm25_temp');
+		$this->db->order_by('id', 'ASC');
+		$this->db->where('is_view', '1');
+		$this->db->where_in('param_id', $partikulatattr);
+		$query = $this->db->get('aqm_params');
+		foreach($query->result_array() as $key => $param){
+			@$return[$param["param_id"]]["is_view"] = 1;
+			@$return[$param["param_id"]]["param_id"] = $param["param_id"];
+			@$return[$param["param_id"]]["caption"] = $param["caption"];
+			@$return[$param["param_id"]]["default_unit"] = $param["default_unit"];
+			@$return[$param["param_id"]]["formula"] = $param["formula"];
+		}
+		return $return;
+	}
+
 	public function getParamsGas($id = FALSE)
 	{
 		if($id === FALSE)
