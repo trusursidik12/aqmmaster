@@ -7,19 +7,19 @@ WHERE NOT EXISTS (
 ) LIMIT 1;
 
 INSERT INTO aqm_params (param_id, caption, default_unit,molecular_mass,formula,is_view)
-SELECT * FROM (SELECT 'pm10_bar', 'Tekanan PM10','MBar',0,'explode(",",$PM10)[4]',0) AS tmp
+SELECT * FROM (SELECT 'pm10_bar', 'Tekanan PM10','MBar',0,'explode(",",$PM10)[4]',0 as view) AS tmp
 WHERE NOT EXISTS (
     SELECT `param_id` FROM aqm_params WHERE `param_id` = 'pm10_bar'
 ) LIMIT 1;
 
 INSERT INTO aqm_params (param_id, caption, default_unit,molecular_mass,formula,is_view)
-SELECT * FROM (SELECT 'pm10_humid', 'Kelembaban PM10','%',0,'explode(",",$PM10)[3]',0) AS tmp
+SELECT * FROM (SELECT 'pm10_humid', 'Kelembaban PM10','%',0,'explode(",",$PM10)[3]',0 as view) AS tmp
 WHERE NOT EXISTS (
     SELECT `param_id` FROM aqm_params WHERE `param_id` = 'pm10_humid'
 ) LIMIT 1;
 
 INSERT INTO aqm_params (param_id, caption, default_unit,molecular_mass,formula,is_view)
-SELECT * FROM (SELECT 'pm10_temp', 'Suhu PM10','Celcius',0,'explode(",",$PM10)[2]',0) AS tmp
+SELECT * FROM (SELECT 'pm10_temp', 'Suhu PM10','Celcius',0,'explode(",",$PM10)[2]',0 as view) AS tmp
 WHERE NOT EXISTS (
     SELECT `param_id` FROM aqm_params WHERE `param_id` = 'pm10_temp'
 ) LIMIT 1;
