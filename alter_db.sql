@@ -1,3 +1,5 @@
+USE `trusur_aqm`;
+
 INSERT INTO aqm_configuration (`data`, content)
 SELECT * FROM (SELECT 'pump_control', '1') AS tmp
 WHERE NOT EXISTS (
