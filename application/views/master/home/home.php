@@ -70,7 +70,7 @@
 						<div class="row">
 							<div class="col-12">
 								<div class="card">
-									<div id="graph" style="height:200px;"></div>
+									<div id="graph" style="height:200px;background-color:white;"></div>
 								</div>
 							</div>
 						</div>
