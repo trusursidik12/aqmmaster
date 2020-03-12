@@ -46,8 +46,10 @@
 							</div>
 						</div>
 					<?php endforeach ?>
-					<div class="card" style="padding:10px;">
-						<input type="submit" name="simpan" value="Simpan" class="btn btn-primary">
+					<div class="d-flex align-items-end flex-column">
+						<div class="p-2">
+							<input style="margin-bottom: 45px; margin-left: 10px;" type="submit" name="simpan" value="Simpan" class="position-fixed fixed-bottom btn btn-primary btn-circle ">
+						</div>
 					</div>
 				</form>
 			</div>

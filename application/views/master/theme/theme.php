@@ -131,6 +131,16 @@
 			color:#FFFF00;
 		}
 		
+    .btn-circle {
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      padding: 6px 0;
+      font-size: 16px;
+      line-height: 1.42;
+      border-radius: 55px;
+    }
+    
     </style>
 
     <title><?= $title; ?></title>
