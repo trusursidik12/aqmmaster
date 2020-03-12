@@ -13,6 +13,7 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables-buttons/css/buttons.dataTables.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') ?>">
 
     <script src="<?= base_url('assets/dist/js/jquery.min.js') ?>"></script>
 	<script src="<?= base_url('assets/dist/js/raphael-min.js') ?>"></script>

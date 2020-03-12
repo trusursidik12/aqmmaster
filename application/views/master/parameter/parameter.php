@@ -19,8 +19,18 @@
 							</tr>
 							<?php foreach($alldata as $data) : ?>
 								<tr>
-									<td><input type="checkbox" class="form-control" id="is_view[<?= $data["param_id"];?>]" name="is_view[<?= $data["param_id"];?>]" value="1" <?php if($data["is_view"] == "1") :?> checked <?php endif ?>></td>
-									<td><input type="checkbox" class="form-control" id="is_graph[<?= $data["param_id"];?>]" name="is_graph[<?= $data["param_id"];?>]" value="1" <?php if($data["is_graph"] == "1") :?> checked <?php endif ?>></td>
+									<td>
+										<div class="icheck-success d-inline">
+											<input type="checkbox" id="<?= $data['param_id'] ?>" id="is_view[<?= $data["param_id"];?>]" name="is_view[<?= $data["param_id"];?>]" value="1" <?php if($data["is_view"] == "1") :?> checked <?php endif ?>>
+											<label for="<?= $data['param_id'] ?>"></label>
+										</div>
+									</td>
+									<td>
+										<div class="icheck-success d-inline">
+											<input type="checkbox" id="<?= $data['param_id'] ?>2" id="is_graph[<?= $data["param_id"];?>]" name="is_graph[<?= $data["param_id"];?>]" value="1" <?php if($data["is_graph"] == "1") :?> checked <?php endif ?>>
+											<label for="<?= $data['param_id'] ?>2"></label>
+										</div>
+									</td>
 									<td><?= $data['param_id']; ?></td>
 									<td><input class="form-control" id="caption[<?= $data["param_id"];?>]" name="caption[<?= $data["param_id"];?>]" value="<?= $data["caption"];?>"></td>
 									<td><input class="form-control" id="default_unit[<?= $data["param_id"];?>]" name="default_unit[<?= $data["param_id"];?>]" value="<?= $data["default_unit"];?>"></td>
