@@ -45,7 +45,7 @@
 
     <style>
 		body{
-			background: #f2f4f5;
+			background: #252F3B;
 		}
 		.footer {
 			 position: fixed;
@@ -66,7 +66,7 @@
 			margin-top: 40px;
 		}
 		.page-wrapper {
-			background: #f2f4f5;
+			background: #252F3B;
 			position: relative;
 			display: none;
 		}									
@@ -77,7 +77,7 @@
 			flex-direction: column;
 			min-width: 0;
 			word-wrap: break-word;
-			background-color: #fff;
+			background-color: grey;
 			background-clip: border-box;
 			border: 0 solid transparent;
 			border-radius: .25rem;
@@ -86,25 +86,51 @@
 		.card-title{
 			text-align:left;
 			font-size:16px;
-			color:grey;
+			color:white;
+		}
+		
+		.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+			margin-bottom: .5rem;
+			font-family: inherit;
+			font-weight: 500;
+			line-height: 1.2;
+			color: #00FF00;
 		}
 		
 		.page-title {
 			margin-bottom: 0;
 			font-weight: 500;
 			font-size: 21px;
-			color: #6a7a8c;
+			color: #00FF00;
 		}
 		
 		.page-title2 {
 			margin-bottom: 0;
 			font-weight: 700;
-			color: #6a7a8c;
+			color: #80FF80;
 		}
 		
 		.page-breadcrumb {
 			padding: 10px 0px 10px 0px;
 		}
+		
+		.navbar-dark .navbar-nav .nav-link {
+			color: #FFFF00;
+			font-weight:bolder;
+			font-size:20px;
+		}
+		
+		.navbar-dark .navbar-brand {
+			color: #FFF;
+			font-weight:bolder;
+			font-size:26px;
+		}
+		
+		.font-flow{
+			font-weight:bolder;
+			color:#FFFF00;
+		}
+		
     </style>
 
     <title><?= $title; ?></title>

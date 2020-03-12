@@ -40,7 +40,7 @@
 										</div>
 										<div class="row align-items-center">
 											<div class="col-12">
-												<p id="<?= $partikulat['param_id'] ?>_flow" class="text-danger" style="margin-bottom: 12px;"></p>
+												<p id="<?= $partikulat['param_id'] ?>_flow" class="font-flow" style="margin-bottom: 12px;"></p>
 											</div>
 										</div>
 									</div>

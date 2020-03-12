@@ -10,11 +10,11 @@
 					<form class="form-inline"  method="post" >
 		                <div class="form-group">
 		                  <label for="fromdate">&emsp;Mulai Dari&nbsp;&nbsp;:&nbsp;&nbsp;</label>
-		                  <input type="date"  id="datepicker1" value="<?php echo $from; ?>" class="form-control"  placeholder="FROM DATE" required>
+		                  <input type="date"  id="datepicker1" value="" class="form-control"  placeholder="FROM DATE" required>
 		                </div>
 		                <div class="form-group">
 		                  <label for="todate">&emsp;Sampai Dengan&nbsp;&nbsp;:&nbsp;&nbsp;</label>
-		                    <input type="date"  id="datepicker2" value="<?php echo $to; ?>" class="form-control"  placeholder="TO DATE" required>
+		                    <input type="date"  id="datepicker2" value="" class="form-control"  placeholder="TO DATE" required>
 		                </div>
 		                <div class="form-group">
 		                    &emsp;&emsp;&emsp;<button type="submit" id="search"  class="btn btn-primary">SEARCH</button>
