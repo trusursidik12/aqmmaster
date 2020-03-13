@@ -212,6 +212,18 @@
     
 
     <script>
+	function cek_is_online(){
+		$.ajax({url: "http://103.247.11.149/server_side/api/is_connect.php", success: function(result){
+			if(result == "1"){
+				$("#online_indicator").html("<h6 style='color:#00FF00;'>Internet Connected</h6>");
+			} else {
+				$("#online_indicator").html("<h6 style='color:#FF0000;'>Internet Disconnect</h6>");
+			}
+		}});
+		setTimeout(function(){ cek_is_online() }, 30000);
+	}
+	cek_is_online();
+	
     function startTime() {
       var today = new Date();
       var h = today.getHours();

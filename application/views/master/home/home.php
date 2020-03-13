@@ -186,16 +186,6 @@
     })
   })
   
-  function cek_is_online(){
-	$.ajax({url: "http://103.247.11.149/server_side/api/is_connect.php", success: function(result){
-		if(result == "1"){
-			$("#online_indicator").html("<h6 style='color:#00FF00;'>Internet Connected</h6>");
-		} else {
-			$("#online_indicator").html("<h6 style='color:#FF0000;'>Internet Disconnect</h6>");
-		}
-	}});
-	setTimeout(function(){ cek_is_online() }, 30000);
-  }
   function put_data_to_vps(){
 	$.ajax({url: "http://127.0.0.1/aqmmaster/put_data.php", success: function(result){}});
 	setTimeout(function(){ put_data_to_vps() }, 60000);
@@ -266,5 +256,4 @@
     }
     reload_sensor();
     put_data_to_vps();
-	cek_is_online();
 </script>
