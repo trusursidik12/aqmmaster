@@ -6,8 +6,8 @@ class Konfigurasi extends CI_Controller {
 	public function index()
 	{
 		if($this->input->get('savedatetime')){
-			exec("echo admin | sudo -S date +%Y%m%d -s \"".str_replace("-","",$_GET["date"])."\"");
-			exec("echo admin | sudo -S date +%T -s \"".$_GET["time"]."\"");
+			exec("echo admin | sudo -S date +%Y%m%d -s \"".str_replace("-","",$_GET["date"])."\" &");
+			exec("echo admin | sudo -S date +%T -s \"".$_GET["time"]."\" &");
 		}
 		
 		if($this->input->post('simpan')){
