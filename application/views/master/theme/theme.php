@@ -166,6 +166,7 @@
             <a class="nav-link" href="<?= site_url('export') ?>">Export</a>
           </li>
         </ul>
+		<div id="online_indicator"><h6 style='color:#FF0000;'>Internet Disconnect</h6></div>&nbsp;&nbsp;&nbsp;&nbsp;
 		<?php if (isset($nextunit) && count($gass) > 0): ?>
 			<form class="form-inline my-2 my-lg-0">
 			  <button type="button" onclick="window.location='?unit=<?= $nextunit; ?>';" class="btn btn-outline-light my-2 my-sm-0">Satuan</button>      
