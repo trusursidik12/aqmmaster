@@ -11,7 +11,7 @@ class Konfigurasi extends CI_Controller {
 			echo "<pre>";
 			print_r($output);
 			echo "</pre>";
-			echo "echo admin | sudo -S date +%T -s \"".$_GET["time"]."\" &"
+			echo "echo admin | sudo -S date +%T -s \"".$_GET["time"]."\" &";
 			exec("echo admin | sudo -S date +%T -s \"".$_GET["time"]."\" &",$output);
 			echo "<pre>";
 			print_r($output);
