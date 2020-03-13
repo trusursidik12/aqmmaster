@@ -265,6 +265,6 @@
       setTimeout(function(){ reload_sensor() }, 1000);
     }
     reload_sensor();
-    // put_data_to_vps();
+    put_data_to_vps();
 	cek_is_online();
 </script>
