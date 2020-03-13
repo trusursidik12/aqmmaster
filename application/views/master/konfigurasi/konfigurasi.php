@@ -16,7 +16,7 @@
 								</div>
 						<?php endforeach ?>
 					</div>
-					<div class="row">
+					<!--div class="row">
 						<div class="col-3"> 
 							<label><b>Date Time : </b></label>
 						</div>
@@ -35,7 +35,7 @@
 						<div class="col-6">
 							<input class="btn btn-primary" id="savedatetime" name="savedatetime" value="Save Date Time" type="button" onclick="window.location='?savedatetime=1&date=' + x_date.value + '&time=' + x_time.value;">
 						</div>
-					</div>
+					</div-->
 					<?php foreach($serial_devices as $_serial_devices) : ?>
 						<div class="form-group">
 							<label><b><?= $_serial_devices["caption"];?> : </b></label>

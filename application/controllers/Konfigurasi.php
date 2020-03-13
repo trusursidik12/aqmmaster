@@ -5,20 +5,6 @@ class Konfigurasi extends CI_Controller {
 
 	public function index()
 	{
-		if($this->input->get('savedatetime')){
-			echo "echo admin | sudo -S date +%Y%m%d -s \"".str_replace("-","",$_GET["date"])."\" &";
-			exec("echo admin | sudo -S date +%Y%m%d -s \"".str_replace("-","",$_GET["date"])."\" &",$output);
-			echo "<pre>";
-			print_r($output);
-			echo "</pre>";
-			echo "echo admin | sudo -S date +%T -s \"".$_GET["time"]."\" &";
-			exec("echo admin | sudo -S date +%T -s \"".$_GET["time"]."\" &",$output);
-			echo "<pre>";
-			print_r($output);
-			echo "</pre>";
-			
-		}
-		
 		if($this->input->post('simpan')){
 			foreach($_POST as $_data => $content){
 				$this->konfigurasi_m->save_konfigurasi($_data,$content);
