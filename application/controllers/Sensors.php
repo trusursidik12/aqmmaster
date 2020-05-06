@@ -83,6 +83,7 @@ class sensors extends CI_Controller {
 		$values->pump_last = $this->sensors_m->getPumpLast();
 		$values->pump_interval = $this->sensors_m->getPumpInterval();
 		$values->now = date("Y-m-d H:i:s");
+		$values->lastPutData = $this->session->userdata('lastPutData');
 		
 		$insertvalue = ["waktu" => date("Y-m-d H:i:s")];
 		@$insertvalue = $insertvalue + ["pm10" => ($data["pm10"] * 1000)];
@@ -106,7 +107,16 @@ class sensors extends CI_Controller {
 		$this->sensors_m->insert_aqm_data_log($insertvalue);
 		$aqm_data_ranges = $this->sensors_m->get_aqm_data_range("30");
 		if($aqm_data_ranges != 0){
-			
+			$tot_pm10 = 0;
+			$tot_pm25 = 0;
+			$tot_so2 = 0;
+			$tot_co = 0;
+			$tot_o3 = 0;
+			$tot_no2 = 0;
+			$tot_hc = 0;
+			$tot_voc = 0;
+			$tot_h2s = 0;
+			$tot_cs2 = 0;
 			foreach($aqm_data_ranges["data"] as $aqm_data){
 				$tot_pm10 += $aqm_data["pm10"];
 				$tot_pm25 += $aqm_data["pm25"];
@@ -120,27 +130,30 @@ class sensors extends CI_Controller {
 				$tot_cs2 += $aqm_data["cs2"];
 			}
 			$num_data = count($aqm_data_ranges["data"]);
-			$aqm_data_values = ["id_stasiun" => $this->sensors_m->get_id_stasiun(),
-								"waktu" => $values->now,
-								"pm10" => round($tot_pm10/$num_data),
-								"pm25" => round($tot_pm25/$num_data),
-								"so2" => round($tot_so2/$num_data),
-								"co" => round($tot_co/$num_data),
-								"o3" => round($tot_o3/$num_data),
-								"no2" => round($tot_no2/$num_data),
-								"hc" => round($tot_hc/$num_data),
-								"voc" => round($tot_voc/$num_data),
-								"h2s" => round($tot_h2s/$num_data),
-								"cs2" => round($tot_cs2/$num_data),
-								"ws" => $data["WindSpeed"],
-								"wd" => $data["WindDir"],
-								"humidity" => $data["HumOut"],
-								"temperature" => $data["TempOut"],
-								"pressure" => $data["Barometer"],
-								"sr" => $data["SolarRad"],
-								"rain_intensity" =>  $data["RainDay"]
-								];
+			if($num_data > 0){
+				$aqm_data_values = ["id_stasiun" => $this->sensors_m->get_id_stasiun(),
+									"waktu" => $values->now,
+									"pm10" => round($tot_pm10/$num_data),
+									"pm25" => round($tot_pm25/$num_data),
+									"so2" => round($tot_so2/$num_data),
+									"co" => round($tot_co/$num_data),
+									"o3" => round($tot_o3/$num_data),
+									"no2" => round($tot_no2/$num_data),
+									"hc" => round($tot_hc/$num_data),
+									"voc" => round($tot_voc/$num_data),
+									"h2s" => round($tot_h2s/$num_data),
+									"cs2" => round($tot_cs2/$num_data),
+									"ws" => @$data["WindSpeed"],
+									"wd" => @$data["WindDir"],
+									"humidity" => @$data["HumOut"],
+									"temperature" => @$data["TempOut"],
+									"pressure" => @$data["Barometer"],
+									"sr" => @$data["SolarRad"],
+									"rain_intensity" => @$data["RainDay"]
+									];
+			}
 			$this->sensors_m->insert_aqm_data($aqm_data_values,$aqm_data_ranges["id_start"],$aqm_data_ranges["id_end"]);
+			$this->session->set_userdata('lastPutData', date("Y-m-d H:i"));
 		}
 		$data["values"] = json_encode($values);
 		
