@@ -255,7 +255,7 @@
 			}
 		} catch(ex){}
       }});
-      // setTimeout(function(){ reload_sensor() }, 1000);
+      setTimeout(function(){ reload_sensor() }, 1000);
     }
     reload_sensor();
     put_data_to_vps();
