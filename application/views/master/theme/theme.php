@@ -24,16 +24,10 @@
     <script src="<?= base_url('assets/dist/js/font-awesome.js') ?>"></script>
     <!-- data tables -->
     <script src="<?= base_url('assets/plugins/datatables/jquery.dataTables.js') ?>"></script>
-    <!-- <script src="<?= base_url('assets/plugins/datatables/jquery.dataTables.min.js') ?>"></script> -->
     <script src="<?= base_url('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js') ?>"></script>
-    <!-- <script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.html5.min.js') ?>"></script> -->
     <script src="<?= base_url('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') ?>"></script>
 
     <!-- data table export -->
-    <!-- <script src="<?= base_url('assets/dist/js/aqmmaster/jquery-3.3.1.js') ?>"></script> -->
-    <!-- <script src="<?= base_url('assets/dist/js/aqmmaster/jquery.dataTables.min.js') ?>"></script> -->
-    <!-- <script src="<?= base_url('assets/dist/js/aqmmaster/dataTables.buttons.min.js') ?>"></script> -->
-    <!-- <script src="<?= base_url('assets/dist/js/aqmmaster/buttons.flash.min.js') ?>"></script> -->
     <script src="<?= base_url('assets/dist/js/aqmmaster/jszip.min.js') ?>"></script>
     <script src="<?= base_url('assets/dist/js/aqmmaster/pdfmake.min.js') ?>"></script>
     <script src="<?= base_url('assets/dist/js/aqmmaster/vfs_fonts.js') ?>"></script>
@@ -46,15 +40,17 @@
 
     <style>
 		body{
-			background: #252F3B;
+			background-image: url('<?= base_url('assets/dist/img/black_metal_texture.png') ?>'); 
 		}
 		.footer {
-			 position: fixed;
-			 left: 0;
-			 bottom: 0;
-			 width: 100%;
-			 color: white;
-			 text-align: center;
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			color: white;
+			text-align: center; 
+			background-image: url('<?= base_url('assets/dist/img/dark-textures.jpg') ?>'); 
+			background-size: 1024px 40px;
 		}
 		.text-position-center {
 			margin-top: 13px;
@@ -67,7 +63,7 @@
 			margin-top: 40px;
 		}
 		.page-wrapper {
-			background: #252F3B;
+			background-image: url('<?= base_url('assets/dist/img/black_metal_texture.png') ?>'); 
 			position: relative;
 			display: none;
 		}									
@@ -82,6 +78,7 @@
 			background-clip: border-box;
 			border: 0 solid transparent;
 			border-radius: .25rem;
+			background-image: url('<?= base_url('assets/dist/img/dark-textures.jpg') ?>'); 
 		}
 		
 		.card-title{
@@ -132,6 +129,24 @@
 			color:#FFFF00;
 		}
 		
+		nav{ 
+			background-image: url('<?= base_url('assets/dist/img/dark-textures.jpg') ?>'); 
+			background-size: 1024px 70px;
+		}
+		
+		.bg-primary{
+			background-image: url('<?= base_url('assets/dist/img/dark-textures.jpg') ?>'); 
+			background-size: 1024px 70px;
+		}
+		
+		#remaining{ color:white; }
+		#myTable{ background-color:white; }
+		#myTable td{ color:black; }
+		label{ color:white; }
+		td{ color:white; }
+		
+		.text-right{ color:white; }
+		
     .btn-circle {
       width: 60px;
       height: 60px;
@@ -167,12 +182,7 @@
             <a class="nav-link" href="<?= site_url('export') ?>">Export</a>
           </li>
         </ul>
-		<div id="online_indicator"><h6 style='color:#FF0000;'>Internet Disconnect</h6></div>&nbsp;&nbsp;&nbsp;&nbsp;
-		<?php if (isset($nextunit) && count($gass) > 0): ?>
-			<form class="form-inline my-2 my-lg-0">
-			  <button type="button" onclick="window.location='?unit=<?= $nextunit; ?>';" class="btn btn-outline-light my-2 my-sm-0">Satuan</button>      
-			</form>
-		<?php endif; ?>
+		<div id="online_indicator"><h6 style='color:#FF0000;'>Internet Disconnect</h6></div>
       </div>
     </nav>
 

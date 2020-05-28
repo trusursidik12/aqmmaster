@@ -6,9 +6,12 @@
 				<div class="col-5 align-self-center">
 					<h4 class="page-title"><i class='fas fa-map-marker-alt' style='font-size:21px;color:red'></i> <?=$configurations["sta_nama"];?></h4>
 				</div>
-				<div class="col-5"></div>
+				<div class="col-4"></div>
 				<?php if($pump_control == 1) : ?>
-					<div class="col-2 align-self-right">
+					<div class="col-3 align-self-right">
+						<?php if (isset($nextunit) && count($gass) > 0): ?>
+							  <input type="button" onclick="window.location='?unit=<?= $nextunit; ?>';" class="btn btn-outline-light" style="height:35px;" value="Satuan">
+						<?php endif; ?>
 						<input id="pump_state" type="checkbox" data-height="20" data-toggle="toggle" data-on="Pompa 1" data-off="Pompa 2" data-onstyle="success" data-offstyle="primary">
 						<div class="text-center" id="remaining"></div>
 					</div>
@@ -252,7 +255,7 @@
 			}
 		} catch(ex){}
       }});
-      setTimeout(function(){ reload_sensor() }, 1000);
+      // setTimeout(function(){ reload_sensor() }, 1000);
     }
     reload_sensor();
     put_data_to_vps();
