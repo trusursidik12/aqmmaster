@@ -163,8 +163,8 @@
   </head>
   <body onload="startTime()" >
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-      <a class="navbar-brand" href="<?= site_url() ?>">
-          <img src="<?= base_url('assets/dist/img/trusur_logo3.png') ?>" alt="">
+		<a class="navbar-brand" href="<?= site_url() ?>">
+          <img src="<?= base_url('assets/dist/img/trusur_logo3.png') ?>" alt="PT Trusur Unggul Teknusa">
         </a>
       <a class="navbar-brand" href="<?= site_url() ?>">TRUSUR</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -182,7 +182,8 @@
             <a class="nav-link" href="<?= site_url('export') ?>">Export</a>
           </li>
         </ul>
-		<div id="online_indicator"><h6 style='color:#FF0000;'>Internet Disconnect</h6></div>
+		<div id="online_indicator"><h6 style='color:#FF0000;'>Internet Disconnect</h6></div>&nbsp;&nbsp;&nbsp;&nbsp;
+		<img src="<?= base_url('assets/dist/img/indonesia.jpg') ?>" alt="100% Indonesia" height="35">
       </div>
     </nav>
 
