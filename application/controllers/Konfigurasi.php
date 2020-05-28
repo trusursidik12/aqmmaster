@@ -72,6 +72,12 @@ class Konfigurasi extends CI_Controller {
 		$data['serial_devices'][4]['caption'] = "Modem";
 		$data['serial_devices'][4]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_modem');
 		$data['serial_devices'][4]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_modem');
+		
+		$data['serial_devices'][5]['com_id'] = "com_airmar";
+		$data['serial_devices'][5]['baud_id'] = "baud_airmar";
+		$data['serial_devices'][5]['caption'] = "AIRMAR";
+		$data['serial_devices'][5]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_airmar');
+		$data['serial_devices'][5]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_airmar');
 		$serial_ports = $this->konfigurasi_m->getSerialPorts();
 		foreach($serial_ports as $serial_port){
 			$data['serial_ports'][$serial_port["port"]] = $serial_port["description"];
