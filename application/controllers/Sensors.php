@@ -83,7 +83,6 @@ class sensors extends CI_Controller {
 		$values->pump_state = $this->sensors_m->getPumpState();
 		$values->pump_last = $this->sensors_m->getPumpLast();
 		$values->pump_interval = $this->sensors_m->getPumpInterval();
-		$values->now = date("Y-m-d H:i:s");
 		$values->lastPutData = $this->session->userdata('lastPutData');
 		
 		$insertvalue = ["waktu" => date("Y-m-d H:i:s")];
@@ -106,6 +105,7 @@ class sensors extends CI_Controller {
 		@$insertvalue = $insertvalue + ["h2s" => $data["h2s"]];
 		@$insertvalue = $insertvalue + ["cs2" => $data["cs2"]];
 		$this->sensors_m->insert_aqm_data_log($insertvalue);
+		$values->now = date("Y-m-d H:i:s");
 		$aqm_data_ranges = $this->sensors_m->get_aqm_data_range("30");
 		if($aqm_data_ranges != 0){
 			$tot_pm10 = 0;
