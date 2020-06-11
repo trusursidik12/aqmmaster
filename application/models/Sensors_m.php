@@ -60,7 +60,8 @@ class sensors_m extends CI_Model {
 		@$id_end = $query->row_array()["id"];
 		$lasttime = date("Y-m-d H:i:%",mktime(date("H"),date("i")-$minute));
 		$mm = date("i") * 1;
-		if($mm % $minute == 0 && $this->session->userdata('lastPutData') != date("Y-m-d H:i")) {
+		$waktu = date("Y-m-d H:i");
+		if($mm % $minute == 0 && $this->session->userdata('lastPutData') != $waktu) {
 			$query = $this->db->where("waktu >= '".$lasttime.":00'");
 			$query = $this->db->where("is_sent=0");
 			$query = $this->db->order_by('waktu');
@@ -71,6 +72,7 @@ class sensors_m extends CI_Model {
 				$query = $this->db->get('aqm_data_log');
 				$data["id_start"] = $id_start;
 				$data["id_end"] = $id_end;
+				$data["waktu"] = $waktu.":00";
 				$data["data"] = $query->result_array();
 				return $data;
 			} else {

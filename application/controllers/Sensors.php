@@ -133,7 +133,7 @@ class sensors extends CI_Controller {
 			$num_data = count($aqm_data_ranges["data"]);
 			if($num_data > 0){
 				$aqm_data_values = ["id_stasiun" => $this->sensors_m->get_id_stasiun(),
-									"waktu" => $values->now,
+									"waktu" => $aqm_data_ranges["waktu"],
 									"pm10" => round($tot_pm10/$num_data),
 									"pm25" => round($tot_pm25/$num_data),
 									"so2" => round($tot_so2/$num_data),
