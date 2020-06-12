@@ -107,6 +107,7 @@ if(isset($arr)){
 		$_arr["data"]["co"] = $_data["data"]["co"];
 		$_arr["data"]["o3"] = $_data["data"]["o3"];
 		$_arr["data"]["no2"] = $_data["data"]["no2"];
+		$_arr["data"]["hc"] = $_data["data"]["hc"];
 		$_arr["data"]["ws"] = $_data["data"]["ws"];
 		$_arr["data"]["wd"] = $_data["data"]["wd"];
 		$_arr["data"]["humidity"] = $_data["data"]["humidity"];
