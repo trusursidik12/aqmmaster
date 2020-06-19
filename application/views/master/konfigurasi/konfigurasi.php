@@ -41,21 +41,11 @@
 							<label><b><?= $_serial_devices["caption"];?> : </b></label>
 							<div class="row" style="padding:0px;">
 								<div class="col-1 text-right">Port : </div>
-								<div class="col-7"> 
-									<select class="form-control" id="<?= $_serial_devices["com_id"];?>" name="<?= $_serial_devices["com_id"];?>">
-										<option value=""></option>
-										<?php if(!isset($serial_ports[$_serial_devices["com_value"]])) : ?>
-											<option value="<?= $_serial_devices["com_value"]; ?>" selected><?= $_serial_devices["com_value"]; ?></option>
-										<?php endif ?>
-										<?php foreach($serial_ports as $port => $description) : ?>
-											<option value="<?= $port; ?>" <?php if($port == $_serial_devices["com_value"]) : ?> selected <?php endif ?>>
-												<?= $port; ?> : <?= $description; ?>
-											</option>
-										<?php endforeach ?>
-									</select>
+								<div class="col-5">
+									<input class="form-control" id="<?= $_serial_devices["com_id"];?>" name="<?= $_serial_devices["com_id"];?>" value="<?= $_serial_devices["com_value"];?>">
 								</div>
 								<div class="col-1 text-right">Baud : </div>
-								<div class="col-2">
+								<div class="col-4">
 									<select class="form-control" id="<?= $_serial_devices["baud_id"];?>" name="<?= $_serial_devices["baud_id"];?>">
 										<?php foreach($bauds as $baud) : ?>
 											<option value="<?= $baud; ?>" <?php if($baud == $_serial_devices["baud_value"]) : ?> selected <?php endif ?>> <?= $baud; ?> </option>
@@ -72,6 +62,17 @@
 						</div>
 					</div>
 				</form>
+				<div>
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="col-2" style="background-color:white;">
+						<b><u>PORTS : </u></b><br>
+						<?php if(count($serial_ports) > 0): ?>
+							<?php foreach($serial_ports as $port => $description) : ?><?= $port; ?> : <?= $description; ?><br><?php endforeach ?>
+						<?php endif ?>
+					</div>
+					<div class="col-9"></div>
+				</div>
 			</div>
 		</div>
 	</div>
