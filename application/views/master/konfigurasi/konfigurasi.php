@@ -65,13 +65,13 @@
 				<div>
 				<div class="row">
 					<div class="col-1"></div>
-					<div class="col-2" style="background-color:white;">
+					<div class="col-5" style="background-color:white;">
 						<b><u>PORTS : </u></b><br>
 						<?php if(count($serial_ports) > 0): ?>
 							<?php foreach($serial_ports as $port => $description) : ?><?= $port; ?> : <?= $description; ?><br><?php endforeach ?>
 						<?php endif ?>
 					</div>
-					<div class="col-9"></div>
+					<div class="col-6"></div>
 				</div>
 			</div>
 		</div>
