@@ -217,7 +217,7 @@
         '11' => 'November',
         '12' => 'Desember',
       );
-      echo $dayList[$day].', '.date("j").' '.$monthList[$month].' '.date("Y").' | <a id="clock"></a>'; ?>
+      echo '<a id="clock"></a>'; ?>
     </div>
 
     
@@ -235,15 +235,41 @@
 	}
 	cek_is_online();
 	
+	function dayList(dd){
+		if(dd == "1") return "Senin";
+		if(dd == "2") return "Selasa";
+		if(dd == "3") return "Rabu";
+		if(dd == "4") return "Kamis";
+		if(dd == "5") return "Jumat";
+		if(dd == "6") return "Sabtu";
+		if(dd == "7") return "Minggu";
+	}
+	
+	function monthList(mm){
+		if(mm == "1") return "Januari";
+		if(mm == "2") return "Februari";
+		if(mm == "3") return "Maret";
+		if(mm == "4") return "April";
+		if(mm == "5") return "Mei";
+		if(mm == "6") return "Juni";
+		if(mm == "7") return "Juli";
+		if(mm == "8") return "Agustus";
+		if(mm == "9") return "September";
+		if(mm == "10") return "Oktober";
+		if(mm == "11") return "November";
+		if(mm == "12") return "Desember";
+	}
+	
     function startTime() {
       var today = new Date();
+	  var hari = dayList(today.getDay());
+	  var tanggal = today.getDate() + " " + monthList(today.getMonth()) + " " + today.getFullYear();
       var h = today.getHours();
       var m = today.getMinutes();
       var s = today.getSeconds();
       m = checkTime(m);
       s = checkTime(s);
-      document.getElementById('clock').innerHTML =
-      h + ":" + m + ":" + s;
+      document.getElementById('clock').innerHTML = hari + ", " + tanggal + " | " + h + ":" + m + ":" + s;
       var t = setTimeout(startTime, 500);
     }
     function checkTime(i) {
