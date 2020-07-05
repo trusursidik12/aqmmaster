@@ -236,13 +236,13 @@
 	cek_is_online();
 	
 	function dayList(dd){
+		if(dd == "0") return "Minggu";
 		if(dd == "1") return "Senin";
 		if(dd == "2") return "Selasa";
 		if(dd == "3") return "Rabu";
 		if(dd == "4") return "Kamis";
 		if(dd == "5") return "Jumat";
 		if(dd == "6") return "Sabtu";
-		if(dd == "7") return "Minggu";
 	}
 	
 	function monthList(mm){
