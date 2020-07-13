@@ -5,6 +5,20 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+		if(isset($_POST["startsampling"]) && $_POST["startsampling"] == "1"){
+			$this->konfigurasi_m->save_konfigurasi("sta_alamat",@$_POST["sta_alamat"]);
+			$this->konfigurasi_m->save_konfigurasi("sta_lat",@$_POST["sta_lat"]);
+			$this->konfigurasi_m->save_konfigurasi("sta_lon",@$_POST["sta_lon"]);
+			$this->konfigurasi_m->save_konfigurasi("sampler_operator_name",@$_POST["sampler_operator_name"]);
+			$this->konfigurasi_m->save_konfigurasi("start_sampling","1");
+			$data["_startsampling"] = 1;
+		}
+		
+		if(isset($_POST["startsampling"]) && $_POST["startsampling"] == "2"){
+			$this->konfigurasi_m->save_konfigurasi("sampler_operator_name","");
+			$this->konfigurasi_m->save_konfigurasi("start_sampling","0");
+		}
+		
 		if(!isset($_GET["unit"])) $_GET["unit"] = "";
 		if($_GET["unit"] == "") $data['nextunit'] = "ppb";
 		if($_GET["unit"] == "ppb") $data['nextunit'] = "ug";
@@ -18,6 +32,7 @@ class Home extends CI_Controller {
 		$data['cuacas'] = $this->getdata_m->getParamsCuaca();
 		$data['configurations'] = $this->getdata_m->getConfigurations();
 		
+		$data["is_sampling"] = $this->konfigurasi_m->getConfigurationContent('is_sampling');
 		$data["pump_control"] = $this->konfigurasi_m->getConfigurationContent('pump_control');
 		
 		$data["title_partikulat_gas"] = "";
@@ -47,7 +62,7 @@ class Home extends CI_Controller {
 			$graph_data = substr($graph_data,0,-1)."},";
 		}
 		$data["graph_data"] = $graph_data;
-		
+		$data["is_start_sampling"] = $this->konfigurasi_m->getConfigurationContent('start_sampling');
 		
 		$this->temp_frontend->load('master/theme/theme', 'master/home/home', $data);
 	}
@@ -73,5 +88,16 @@ class Home extends CI_Controller {
 		}
 		$data["graph_data"] = $graph_data;
 		$this->load->view('master/home/graph',$data);
+	}
+	
+	public function get_sampling_data(){
+		$values = new stdClass;
+		$values->device_id = $this->konfigurasi_m->getConfigurationContent('device_id');
+		$values->id_sampling = $values->device_id."-".date("Ymdhis");
+		$values->sta_alamat = $this->konfigurasi_m->getConfigurationContent('sta_alamat');
+		$values->sta_lat = $this->konfigurasi_m->getConfigurationContent('sta_lat');
+		$values->sta_lon = $this->konfigurasi_m->getConfigurationContent('sta_lon');
+		$values->sampler_operator_name = $this->konfigurasi_m->getConfigurationContent('sampler_operator_name');
+		echo json_encode($values);
 	}
 }

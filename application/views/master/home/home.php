@@ -6,11 +6,17 @@
 				<div class="col-5 align-self-center">
 					<h4 class="page-title"><i class='fas fa-map-marker-alt' style='font-size:21px;color:red'></i> <?=$configurations["sta_nama"];?></h4>
 				</div>
-				<div class="col-4"></div>
+				<div class="col-2"></div>
+				<div class="col-2 text-right">
+					<?php if($is_sampling == 1) : ?>
+						  <input type="button" onclick="sampling();" class="btn btn-primary" style="height:35px;" value="Sampling">
+					<?php endif ?>
+				</div>
 				<div class="col-3 align-self-right">
 					<?php if (isset($nextunit) && count($gass) > 0): ?>
 						  <input type="button" onclick="window.location='?unit=<?= $nextunit; ?>';" class="btn btn-outline-light" style="height:35px;" value="Satuan">
 					<?php endif; ?>
+					
 					<?php if($pump_control == 1) : ?>
 					<input id="pump_state" type="checkbox" data-height="20" data-toggle="toggle" data-on="Pompa 1" data-off="Pompa 2" data-onstyle="success" data-offstyle="primary">
 					<div class="text-center" id="remaining"></div>
@@ -176,6 +182,70 @@
 </div>
 
 <script type="text/javascript">
+
+	function sampling() {
+		$.ajax({url: "<?=site_url('home/get_sampling_data');?>", success: function(result){
+			var data = JSON.parse(result);
+			var sampling_form = "";
+			sampling_form += "<form method='POST' id=\"sampling_form\">";
+			sampling_form += "	<input type='hidden' id='startsampling' name='startsampling' value='1'>";
+			sampling_form += "	<div class=\"row\">";
+			sampling_form += "		<div class='col-6'>";
+			sampling_form += "			<div class=\"form-group\">";
+			sampling_form += "				<label><b>Serial Number : </b></label>";
+			sampling_form += "				<input class=\"form-control\" id=\"device_id\" name=\"device_id\" value=\"" + data.device_id + "\" readonly>";
+			sampling_form += "			</div>";
+			sampling_form += "		</div>";
+			sampling_form += "		<div class='col-6'>";
+			sampling_form += "			<div class=\"form-group\">";
+			sampling_form += "				<label><b>ID Sampling : </b></label>";
+			sampling_form += "				<input class=\"form-control\" id=\"id_sampling\" name=\"id_sampling\" value=\"" + data.id_sampling + "\" readonly>";
+			sampling_form += "			</div>";
+			sampling_form += "		</div>";
+			sampling_form += "		<div class='col-12'>";
+			sampling_form += "			<div class=\"form-group\">";
+			sampling_form += "				<label><b>Nama Operator : </b></label>";
+			sampling_form += "				<input class=\"form-control\" id=\"sampler_operator_name\" name=\"sampler_operator_name\" value=\"" + data.sampler_operator_name + "\">";
+			sampling_form += "			</div>";
+			sampling_form += "		</div>";
+			sampling_form += "		<div class='col-12'>";
+			sampling_form += "			<div class=\"form-group\">";
+			sampling_form += "				<label><b>Alamat Sampling : </b></label>";
+			sampling_form += "				<input class=\"form-control\" id=\"sta_alamat\" name=\"sta_alamat\" value=\"" + data.sta_alamat + "\">";
+			sampling_form += "			</div>";
+			sampling_form += "		</div>";
+			sampling_form += "		<div class='col-6'>";
+			sampling_form += "			<div class=\"form-group\">";
+			sampling_form += "				<label><b>Latitude : </b></label>";
+			sampling_form += "				<input class=\"form-control\" id=\"sta_lat\" name=\"sta_lat\" value=\"" + data.sta_lat + "\">";
+			sampling_form += "			</div>";
+			sampling_form += "		</div>";
+			sampling_form += "		<div class='col-6'>";
+			sampling_form += "			<div class=\"form-group\">";
+			sampling_form += "				<label><b>Longitude : </b></label>";
+			sampling_form += "				<input class=\"form-control\" id=\"sta_lon\" name=\"sta_lon\" value=\"" + data.sta_lon + "\">";
+			sampling_form += "			</div>";
+			sampling_form += "		</div>";
+			sampling_form += "	</div>";
+			sampling_form += "</form>";
+			
+			$('#modal_title').html('Sampling');
+			$('#modal_message').html(sampling_form);
+			$('#modal_type').attr("class", 'modal-content bg-primary');
+			$('#modal_ok_link').attr("href", "javascript:sampling_form.submit();");
+			$('#modal_ok_link').html("Start");
+			<?php if($is_start_sampling): ?>
+				$('#startsampling').val("2");
+				$('#modal_ok_link').html("Stop");
+			<?php endif ?>
+			$('#modal-form').modal();
+		}});
+    }
+	
+	<?php if(isset($_startsampling)): ?>
+		sampling();
+	<?php endif ?>
+	
 	function padnum(number) {
 		if (number < 9)
 			return "0" + number;

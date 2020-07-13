@@ -188,6 +188,28 @@
     </nav>
 
     <?=$contents?>
+	
+	
+	<div class="modal fade" id="modal-form">
+		<div class="modal-dialog">
+			<div id="modal_type">
+				<div class="modal-header">
+					<h4 class="modal-title" id="modal_title"></h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p id="modal_message"></p>
+				</div>
+				<div class="modal-footer justify-content-between">
+					<a id="modal_ok_link" type="button" class="btn btn-outline-light" href="">OK</a>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
 
     <div class="footer bg-primary text-right p-2">
       <?php
