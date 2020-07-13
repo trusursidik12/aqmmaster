@@ -68,7 +68,7 @@ class sensors_m extends CI_Model {
 			$query = $this->db->get('aqm_data_log');
 			@$id_start = $query->row_array()["id"];
 			if($id_start > 0){
-				$query = $this->db->where("id BETWEEN '".$id_start."' AND '".$id_end."'");
+				$query = $this->db->where("id BETWEEN '".$id_start."' AND '".$id_end."' AND is_sent=0");
 				$query = $this->db->get('aqm_data_log');
 				$data["id_start"] = $id_start;
 				$data["id_end"] = $id_end;
