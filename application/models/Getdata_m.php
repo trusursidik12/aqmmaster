@@ -118,10 +118,34 @@ class Getdata_m extends CI_Model {
 				return [];
 			}
 		} else {
-			$this->db->order_by('id', 'DESC');
-			$this->db->limit("30");
-			$query = $this->db->get('aqm_data_log');
-			return $query->result_array();
+			$query = $this->db->get_where('aqm_configuration', ["data" => "graph_interval"]);
+			$graph_interval = $query->row_array()['content'];
+			if($graph_interval == 0){
+				$this->db->order_by('id', 'DESC');
+				$this->db->limit("30");
+				$query = $this->db->get('aqm_data_log');
+				return $query->result_array();
+			} else {
+				$times = "";
+				$ii = 0;
+				$start = false;
+				$menit = date("i");
+				while($ii < 30){
+					if($menit % $graph_interval == 0) $start = true;
+					if($start){
+						$times .= "'".date("Y-m-d H:i",mktime(date("H"),($menit - ($ii * $graph_interval)))).":00',";
+						$ii++;
+					} else {
+						$menit--;
+					}
+				}
+				$times = substr($times,0,-1);
+				$this->db->where("waktu IN ($times)");
+				$this->db->order_by('id', 'DESC');
+				$this->db->limit("30");
+				$query = $this->db->get('aqm_data_log');
+				return $query->result_array();
+			}
 		}
 	}
 }

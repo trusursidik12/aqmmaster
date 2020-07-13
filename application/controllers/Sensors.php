@@ -106,7 +106,8 @@ class sensors extends CI_Controller {
 		@$insertvalue = $insertvalue + ["cs2" => $data["cs2"]];
 		$this->sensors_m->insert_aqm_data_log($insertvalue);
 		$values->now = date("Y-m-d H:i:s");
-		$aqm_data_ranges = $this->sensors_m->get_aqm_data_range("30");
+		$data_interval = $this->konfigurasi_m->getConfigurationContent('data_interval');
+		$aqm_data_ranges = $this->sensors_m->get_aqm_data_range($data_interval);
 		if($aqm_data_ranges != 0){
 			$tot_pm10 = 0;
 			$tot_pm25 = 0;

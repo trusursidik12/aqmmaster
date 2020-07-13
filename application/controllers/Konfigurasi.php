@@ -13,7 +13,7 @@ class Konfigurasi extends CI_Controller {
 		
 		$data['title'] = 'Konfigurasi';
 		$data['configurations'][0]['id'] = "device_id";
-		$data['configurations'][0]['caption'] = "Device ID";
+		$data['configurations'][0]['caption'] = "Serial Number";
 		$data['configurations'][0]['value'] = $this->konfigurasi_m->getConfigurationContent('device_id');
 		$data['configurations'][1]['id'] = "sta_id";
 		$data['configurations'][1]['caption'] = "Stasiun ID";
@@ -42,6 +42,15 @@ class Konfigurasi extends CI_Controller {
 		$data['configurations'][9]['id'] = "pump_control";
 		$data['configurations'][9]['caption'] = "Kontroler Pompa (1=Show ; 0=Hide)";
 		$data['configurations'][9]['value'] = $this->konfigurasi_m->getConfigurationContent('pump_control');
+		$data['configurations'][10]['id'] = "is_sampling";
+		$data['configurations'][10]['caption'] = "Fitur Sampling (1=Show ; 0=Hide)";
+		$data['configurations'][10]['value'] = $this->konfigurasi_m->getConfigurationContent('is_sampling');
+		$data['configurations'][11]['id'] = "data_interval";
+		$data['configurations'][11]['caption'] = "Collect Data Interval (Menit)";
+		$data['configurations'][11]['value'] = $this->konfigurasi_m->getConfigurationContent('data_interval');
+		$data['configurations'][12]['id'] = "graph_interval";
+		$data['configurations'][12]['caption'] = "Graph Refresh Interval (Menit) (0 => setiap detik)";
+		$data['configurations'][12]['value'] = $this->konfigurasi_m->getConfigurationContent('graph_interval');
 		
 		$data['serial_devices'][0]['com_id'] = "com_pm10";
 		$data['serial_devices'][0]['baud_id'] = "baud_pm10";
