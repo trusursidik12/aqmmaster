@@ -153,6 +153,12 @@ class sensors extends CI_Controller {
 									"sr" => @$data["SolarRad"],
 									"rain_intensity" => @$data["RainDay"]
 									];
+				$is_start_sampling = $this->konfigurasi_m->getConfigurationContent('start_sampling');
+				if($is_start_sampling){
+					$sampler_operator_name = $this->konfigurasi_m->getConfigurationContent('sampler_operator_name');
+					$id_sampling = $this->konfigurasi_m->getConfigurationContent('id_sampling');
+					$aqm_data_values += ["sampler_operator_name" => $sampler_operator_name,"id_sampling" => $id_sampling];
+				}
 			}
 			$this->sensors_m->insert_aqm_data($aqm_data_values,$aqm_data_ranges["id_start"],$aqm_data_ranges["id_end"]);
 			$this->session->set_userdata('lastPutData', date("Y-m-d H:i"));

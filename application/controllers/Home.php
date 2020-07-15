@@ -6,6 +6,7 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		if(isset($_POST["startsampling"]) && $_POST["startsampling"] == "1"){
+			$this->konfigurasi_m->save_konfigurasi("id_sampling",@$_POST["id_sampling"]);
 			$this->konfigurasi_m->save_konfigurasi("sta_alamat",@$_POST["sta_alamat"]);
 			$this->konfigurasi_m->save_konfigurasi("sta_lat",@$_POST["sta_lat"]);
 			$this->konfigurasi_m->save_konfigurasi("sta_lon",@$_POST["sta_lon"]);
