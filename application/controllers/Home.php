@@ -94,7 +94,8 @@ class Home extends CI_Controller {
 	public function get_sampling_data(){
 		$values = new stdClass;
 		$values->device_id = $this->konfigurasi_m->getConfigurationContent('device_id');
-		$values->id_sampling = $values->device_id."-".date("Ymdhis");
+		// $values->id_sampling = $values->device_id."-".date("Ymdhis");
+		$values->id_sampling = "Sampling:".date("d-m-Y H:i:s");
 		$values->sta_alamat = $this->konfigurasi_m->getConfigurationContent('sta_alamat');
 		$values->sta_lat = $this->konfigurasi_m->getConfigurationContent('sta_lat');
 		$values->sta_lon = $this->konfigurasi_m->getConfigurationContent('sta_lon');

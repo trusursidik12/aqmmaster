@@ -325,6 +325,12 @@
 			}
 		} catch(ex){}
       }});
+	  <?php if(isset($is_start_sampling)): ?>
+	    <?php if($is_start_sampling == "1"): ?>
+			$.ajax({url: "<?=site_url('mqtt_data.php');?>?mode=send_data_sampler", success: function(result){}});				
+		<?php endif ?>
+		  $.ajax({url: "<?=site_url('mqtt_data.php');?>?mode=send_data_sampling", success: function(result){}});				
+	  <?php endif ?>
       setTimeout(function(){ reload_sensor() }, 1000);
     }
     reload_sensor();
