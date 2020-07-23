@@ -4,7 +4,7 @@ $server = '202.73.26.177';
 $port = 8883;
 $username = 'ClientKLHK';
 $password = 'KLHK2016-2019project';
-require('phpMQTT2.php');
+require('phpMQTT.php');
 define('BASEPATH', 'http://127.0.0.1/aqmmaster');
 define('ENVIRONMENT', 'production');
 include_once "application/config/database.php";
