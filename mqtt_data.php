@@ -21,23 +21,33 @@ if($_GET["mode"] == "send_data_sampler" && $id_sampling != "" && $sampler_operat
 	$sta_lon = $db->query("SELECT content FROM aqm_configuration WHERE data='sta_lon'")->fetch_object()->content;
 	echo $data = str_replace(" ","+",$id_sampling).",".$sta_id.",".str_replace(" ","+",$sampler_operator_name).",".str_replace(" ","+",$sta_alamat).",".$sta_lat.",".$sta_lon.";";
 	echo "<br>";
-	// exec("cd aes_ubuntu && AES.exe encode ".$data,$outputs);
+
 	exec("cd aes_ubuntu && ./AES encode ".$data,$outputs);
 	foreach($outputs as $output){
 		if(stripos(" ".$output,"!=!enc!=!") > 0) $encdata = $output;
 	}
 	
+	if(stripos(" ".$encdata,"!=!enc!=!") <= 0){ //try windows mode
+		exec("cd aes_ubuntu && AES.exe encode ".$data,$outputs);
+		foreach($outputs as $output){
+			if(stripos(" ".$output,"!=!enc!=!") > 0) $encdata = $output;
+		}
+	}
+
 	echo $encdata."<br>";
+	if(stripos(" ".$encdata,"!=!enc!=!") > 0){ 
+		$mqtt = new Bluerhinos\phpMQTT($server, $port, $client_id);
 
-	$mqtt = new Bluerhinos\phpMQTT($server, $port, $client_id);
-
-	if ($mqtt->connect(true, NULL, $username, $password)) {
-		$mqtt->publish("portable_sampler", $encdata, 0, false);
-		$mqtt->close();
-		echo "1";
-		$db->query("UPDATE aqm_configuration SET content='2' WHERE data='start_sampling'");
+		if ($mqtt->connect(true, NULL, $username, $password)) {
+			$mqtt->publish("portable_sampler", $encdata, 0, false);
+			$mqtt->close();
+			echo "1";
+			$db->query("UPDATE aqm_configuration SET content='2' WHERE data='start_sampling'");
+		} else {
+			echo "Time out!<br>";
+		}
 	} else {
-		echo "Time out!\n";
+		echo "Data Encription Error<br>";
 	}
 
 } else if($_GET["mode"] == "send_data_sampling" && $id_sampling != "" && $sampler_operator_name != "" && $start_sampling == "2") {
@@ -63,22 +73,31 @@ if($_GET["mode"] == "send_data_sampler" && $id_sampling != "" && $sampler_operat
 		$pressure = $aqm->pressure;
 		echo $data = str_replace(" ","+",$id_sampling).",".$sta_id.",".str_replace(" ","+",$waktu).",".$pm10.",".$so2.",".$co.",".$o3.",".$no2.",".$pm25.",".$hc.",".$voc.",".$nh3.",".$ws.",".$wd.",".$humidity.",".$temperature.",".$pressure.";";
 		echo "<br>";
-		// exec("cd aes_ubuntu && AES.exe encode ".$data,$outputs);
+
 		exec("cd aes_ubuntu && ./AES encode ".$data,$outputs);
 		foreach($outputs as $output){
 			if(stripos(" ".$output,"!=!enc!=!") > 0) $encdata_portable = $output;
 		}
+		if(stripos(" ".$encdata,"!=!enc!=!") <= 0){ //try windows mode
+			exec("cd aes_ubuntu && AES.exe encode ".$data,$outputs);
+			foreach($outputs as $output){
+				if(stripos(" ".$output,"!=!enc!=!") > 0) $encdata_portable = $output;
+			}
+		}
 		echo $encdata_portable."<br>";
+		if(stripos(" ".$encdata_portable,"!=!enc!=!") > 0){ 
+			$mqtt = new Bluerhinos\phpMQTT($server, $port, $client_id);
 
-		$mqtt = new Bluerhinos\phpMQTT($server, $port, $client_id);
-
-		if ($mqtt->connect(true, NULL, $username, $password)) {
-			$mqtt->publish("portable", $encdata_portable, 0, false);
-			$mqtt->close();
-			echo "1";
-			$db->query("UPDATE aqm_data SET sent2='1' WHERE id='".$aqm->id."'");
+			if ($mqtt->connect(true, NULL, $username, $password)) {
+				$mqtt->publish("portable", $encdata_portable, 0, false);
+				$mqtt->close();
+				echo "1";
+				$db->query("UPDATE aqm_data SET sent2='1' WHERE id='".$aqm->id."'");
+			} else {
+				echo "Time out!<br>";
+			}
 		} else {
-			echo "Time out!\n";
+			echo "Data Encription Error<br>";
 		}
 	} else {
 		echo "0";
