@@ -21,7 +21,8 @@ if($_GET["mode"] == "send_data_sampler" && $id_sampling != "" && $sampler_operat
 	$sta_lon = $db->query("SELECT content FROM aqm_configuration WHERE data='sta_lon'")->fetch_object()->content;
 	echo $data = str_replace(" ","+",$id_sampling).",".$sta_id.",".str_replace(" ","+",$sampler_operator_name).",".str_replace(" ","+",$sta_alamat).",".$sta_lat.",".$sta_lon.";";
 	echo "<br>";
-	exec("cd aes_ubuntu && AES.exe encode ".$data,$outputs);
+	// exec("cd aes_ubuntu && AES.exe encode ".$data,$outputs);
+	exec("cd aes_ubuntu && ./AES encode ".$data,$outputs);
 	foreach($outputs as $output){
 		if(stripos(" ".$output,"!=!enc!=!") > 0) $encdata = $output;
 	}
@@ -62,7 +63,8 @@ if($_GET["mode"] == "send_data_sampler" && $id_sampling != "" && $sampler_operat
 		$pressure = $aqm->pressure;
 		echo $data = str_replace(" ","+",$id_sampling).",".$sta_id.",".str_replace(" ","+",$waktu).",".$pm10.",".$so2.",".$co.",".$o3.",".$no2.",".$pm25.",".$hc.",".$voc.",".$nh3.",".$ws.",".$wd.",".$humidity.",".$temperature.",".$pressure.";";
 		echo "<br>";
-		exec("cd aes_ubuntu && AES.exe encode ".$data,$outputs);
+		// exec("cd aes_ubuntu && AES.exe encode ".$data,$outputs);
+		exec("cd aes_ubuntu && ./AES encode ".$data,$outputs);
 		foreach($outputs as $output){
 			if(stripos(" ".$output,"!=!enc!=!") > 0) $encdata_portable = $output;
 		}
