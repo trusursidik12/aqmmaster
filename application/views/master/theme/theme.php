@@ -226,18 +226,18 @@
       );
       $month = date("m");
       $monthList = array(
-        '01' => 'Januari',
-        '02' => 'Februari',
-        '03' => 'Maret',
-        '04' => 'April',
-        '05' => 'Mei',
-        '06' => 'Juni',
-        '07' => 'Juli',
-        '08' => 'Agustus',
-        '09' => 'September',
-        '10' => 'Oktober',
-        '11' => 'November',
-        '12' => 'Desember',
+        '0' => 'Januari',
+        '1' => 'Februari',
+        '2' => 'Maret',
+        '3' => 'April',
+        '4' => 'Mei',
+        '5' => 'Juni',
+        '6' => 'Juli',
+        '7' => 'Agustus',
+        '8' => 'September',
+        '9' => 'Oktober',
+        '10' => 'November',
+        '11' => 'Desember',
       );
       echo '<a id="clock"></a>'; ?>
     </div>
@@ -268,18 +268,18 @@
 	}
 	
 	function monthList(mm){
-		if(mm == "1") return "Januari";
-		if(mm == "2") return "Februari";
-		if(mm == "3") return "Maret";
-		if(mm == "4") return "April";
-		if(mm == "5") return "Mei";
-		if(mm == "6") return "Juni";
-		if(mm == "7") return "Juli";
-		if(mm == "8") return "Agustus";
-		if(mm == "9") return "September";
-		if(mm == "10") return "Oktober";
-		if(mm == "11") return "November";
-		if(mm == "12") return "Desember";
+		if(mm == "0") return "Januari";
+		if(mm == "1") return "Februari";
+		if(mm == "2") return "Maret";
+		if(mm == "3") return "April";
+		if(mm == "4") return "Mei";
+		if(mm == "5") return "Juni";
+		if(mm == "6") return "Juli";
+		if(mm == "7") return "Agustus";
+		if(mm == "8") return "September";
+		if(mm == "9") return "Oktober";
+		if(mm == "10") return "November";
+		if(mm == "11") return "Desember";
 	}
 	
     function startTime() {
