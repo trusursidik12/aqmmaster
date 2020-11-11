@@ -20,7 +20,7 @@ class Getdata_m extends CI_Model {
 	{
 		if($id === FALSE)
 		{
-			$partikulat = array('pm10','pm25');
+			$partikulat = array('pm10','pm25','tsp');
 			$this->db->order_by('id', 'ASC');
 			$this->db->where('is_view', '1');
 			$this->db->where_in('param_id', $partikulat);

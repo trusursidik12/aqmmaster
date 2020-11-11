@@ -38,9 +38,9 @@
 				<div class="col-sm-5">
 					<div class="row justify-content-center">
 						<?php foreach($partikulats as $partikulat) : ?>
-							<div class="col-6">
-								<div class="card border border-success">
-									<div class="card-body">
+							<div class="col-<?=(12/count($partikulats));?>">
+								<div class="card border border-success" <?=(count($partikulats) > 2)?" style=\"padding:0px 5px 5px 0px;\"":"";?>>
+									<?=(count($partikulats) <= 2)?"<div class=\"card-body\">":"";?>
 										<h4 class="card-title"><?= $partikulat['caption'] ?></h4>
 										<div class="row">
 											<div class="col-12">
@@ -49,10 +49,15 @@
 										</div>
 										<div class="row align-items-center">
 											<div class="col-12">
-												<p id="<?= $partikulat['param_id'] ?>_flow" class="font-flow" style="margin-bottom: 12px;"></p>
+												<?php if(count($partikulatflows) > 0) : ?>
+													<p id="<?= $partikulat['param_id'] ?>_flow" class="font-flow" style="margin-bottom: 12px;"></p>
+												<?php else : ?>
+													<p></p>
+												<?php endif ?>
+												
 											</div>
 										</div>
-									</div>
+									<?=(count($partikulats) <= 2)?"</div>":"";?>
 								</div>                        
 							</div>
 						<?php endforeach ?>
@@ -270,16 +275,17 @@
 	  }});
       $.ajax({url: "<?=site_url('sensors');?>?unit=<?= $_GET["unit"]; ?>", success: function(result){
         var sensor = JSON.parse(result);
-        try { $("#pm10").html((sensor.pm10 * 1000) + " " + sensor.pm10_unit); } catch(ex){}
+        try { $("#pm10").html((sensor.pm10 * 1000).toFixed(1) + " " + <?=(count($partikulats) > 2)?"\"<div style='margin-top:10px;font-size:16px;'>(\" + sensor.pm10_unit + \")</div>\"":"sensor.pm10_unit";?>); } catch(ex){}
         try { $("#pm10_flow").html(sensor.pm10_flow + " " + sensor.pm10_flow_unit); } catch(ex){}
 		try { $("#pm10_bar").html(sensor.pm10_bar + "</h3><br><h6>" + sensor.pm10_bar_unit + "</h6>"); } catch(ex){}
 		try { $("#pm10_humid").html(sensor.pm10_humid + "&nbsp;" + sensor.pm10_humid_unit + "</h3><br><h6>&nbsp;</h6>"); } catch(ex){}
         try { $("#pm10_temp").html(sensor.pm10_temp + "</h3><br><h6>" + sensor.pm10_temp_unit + "</h6>"); } catch(ex){}
-		try { $("#pm25").html((sensor.pm25 * 1000) + " " + sensor.pm25_unit); } catch(ex){}
+		try { $("#pm25").html((sensor.pm25 * 1000).toFixed(1) + " " + <?=(count($partikulats) > 2)?"\"<div style='margin-top:10px;font-size:16px;'>(\" + sensor.pm25_unit + \")</div>\"":"sensor.pm25_unit";?>); } catch(ex){}
         try { $("#pm25_flow").html(sensor.pm25_flow + " " + sensor.pm25_flow_unit); } catch(ex){}
 		try { $("#pm25_bar").html(sensor.pm25_bar + "</h3><br><h6>" + sensor.pm25_bar_unit + "</h6>"); } catch(ex){}
 		try { $("#pm25_humid").html(sensor.pm25_humid + "&nbsp;" + sensor.pm25_humid_unit + "</h3><br><h6>&nbsp;</h6>"); } catch(ex){}
         try { $("#pm25_temp").html(sensor.pm25_temp + "</h3><br><h6>" + sensor.pm25_temp_unit + "</h6>"); } catch(ex){}
+		try { $("#tsp").html((sensor.tsp * 1000).toFixed(1) + " " + <?=(count($partikulats) > 2)?"\"<div style='margin-top:10px;font-size:16px;'>(\" + sensor.tsp_unit + \")</div>\"":"sensor.tsp_unit";?>); } catch(ex){}
         try { $("#so2").html(sensor.so2); } catch(ex){}
         try { $("#unit_so2").html("(" + sensor.so2_unit + ")"); } catch(ex){}
         try { $("#co").html(sensor.co); } catch(ex){}

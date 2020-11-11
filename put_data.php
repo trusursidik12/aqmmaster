@@ -14,6 +14,7 @@ if($result = $db->query("SELECT * FROM aqm_data WHERE (sent is NULL OR sent = 0)
 		$arr[$key]["data"]["waktu"] = $data->waktu;
 		$arr[$key]["data"]["pm10"] = $data->pm10;
 		$arr[$key]["data"]["pm25"] = $data->pm25;
+		$arr[$key]["data"]["tsp"] = $data->tsp;
 		$arr[$key]["data"]["so2"] = $data->so2;
 		$arr[$key]["data"]["co"] = $data->co;
 		$arr[$key]["data"]["o3"] = $data->o3;

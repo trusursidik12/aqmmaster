@@ -14,6 +14,7 @@ class sensors extends CI_Controller {
 		@$HC 		= $sensors["HC"];
 		@$PM25 		= $sensors["PM25"];
 		@$PM10 		= $sensors["PM10"];
+		@$TSP 		= $sensors["TSP"];
 		@$WS	  		= $sensors["WS"];
 		@$xtimestamp	= $sensors["xtimestamp"];
 		
@@ -88,6 +89,7 @@ class sensors extends CI_Controller {
 		$insertvalue = ["waktu" => date("Y-m-d H:i:s")];
 		@$insertvalue = $insertvalue + ["pm10" => ($data["pm10"] * 1000)];
 		@$insertvalue = $insertvalue + ["pm25" => ($data["pm25"] * 1000)];
+		@$insertvalue = $insertvalue + ["tsp" => ($data["tsp"] * 1000)];
 		@$insertvalue = $insertvalue + ["so2" => $data["so2"]];
 		@$insertvalue = $insertvalue + ["co" => $data["co"]];
 		@$insertvalue = $insertvalue + ["o3" => $data["o3"]];
@@ -111,6 +113,7 @@ class sensors extends CI_Controller {
 		if($aqm_data_ranges != 0){
 			$tot_pm10 = 0;
 			$tot_pm25 = 0;
+			$tot_tsp = 0;
 			$tot_so2 = 0;
 			$tot_co = 0;
 			$tot_o3 = 0;
@@ -122,6 +125,7 @@ class sensors extends CI_Controller {
 			foreach($aqm_data_ranges["data"] as $aqm_data){
 				$tot_pm10 += $aqm_data["pm10"];
 				$tot_pm25 += $aqm_data["pm25"];
+				$tot_tsp += $aqm_data["tsp"];
 				$tot_so2 += $aqm_data["so2"];
 				$tot_co += $aqm_data["co"];
 				$tot_o3 += $aqm_data["o3"];
@@ -137,6 +141,7 @@ class sensors extends CI_Controller {
 									"waktu" => $aqm_data_ranges["waktu"],
 									"pm10" => round($tot_pm10/$num_data),
 									"pm25" => round($tot_pm25/$num_data),
+									"tsp" => round($tot_tsp/$num_data),
 									"so2" => round($tot_so2/$num_data),
 									"co" => round($tot_co/$num_data),
 									"o3" => round($tot_o3/$num_data),
