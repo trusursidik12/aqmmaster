@@ -266,6 +266,7 @@
   
   function put_data_to_vps(){
 	$.ajax({url: "http://127.0.0.1/aqmmaster/put_data.php", success: function(result){}});
+	$.ajax({url: "http://127.0.0.1/aqmmaster/put_data_v2.php", success: function(result){}});
 	setTimeout(function(){ put_data_to_vps() }, 60000);
   }
   
