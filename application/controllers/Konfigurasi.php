@@ -93,6 +93,25 @@ class Konfigurasi extends CI_Controller {
 		$data['serial_devices'][6]['caption'] = "HC";
 		$data['serial_devices'][6]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_hc');
 		$data['serial_devices'][6]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_hc');
+		
+		$data['serial_devices'][7]['com_id'] = "com_pm_sds019";
+		$data['serial_devices'][7]['baud_id'] = "baud_pm_sds019";
+		$data['serial_devices'][7]['caption'] = "PM SDS 019 (Nova)";
+		$data['serial_devices'][7]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_pm_sds019');
+		$data['serial_devices'][7]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_pm_sds019');
+		
+		$data['serial_devices'][8]['com_id'] = "com_gasreader";
+		$data['serial_devices'][8]['baud_id'] = "baud_gasreader";
+		$data['serial_devices'][8]['caption'] = "Gas ADC Arduino";
+		$data['serial_devices'][8]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_gasreader');
+		$data['serial_devices'][8]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_gasreader');
+		
+		$data['serial_devices'][9]['com_id'] = "com_ion_science";
+		$data['serial_devices'][9]['baud_id'] = "baud_ion_science";
+		$data['serial_devices'][9]['caption'] = "Gas Ion Science";
+		$data['serial_devices'][9]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_ion_science');
+		$data['serial_devices'][9]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_ion_science');
+		
 		$serial_ports = $this->konfigurasi_m->getSerialPorts();
 		foreach($serial_ports as $serial_port){
 			$data['serial_ports'][$serial_port["port"]] = $serial_port["description"];
