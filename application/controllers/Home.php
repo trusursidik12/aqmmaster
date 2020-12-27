@@ -20,6 +20,8 @@ class Home extends CI_Controller {
 			$this->konfigurasi_m->save_konfigurasi("start_sampling","0");
 		}
 		
+		if(@$_GET["selenoid_command"] != "") $this->konfigurasi_m->save_konfigurasi("selenoid_state",$_GET["selenoid_command"]);
+		
 		if(!isset($_GET["unit"])) $_GET["unit"] = "";
 		if($_GET["unit"] == "") $data['nextunit'] = "ppb";
 		if($_GET["unit"] == "ppb") $data['nextunit'] = "ug";
@@ -64,6 +66,16 @@ class Home extends CI_Controller {
 		}
 		$data["graph_data"] = $graph_data;
 		$data["is_start_sampling"] = $this->konfigurasi_m->getConfigurationContent('start_sampling');
+		
+		$data["selenoid_state"] = @$data["configurations"]["selenoid_state"];
+		$selenoid_names = explode(";",@$data["configurations"]["selenoid_names"]);
+		$selenoid_commands = explode(";",@$data["configurations"]["selenoid_commands"]);
+		
+		$selenoid_state_id = array_search(@$data["configurations"]["selenoid_state"], $selenoid_commands);
+		
+		$data["selenoid_name"] = @$selenoid_names[@$selenoid_state_id];
+		if(@$selenoid_state_id + 1 >= count(@$selenoid_commands)) $selenoid_state_id = -1;
+		$data["nextselenoid_command"] = @$selenoid_commands[@$selenoid_state_id + 1];
 		
 		$this->temp_frontend->load('master/theme/theme', 'master/home/home', $data);
 	}
