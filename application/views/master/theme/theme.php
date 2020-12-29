@@ -178,6 +178,11 @@
           <li class="nav-item <?= $this->uri->uri_string() == 'parameter' ? 'active' : ''; ?>">
             <a class="nav-link" href="<?= site_url('parameter') ?>">Parameter</a>
           </li>
+		  <?php if($calibration_menu == 1): ?>
+          <li class="nav-item <?= $this->uri->uri_string() == 'kalibrasi' ? 'active' : ''; ?>">
+            <a class="nav-link" href="<?= site_url('kalibrasi') ?>">Kalibrasi</a>
+          </li>
+		  <?php endif ?>
           <li class="nav-item <?= $this->uri->uri_string() == 'export' ? 'active' : ''; ?>">
             <a class="nav-link" href="<?= site_url('export') ?>">Export</a>
           </li>

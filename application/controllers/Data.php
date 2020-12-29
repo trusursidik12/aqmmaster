@@ -39,6 +39,7 @@ class Data extends CI_Controller {
 		if(!@$data["params"]["humidity"]) $data["params"]["humidity"] = @$partikulatattr["pm25_humid"]["is_view"];
 		if(!@$data["params"]["humidity"]) $data["params"]["humidity"] = @$partikulatattr["pm10_humid"]["is_view"];
 		
+		$data["calibration_menu"] = $this->konfigurasi_m->getConfigurationContent('calibration_menu');
         $this->temp_frontend->load('master/theme/theme', 'master/data/data_export', $data);
     }
 

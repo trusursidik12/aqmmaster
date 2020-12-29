@@ -20,7 +20,7 @@ class Home extends CI_Controller {
 			$this->konfigurasi_m->save_konfigurasi("start_sampling","0");
 		}
 		
-		if(@$_GET["selenoid_command"] != "") $this->konfigurasi_m->save_konfigurasi("selenoid_state",$_GET["selenoid_command"]);
+		$this->konfigurasi_m->save_konfigurasi("selenoid_state","q");
 		
 		if(!isset($_GET["unit"])) $_GET["unit"] = "";
 		if($_GET["unit"] == "") $data['nextunit'] = "ppb";
@@ -37,6 +37,7 @@ class Home extends CI_Controller {
 		
 		$data["is_sampling"] = $this->konfigurasi_m->getConfigurationContent('is_sampling');
 		$data["pump_control"] = $this->konfigurasi_m->getConfigurationContent('pump_control');
+		$data["calibration_menu"] = $this->konfigurasi_m->getConfigurationContent('calibration_menu');
 		
 		$data["title_partikulat_gas"] = "";
 		if(count($data['partikulats']) > 0) $data["title_partikulat_gas"] .= "Partikulat dan ";
@@ -113,5 +114,9 @@ class Home extends CI_Controller {
 		$values->sta_lon = $this->konfigurasi_m->getConfigurationContent('sta_lon');
 		$values->sampler_operator_name = $this->konfigurasi_m->getConfigurationContent('sampler_operator_name');
 		echo json_encode($values);
+	}
+	
+	public function kalibrasi()
+	{
 	}
 }

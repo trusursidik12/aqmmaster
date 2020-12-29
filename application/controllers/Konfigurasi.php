@@ -51,6 +51,12 @@ class Konfigurasi extends CI_Controller {
 		$data['configurations'][12]['id'] = "graph_interval";
 		$data['configurations'][12]['caption'] = "Graph Refresh Interval (Menit) (0 => setiap detik)";
 		$data['configurations'][12]['value'] = $this->konfigurasi_m->getConfigurationContent('graph_interval');
+		$data['configurations'][13]['caption'] = "Labjack Force On (0 => No, 1 => Yes)";
+		$data['configurations'][13]['value'] = $this->konfigurasi_m->getConfigurationContent('labjack_force_on');
+		$data['configurations'][13]['id'] = "labjack_force_on";
+		$data['configurations'][14]['caption'] = "Calibration Menu (0 => No, 1 => Yes)";
+		$data['configurations'][14]['value'] = $this->konfigurasi_m->getConfigurationContent('calibration_menu');
+		$data['configurations'][14]['id'] = "calibration_menu";
 		
 		$data['serial_devices'][0]['com_id'] = "com_pm10";
 		$data['serial_devices'][0]['baud_id'] = "baud_pm10";
@@ -130,6 +136,7 @@ class Konfigurasi extends CI_Controller {
 		$data['bauds'][] = 230400;
 		$data['bauds'][] = 460800;
 		$data['bauds'][] = 921600;
+		$data["calibration_menu"] = $this->konfigurasi_m->getConfigurationContent('calibration_menu');
 		
 		$this->temp_frontend->load('master/theme/theme', 'master/konfigurasi/konfigurasi', $data);
 	}	

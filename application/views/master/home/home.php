@@ -8,9 +8,6 @@
 				</div>
 				<div class="col-2"></div>
 				<div class="col-2 text-right">
-					<?php if($selenoid_name != "") : ?>
-						<input type="button" onclick="window.location='?selenoid_command=<?= $nextselenoid_command; ?>';" class="btn btn-info" style="height:35px;" value="<?=$selenoid_name;?>">
-					<?php endif ?>
 					<?php if($is_sampling == 1) : ?>
 						  <input type="button" onclick="sampling();" class="btn btn-<?=($is_start_sampling)?"secondary":"primary";?>" style="height:35px;" value="<?=($is_start_sampling)?"Stop Sampling":"Start Sampling";?>">
 					<?php endif ?>

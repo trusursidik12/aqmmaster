@@ -23,6 +23,7 @@ class Parameter extends CI_Controller {
 		
 		$data['title'] = 'Parameter';
 		$data['alldata'] = $this->parameter_m->getDataParameter();
+		$data["calibration_menu"] = $this->konfigurasi_m->getConfigurationContent('calibration_menu');
 		$this->temp_frontend->load('master/theme/theme', 'master/parameter/parameter', $data);
 	}	
 
