@@ -16,6 +16,7 @@ class sensors extends CI_Controller {
 		@$PM10 		= $sensors["PM10"];
 		@$TSP 		= $sensors["TSP"];
 		@$WS	  		= $sensors["WS"];
+		@$LABJACK	  	= $sensors["LABJACK"];
 		@$xtimestamp	= $sensors["xtimestamp"];
 		
 		$factors = $this->sensors_m->getFactors();
@@ -168,6 +169,8 @@ class sensors extends CI_Controller {
 			$this->sensors_m->insert_aqm_data($aqm_data_values,$aqm_data_ranges["id_start"],$aqm_data_ranges["id_end"]);
 			$this->session->set_userdata('lastPutData', date("Y-m-d H:i"));
 		}
+		
+		$values->LABJACK = $LABJACK;
 		$data["values"] = json_encode($values);
 		
 		$this->load->view('master/ajax/sensor',$data);
