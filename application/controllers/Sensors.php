@@ -15,8 +15,9 @@ class sensors extends CI_Controller {
 		@$PM25 		= $sensors["PM25"];
 		@$PM10 		= $sensors["PM10"];
 		@$TSP 		= $sensors["TSP"];
-		@$WS	  		= $sensors["WS"];
-		@$LABJACK	  	= $sensors["LABJACK"];
+		@$WS	  	= $sensors["WS"];
+		@$GPS	  	= $sensors["GPS"];
+		@$LABJACK		= $sensors["LABJACK"];
 		@$xtimestamp	= $sensors["xtimestamp"];
 		
 		$factors = $this->sensors_m->getFactors();
@@ -170,6 +171,7 @@ class sensors extends CI_Controller {
 			$this->session->set_userdata('lastPutData', date("Y-m-d H:i"));
 		}
 		
+		$values->GPS = $GPS;
 		$values->LABJACK = $LABJACK;
 		$data["values"] = json_encode($values);
 		
