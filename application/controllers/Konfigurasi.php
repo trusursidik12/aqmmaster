@@ -36,27 +36,30 @@ class Konfigurasi extends CI_Controller {
 		$data['configurations'][7]['id'] = "sta_lon";
 		$data['configurations'][7]['caption'] = "Longitude";
 		$data['configurations'][7]['value'] = $this->konfigurasi_m->getConfigurationContent('sta_lon');
-		$data['configurations'][8]['id'] = "pump_interval";
-		$data['configurations'][8]['caption'] = "Interval Pompa (menit)";
-		$data['configurations'][8]['value'] = $this->konfigurasi_m->getConfigurationContent('pump_interval');
-		$data['configurations'][9]['id'] = "pump_control";
-		$data['configurations'][9]['caption'] = "Kontroler Pompa (1=Show ; 0=Hide)";
-		$data['configurations'][9]['value'] = $this->konfigurasi_m->getConfigurationContent('pump_control');
-		$data['configurations'][10]['id'] = "is_sampling";
-		$data['configurations'][10]['caption'] = "Fitur Sampling (1=Show ; 0=Hide)";
-		$data['configurations'][10]['value'] = $this->konfigurasi_m->getConfigurationContent('is_sampling');
-		$data['configurations'][11]['id'] = "data_interval";
-		$data['configurations'][11]['caption'] = "Collect Data Interval (Menit)";
-		$data['configurations'][11]['value'] = $this->konfigurasi_m->getConfigurationContent('data_interval');
-		$data['configurations'][12]['id'] = "graph_interval";
-		$data['configurations'][12]['caption'] = "Graph Refresh Interval (Menit) (0 => setiap detik)";
-		$data['configurations'][12]['value'] = $this->konfigurasi_m->getConfigurationContent('graph_interval');
-		$data['configurations'][13]['caption'] = "Labjack Force On (0 => No, 1 => Yes)";
-		$data['configurations'][13]['value'] = $this->konfigurasi_m->getConfigurationContent('labjack_force_on');
-		$data['configurations'][13]['id'] = "labjack_force_on";
-		$data['configurations'][14]['caption'] = "Calibration Menu (0 => No, 1 => Yes)";
-		$data['configurations'][14]['value'] = $this->konfigurasi_m->getConfigurationContent('calibration_menu');
-		$data['configurations'][14]['id'] = "calibration_menu";
+		$data['configurations'][8]['id'] = "altitude";
+		$data['configurations'][8]['caption'] = "Altitude";
+		$data['configurations'][8]['value'] = $this->konfigurasi_m->getConfigurationContent('altitude');
+		$data['configurations'][9]['id'] = "pump_interval";
+		$data['configurations'][9]['caption'] = "Interval Pompa (menit)";
+		$data['configurations'][9]['value'] = $this->konfigurasi_m->getConfigurationContent('pump_interval');
+		$data['configurations'][10]['id'] = "pump_control";
+		$data['configurations'][10]['caption'] = "Kontroler Pompa (1=Show ; 0=Hide)";
+		$data['configurations'][10]['value'] = $this->konfigurasi_m->getConfigurationContent('pump_control');
+		$data['configurations'][11]['id'] = "is_sampling";
+		$data['configurations'][11]['caption'] = "Fitur Sampling (1=Show ; 0=Hide)";
+		$data['configurations'][11]['value'] = $this->konfigurasi_m->getConfigurationContent('is_sampling');
+		$data['configurations'][12]['id'] = "data_interval";
+		$data['configurations'][12]['caption'] = "Collect Data Interval (Menit)";
+		$data['configurations'][12]['value'] = $this->konfigurasi_m->getConfigurationContent('data_interval');
+		$data['configurations'][13]['id'] = "graph_interval";
+		$data['configurations'][13]['caption'] = "Graph Refresh Interval (Menit) (0 => setiap detik)";
+		$data['configurations'][13]['value'] = $this->konfigurasi_m->getConfigurationContent('graph_interval');
+		$data['configurations'][14]['caption'] = "Labjack Force On (0 => No, 1 => Yes)";
+		$data['configurations'][14]['value'] = $this->konfigurasi_m->getConfigurationContent('labjack_force_on');
+		$data['configurations'][14]['id'] = "labjack_force_on";
+		$data['configurations'][15]['caption'] = "Calibration Menu (0 => No, 1 => Yes)";
+		$data['configurations'][15]['value'] = $this->konfigurasi_m->getConfigurationContent('calibration_menu');
+		$data['configurations'][15]['id'] = "calibration_menu";
 		
 		$data['serial_devices'][0]['com_id'] = "com_pm10";
 		$data['serial_devices'][0]['baud_id'] = "baud_pm10";
@@ -117,6 +120,18 @@ class Konfigurasi extends CI_Controller {
 		$data['serial_devices'][9]['caption'] = "Gas Ion Science";
 		$data['serial_devices'][9]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_ion_science');
 		$data['serial_devices'][9]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_ion_science');
+		
+		$data['serial_devices'][10]['com_id'] = "com_rht";
+		$data['serial_devices'][10]['baud_id'] = "baud_rht";
+		$data['serial_devices'][10]['caption'] = "Relative Humidity & Temperature";
+		$data['serial_devices'][10]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_rht');
+		$data['serial_devices'][10]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_rht');
+		
+		$data['serial_devices'][11]['com_id'] = "com_gstar_iv";
+		$data['serial_devices'][11]['baud_id'] = "baud_gstar_iv";
+		$data['serial_devices'][11]['caption'] = "GPS G-Star IV";
+		$data['serial_devices'][11]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_gstar_iv');
+		$data['serial_devices'][11]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_gstar_iv');
 		
 		$serial_ports = $this->konfigurasi_m->getSerialPorts();
 		foreach($serial_ports as $serial_port){
