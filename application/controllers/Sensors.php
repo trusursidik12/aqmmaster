@@ -112,6 +112,7 @@ class sensors extends CI_Controller {
 		@$insertvalue = $insertvalue + ["rain_intensity" => $data["RainDay"]];
 		@$insertvalue = $insertvalue + ["h2s" => $data["h2s"]];
 		@$insertvalue = $insertvalue + ["cs2" => $data["cs2"]];
+		@$insertvalue = $insertvalue + ["nh3" => $data["nh3"]];
 		$this->sensors_m->insert_aqm_data_log($insertvalue);
 		$values->now = date("Y-m-d H:i:s");
 		$data_interval = $this->konfigurasi_m->getConfigurationContent('data_interval');
@@ -128,6 +129,7 @@ class sensors extends CI_Controller {
 			$tot_voc = 0;
 			$tot_h2s = 0;
 			$tot_cs2 = 0;
+			$tot_nh3 = 0;
 			foreach($aqm_data_ranges["data"] as $aqm_data){
 				$tot_pm10 += $aqm_data["pm10"];
 				$tot_pm25 += $aqm_data["pm25"];
@@ -140,6 +142,7 @@ class sensors extends CI_Controller {
 				$tot_voc += $aqm_data["voc"];
 				$tot_h2s += $aqm_data["h2s"];
 				$tot_cs2 += $aqm_data["cs2"];
+				$tot_nh3 += $aqm_data["nh3"];
 			}
 			$num_data = count($aqm_data_ranges["data"]);
 			if($num_data > 0){
@@ -156,6 +159,7 @@ class sensors extends CI_Controller {
 									"voc" => round($tot_voc/$num_data),
 									"h2s" => round($tot_h2s/$num_data),
 									"cs2" => round($tot_cs2/$num_data),
+									"nh3" => round($tot_nh3/$num_data),
 									"ws" => @$data["WindSpeed"],
 									"wd" => @$data["WindDir"],
 									"humidity" => @$data["HumOut"],
