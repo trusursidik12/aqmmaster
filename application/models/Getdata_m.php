@@ -67,7 +67,7 @@ class Getdata_m extends CI_Model {
 	{
 		if($id === FALSE)
 		{
-			$gas = array('so2','co','o3','no2','voc','hc','h2s','cs2');
+			$gas = array('so2','co','o3','no2','voc','hc','h2s','cs2','nh3');
 			$this->db->order_by('id', 'ASC');
 			$this->db->where('is_view', '1');
 			$this->db->where_in('param_id', $gas);
