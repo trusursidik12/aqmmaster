@@ -303,6 +303,8 @@
         try { $("#unit_h2s").html("(" + sensor.h2s_unit + ")"); } catch(ex){}
         try { $("#cs2").html(sensor.cs2); } catch(ex){}
         try { $("#unit_cs2").html("(" + sensor.cs2_unit + ")"); } catch(ex){}
+        try { $("#nh3").html(sensor.nh3); } catch(ex){}
+        try { $("#unit_nh3").html("(" + sensor.nh3_unit + ")"); } catch(ex){}
         try { $("#WindSpeed").html(sensor.WindSpeed + "</h3><br><h6>" + sensor.WindSpeed_unit + "</h6>"); } catch(ex){}
         try { $("#WindDir").html(sensor.WindDir + sensor.WindDir_unit + "</h3><br><h6>&nbsp;</h6>"); } catch(ex){}
         try { $("#TempIn").html(sensor.TempIn + "</h3><br><h6>" + sensor.TempIn_unit + "</h6>"); } catch(ex){}
