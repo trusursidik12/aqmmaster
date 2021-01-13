@@ -108,7 +108,6 @@ class sensors extends CI_Controller {
 		@$insertvalue = $insertvalue + ["pressure" => $data["Barometer"]];
 		@$insertvalue = $insertvalue + ["sr" => $data["SolarRad"]];
 		@$insertvalue = $insertvalue + ["voc" => $data["voc"]];
-		@$insertvalue = $insertvalue + ["nh3" => $data["nh3"]];
 		@$insertvalue = $insertvalue + ["rain_intensity" => $data["RainDay"]];
 		@$insertvalue = $insertvalue + ["h2s" => $data["h2s"]];
 		@$insertvalue = $insertvalue + ["cs2" => $data["cs2"]];
