@@ -5,6 +5,14 @@ define('ENVIRONMENT', 'production');
 include_once "application/config/database.php";
 $db = new mysqli($db['default']['hostname'], $db['default']['username'], $db['default']['password'], $db['default']['database']);
 
+$stat_pm10 = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='pm10' LIMIT 1")->fetch_object()->is_view * 1;
+$stat_pm25 = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='pm25' LIMIT 1")->fetch_object()->is_view * 1;
+$stat_so2 = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='so2' LIMIT 1")->fetch_object()->is_view * 1;
+$stat_co = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='co' LIMIT 1")->fetch_object()->is_view * 1;
+$stat_o3 = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='o3' LIMIT 1")->fetch_object()->is_view * 1;
+$stat_no2 = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='no2' LIMIT 1")->fetch_object()->is_view * 1;
+$stat_hc = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='hc' LIMIT 1")->fetch_object()->is_view * 1;
+
 if($result = $db->query("SELECT * FROM aqm_data WHERE (sent is NULL OR sent = 0) ORDER BY id LIMIT 50")){
 	$key = -1;
 	while($data = $result->fetch_object()){
@@ -110,7 +118,14 @@ if(isset($arr)){
 		$_arr["data"]["no2"] = $_data["data"]["no2"];
 		$_arr["data"]["hc"] = $_data["data"]["hc"];
 		$_arr["data"]["ws"] = $_data["data"]["ws"];
-		$_arr["data"]["wd"] = $_data["data"]["wd"];
+		$_arr["data"]["wd"] = $_data["data"]["wd"];		
+		$_arr["data"]["stat_pm10"] = $stat_pm10;
+		$_arr["data"]["stat_pm25"] = $stat_pm25;
+		$_arr["data"]["stat_so2"] = $stat_so2;
+		$_arr["data"]["stat_co"] = $stat_co;
+		$_arr["data"]["stat_o3"] = $stat_o3;
+		$_arr["data"]["stat_no2"] = $stat_no2;
+		$_arr["data"]["stat_hc"] = $stat_hc;
 		$_arr["data"]["humidity"] = $_data["data"]["humidity"];
 		$_arr["data"]["temperature"] = $_data["data"]["temperature"];
 		$_arr["data"]["pressure"] = $_data["data"]["pressure"];
