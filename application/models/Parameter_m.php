@@ -6,6 +6,37 @@ class Parameter_m extends CI_Model
 
 	public function getDataParameter($id = FALSE)
 	{
+		if (count(@$this->db->get_where('aqm_params', ['param_id' => "nh3"])->row_array()) <= 0) {
+			$data = [
+				"param_id" => "nh3",
+				"caption" => "NH3",
+				"default_unit" => "ppm",
+				"molecular_mass" => "17.03",
+				"span_concentration" => "100",
+			];
+			$this->db->insert('aqm_params', $data);
+		}
+		if (count(@$this->db->get_where('aqm_params', ['param_id' => "nmhc"])->row_array()) <= 0) {
+			$data = [
+				"param_id" => "nmhc",
+				"caption" => "NMHC",
+				"default_unit" => "ppm",
+				"molecular_mass" => "110",
+				"span_concentration" => "25",
+			];
+			$this->db->insert('aqm_params', $data);
+		}
+		if (count(@$this->db->get_where('aqm_params', ['param_id' => "ch4"])->row_array()) <= 0) {
+			$data = [
+				"param_id" => "ch4",
+				"caption" => "CH4",
+				"default_unit" => "ppm",
+				"molecular_mass" => "16.04",
+				"span_concentration" => "100",
+			];
+			$this->db->insert('aqm_params', $data);
+		}
+
 		if ($id === FALSE) {
 			$this->db->order_by('id', 'ASC');
 			$query = $this->db->get('aqm_params');
@@ -41,10 +72,14 @@ class Parameter_m extends CI_Model
 		$this->db->update('aqm_params', $data);
 
 		$param = $this->getDataParameter($param_id);
-		if ($param["span_voltage"] > 0) {
+		if ($param["span_voltage"] > 0 && ($param["span_voltage"] - $param["zero_voltage"]) != 0 && $post["voltage_field"] != "") {
 			$a = $post["span_concentration"] / ($param["span_voltage"] - $param["zero_voltage"]);
 			$b = -1 * $a * $param["zero_voltage"];
-			$formula = "round((" . $a . " * " . "\$" . $post["voltage_field"] . ") + " . $b . ",6)";
+			if ($b < 0) {
+				$b = $b * -1;
+				$sign = "-";
+			} else $sign = "+";
+			$formula = "round((" . $a . " * " . "\$" . $post["voltage_field"] . ") " . $sign . " " . $b . ",6)";
 			$this->db->where('id', $param_id);
 			$this->db->update('aqm_params', ["formula" => $formula]);
 		}

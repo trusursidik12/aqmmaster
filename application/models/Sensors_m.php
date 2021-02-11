@@ -58,6 +58,16 @@ class sensors_m extends CI_Model
 
 	public function insert_aqm_data_log($values)
 	{
+		if (!$this->db->field_exists('nmhc', 'aqm_data_log')) {
+			$this->load->dbforge();
+			$this->dbforge->add_column('aqm_data_log', ["nmhc" => ["type" => "double"]], "nh3");
+		}
+
+		if (!$this->db->field_exists('ch4', 'aqm_data_log')) {
+			$this->load->dbforge();
+			$this->dbforge->add_column('aqm_data_log', ["ch4" => ["type" => "double"]], "nmhc");
+		}
+
 		$this->db->where("(waktu < ('" . date("Y-m-d H:i:s") . "' - INTERVAL 3 HOUR))");
 		$this->db->delete('aqm_data_log');
 		$this->db->insert('aqm_data_log', $values);
@@ -102,6 +112,16 @@ class sensors_m extends CI_Model
 
 	public function insert_aqm_data($values, $id_start, $id_end)
 	{
+		if (!$this->db->field_exists('nmhc', 'aqm_data')) {
+			$this->load->dbforge();
+			$this->dbforge->add_column('aqm_data', ["nmhc" => ["type" => "double"]], "nh3");
+		}
+
+		if (!$this->db->field_exists('ch4', 'aqm_data')) {
+			$this->load->dbforge();
+			$this->dbforge->add_column('aqm_data', ["ch4" => ["type" => "double"]], "nmhc");
+		}
+
 		$this->db->where("id BETWEEN '" . $id_start . "' AND '" . $id_end . "'");
 		$this->db->update('aqm_data_log', ["is_sent" => "1", "sent_at" => date("Y-m-d H:i:s")]);
 		$this->db->insert('aqm_data', $values);

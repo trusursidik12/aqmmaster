@@ -1,17 +1,18 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Parameter extends CI_Controller {
+class Parameter extends CI_Controller
+{
 
 	public function index()
 	{
-		if($this->input->post('simpan')){
-			foreach($_POST["caption"] as $param_id => $caption){
+		if ($this->input->post('simpan')) {
+			foreach ($_POST["caption"] as $param_id => $caption) {
 				$values = ["param_id" => $param_id];
 				$values = $values + ["caption" => $caption];
 				$values = $values + ["default_unit" => $_POST["default_unit"][$param_id]];
 				$values = $values + ["molecular_mass" => $_POST["molecular_mass"][$param_id]];
-				if($_POST["molecular_mass"][$param_id] > 0)
+				if ($_POST["molecular_mass"][$param_id] > 0)
 					$values = $values + ["formula" => $_POST["formula"][$param_id]];
 				$values = $values + ["gain" => (@$_POST["gain"][$param_id] * 1)];
 				$values = $values + ["offset" => (@$_POST["offset"][$param_id] * 1)];
@@ -20,18 +21,34 @@ class Parameter extends CI_Controller {
 				$this->parameter_m->save_parameter($values);
 			}
 		}
-		
+
 		$data['title'] = 'Parameter';
-		$data['alldata'] = $this->parameter_m->getDataParameter();
+		$params = $this->parameter_m->getDataParameter();
+		$alldata = [];
+		$ii = -1;
+		foreach ($params as $param) {
+			$ii++;
+			if ($param["molecular_mass"] > 0) {
+				$alldata[$ii] = $param;
+			}
+		}
+		foreach ($params as $param) {
+			$ii++;
+			if (!$param["molecular_mass"]) {
+				$alldata[$ii] = $param;
+			}
+		}
+		$data['alldata'] = $alldata;
 		$data["calibration_menu"] = $this->konfigurasi_m->getConfigurationContent('calibration_menu');
 		$this->temp_frontend->load('master/theme/theme', 'master/parameter/parameter', $data);
-	}	
+	}
 
-	public function edit($id = NULL){
+	public function edit($id = NULL)
+	{
 		$data['alldata'] = $this->parameter_m->getDataParameter($id);
 		$data['title'] = 'Edit Parameter';
 
-		if(empty($data['alldata'])){
+		if (empty($data['alldata'])) {
 			show_404();
 		}
 
@@ -39,7 +56,7 @@ class Parameter extends CI_Controller {
 
 		$this->form_validation->set_message('required', '%s Tidak Boleh Kosong ..');
 
-		if($this->form_validation->run() === FALSE){
+		if ($this->form_validation->run() === FALSE) {
 			$this->temp_frontend->load('master/theme/theme', 'master/parameter/parameter_form_edit', $data);
 		} else {
 			$this->parameter_m->update_parameter();
@@ -51,10 +68,10 @@ class Parameter extends CI_Controller {
 	{
 		$post = $this->input->post(null, TRUE);
 		$query = $this->db->query("SELECT * FROM aqm_params WHERE param_id = '$post[param_id]' AND id != '$post[id]'");
-		if($query->num_rows() > 0){
+		if ($query->num_rows() > 0) {
 			$this->form_validation->set_message('data_check', '{field} Sudah Ada, Silakan Input Data Yang Berbada');
 			return FALSE;
 		}
-			return TRUE;
+		return TRUE;
 	}
 }
