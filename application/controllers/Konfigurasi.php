@@ -1,16 +1,17 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Konfigurasi extends CI_Controller {
+class Konfigurasi extends CI_Controller
+{
 
 	public function index()
 	{
-		if($this->input->post('simpan')){
-			foreach($_POST as $_data => $content){
-				$this->konfigurasi_m->save_konfigurasi($_data,$content);
+		if ($this->input->post('simpan')) {
+			foreach ($_POST as $_data => $content) {
+				$this->konfigurasi_m->save_konfigurasi($_data, $content);
 			}
 		}
-		
+
 		$data['title'] = 'Konfigurasi';
 		$data['configurations'][0]['id'] = "device_id";
 		$data['configurations'][0]['caption'] = "Serial Number";
@@ -54,113 +55,130 @@ class Konfigurasi extends CI_Controller {
 		$data['configurations'][13]['id'] = "graph_interval";
 		$data['configurations'][13]['caption'] = "Graph Refresh Interval (Menit) (0 => setiap detik)";
 		$data['configurations'][13]['value'] = $this->konfigurasi_m->getConfigurationContent('graph_interval');
-		$data['configurations'][14]['caption'] = "Labjack Force On (0 => No, 1 => Yes)";
-		$data['configurations'][14]['value'] = $this->konfigurasi_m->getConfigurationContent('labjack_force_on');
-		$data['configurations'][14]['id'] = "labjack_force_on";
-		$data['configurations'][15]['caption'] = "Calibration Menu (0 => No, 1 => Yes)";
-		$data['configurations'][15]['value'] = $this->konfigurasi_m->getConfigurationContent('calibration_menu');
-		$data['configurations'][15]['id'] = "calibration_menu";
-		
-		$data['serial_devices'][0]['com_id'] = "com_pm10";
-		$data['serial_devices'][0]['baud_id'] = "baud_pm10";
-		$data['serial_devices'][0]['caption'] = "PM10";
-		$data['serial_devices'][0]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_pm10');
-		$data['serial_devices'][0]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_pm10');
-		
-		$data['serial_devices'][1]['com_id'] = "com_pm25";
-		$data['serial_devices'][1]['baud_id'] = "baud_pm125";
-		$data['serial_devices'][1]['caption'] = "PM25";
-		$data['serial_devices'][1]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_pm25');
-		$data['serial_devices'][1]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_pm25');
-		
-		$data['serial_devices'][2]['com_id'] = "com_ws";
-		$data['serial_devices'][2]['baud_id'] = "baud_ws";
-		$data['serial_devices'][2]['caption'] = "Weather Station";
-		$data['serial_devices'][2]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_ws');
-		$data['serial_devices'][2]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_ws');
-		
-		$data['serial_devices'][3]['com_id'] = "controller";
-		$data['serial_devices'][3]['baud_id'] = "controller_baud";
-		$data['serial_devices'][3]['caption'] = "Arduino";
-		$data['serial_devices'][3]['com_value'] = $this->konfigurasi_m->getConfigurationContent('controller');
-		$data['serial_devices'][3]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('controller_baud');
-		
-		$data['serial_devices'][4]['com_id'] = "com_modem";
-		$data['serial_devices'][4]['baud_id'] = "baud_modem";
-		$data['serial_devices'][4]['caption'] = "Modem";
-		$data['serial_devices'][4]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_modem');
-		$data['serial_devices'][4]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_modem');
-		
-		$data['serial_devices'][5]['com_id'] = "com_airmar";
-		$data['serial_devices'][5]['baud_id'] = "baud_airmar";
-		$data['serial_devices'][5]['caption'] = "AIRMAR";
-		$data['serial_devices'][5]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_airmar');
-		$data['serial_devices'][5]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_airmar');
-		
-		$data['serial_devices'][6]['com_id'] = "com_hc";
-		$data['serial_devices'][6]['baud_id'] = "baud_hc";
-		$data['serial_devices'][6]['caption'] = "HC";
-		$data['serial_devices'][6]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_hc');
-		$data['serial_devices'][6]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_hc');
-		
-		$data['serial_devices'][7]['com_id'] = "com_pm_sds019";
-		$data['serial_devices'][7]['baud_id'] = "baud_pm_sds019";
-		$data['serial_devices'][7]['caption'] = "PM SDS 019 (Nova)";
-		$data['serial_devices'][7]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_pm_sds019');
-		$data['serial_devices'][7]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_pm_sds019');
-		
-		$data['serial_devices'][8]['com_id'] = "com_gasreader";
-		$data['serial_devices'][8]['baud_id'] = "baud_gasreader";
-		$data['serial_devices'][8]['caption'] = "Gas ADC Arduino";
-		$data['serial_devices'][8]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_gasreader');
-		$data['serial_devices'][8]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_gasreader');
-		
-		$data['serial_devices'][9]['com_id'] = "com_ion_science";
-		$data['serial_devices'][9]['baud_id'] = "baud_ion_science";
-		$data['serial_devices'][9]['caption'] = "Gas Ion Science";
-		$data['serial_devices'][9]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_ion_science');
-		$data['serial_devices'][9]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_ion_science');
-		
-		$data['serial_devices'][10]['com_id'] = "com_rht";
-		$data['serial_devices'][10]['baud_id'] = "baud_rht";
-		$data['serial_devices'][10]['caption'] = "Relative Humidity & Temperature";
-		$data['serial_devices'][10]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_rht');
-		$data['serial_devices'][10]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_rht');
-		
-		$data['serial_devices'][11]['com_id'] = "com_gstar_iv";
-		$data['serial_devices'][11]['baud_id'] = "baud_gstar_iv";
-		$data['serial_devices'][11]['caption'] = "GPS G-Star IV";
-		$data['serial_devices'][11]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_gstar_iv');
-		$data['serial_devices'][11]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_gstar_iv');
-		
+
+		$data['configurations'][14]['caption'] = "Labjack AIN's";
+		$data['configurations'][14]['value'] = $this->konfigurasi_m->getConfigurationContent('param_labjack');
+		$data['configurations'][14]['id'] = "param_labjack";
+
+		$data['configurations'][15]['caption'] = "Labjack Force On (0 => No, 1 => Yes)";
+		$data['configurations'][15]['value'] = $this->konfigurasi_m->getConfigurationContent('labjack_force_on');
+		$data['configurations'][15]['id'] = "labjack_force_on";
+		$data['configurations'][16]['caption'] = "Calibration Menu (0 => No, 1 => Yes)";
+		$data['configurations'][16]['value'] = $this->konfigurasi_m->getConfigurationContent('calibration_menu');
+		$data['configurations'][16]['id'] = "calibration_menu";
+
+		$data['serial_devices'][0]['com_id'] = "com_adc16pin";
+		$data['serial_devices'][0]['baud_id'] = "baud_adc16pin";
+		$data['serial_devices'][0]['param_id'] = "param_adc16pin";
+		$data['serial_devices'][0]['caption'] = "Gas ADC Arduino";
+		$data['serial_devices'][0]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_adc16pin');
+		$data['serial_devices'][0]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_adc16pin');
+		$data['serial_devices'][0]['param_value'] = $this->konfigurasi_m->getConfigurationContent('param_adc16pin');
+
+		$data['serial_devices'][1]['com_id'] = "com_digital_sensors";
+		$data['serial_devices'][1]['baud_id'] = "baud_digital_sensors";
+		$data['serial_devices'][1]['ain_id'] = "ain_digital_sensors";
+		$data['serial_devices'][1]['caption'] = "Digital Sensors (arduino)";
+		$data['serial_devices'][1]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_digital_sensors');
+		$data['serial_devices'][1]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_digital_sensors');
+		$data['serial_devices'][1]['ain_value'] = $this->konfigurasi_m->getConfigurationContent('ain_digital_sensors');
+
+		$data['serial_devices'][2]['com_id'] = "com_pm10";
+		$data['serial_devices'][2]['baud_id'] = "baud_pm10";
+		$data['serial_devices'][2]['caption'] = "PM10";
+		$data['serial_devices'][2]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_pm10');
+		$data['serial_devices'][2]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_pm10');
+
+		$data['serial_devices'][3]['com_id'] = "com_pm25";
+		$data['serial_devices'][3]['baud_id'] = "baud_pm125";
+		$data['serial_devices'][3]['caption'] = "PM25";
+		$data['serial_devices'][3]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_pm25');
+		$data['serial_devices'][3]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_pm25');
+
+		$data['serial_devices'][4]['com_id'] = "com_ws";
+		$data['serial_devices'][4]['baud_id'] = "baud_ws";
+		$data['serial_devices'][4]['caption'] = "Weather Station";
+		$data['serial_devices'][4]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_ws');
+		$data['serial_devices'][4]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_ws');
+
+		$data['serial_devices'][5]['com_id'] = "controller";
+		$data['serial_devices'][5]['baud_id'] = "controller_baud";
+		$data['serial_devices'][5]['caption'] = "Arduino";
+		$data['serial_devices'][5]['com_value'] = $this->konfigurasi_m->getConfigurationContent('controller');
+		$data['serial_devices'][5]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('controller_baud');
+
+		$data['serial_devices'][6]['com_id'] = "com_modem";
+		$data['serial_devices'][6]['baud_id'] = "baud_modem";
+		$data['serial_devices'][6]['caption'] = "Modem";
+		$data['serial_devices'][6]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_modem');
+		$data['serial_devices'][6]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_modem');
+
+		$data['serial_devices'][7]['com_id'] = "com_airmar";
+		$data['serial_devices'][7]['baud_id'] = "baud_airmar";
+		$data['serial_devices'][7]['caption'] = "AIRMAR";
+		$data['serial_devices'][7]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_airmar');
+		$data['serial_devices'][7]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_airmar');
+
+		$data['serial_devices'][8]['com_id'] = "com_hc";
+		$data['serial_devices'][8]['baud_id'] = "baud_hc";
+		$data['serial_devices'][8]['caption'] = "HC";
+		$data['serial_devices'][8]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_hc');
+		$data['serial_devices'][8]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_hc');
+
+		$data['serial_devices'][9]['com_id'] = "com_pm_sds019";
+		$data['serial_devices'][9]['baud_id'] = "baud_pm_sds019";
+		$data['serial_devices'][9]['caption'] = "PM SDS 019 (Nova)";
+		$data['serial_devices'][9]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_pm_sds019');
+		$data['serial_devices'][9]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_pm_sds019');
+
+		$data['serial_devices'][10]['com_id'] = "com_ion_science";
+		$data['serial_devices'][10]['baud_id'] = "baud_ion_science";
+		$data['serial_devices'][10]['caption'] = "Gas Ion Science";
+		$data['serial_devices'][10]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_ion_science');
+		$data['serial_devices'][10]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_ion_science');
+
+		$data['serial_devices'][11]['com_id'] = "com_rht";
+		$data['serial_devices'][11]['baud_id'] = "baud_rht";
+		$data['serial_devices'][11]['caption'] = "Relative Humidity & Temperature";
+		$data['serial_devices'][11]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_rht');
+		$data['serial_devices'][11]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_rht');
+
+		$data['serial_devices'][12]['com_id'] = "com_gstar_iv";
+		$data['serial_devices'][12]['baud_id'] = "baud_gstar_iv";
+		$data['serial_devices'][12]['caption'] = "GPS G-Star IV";
+		$data['serial_devices'][12]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_gstar_iv');
+		$data['serial_devices'][12]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_gstar_iv');
+
 		$serial_ports = $this->konfigurasi_m->getSerialPorts();
-		foreach($serial_ports as $serial_port){
+		foreach ($serial_ports as $serial_port) {
 			$data['serial_ports'][$serial_port["port"]] = $serial_port["description"];
 		}
-		
-		$data['bauds'][] = 110;
-		$data['bauds'][] = 300;
-		$data['bauds'][] = 1200;
-		$data['bauds'][] = 2400;
-		$data['bauds'][] = 4800;
-		$data['bauds'][] = 9600;
-		$data['bauds'][] = 19200;
-		$data['bauds'][] = 38400;
-		$data['bauds'][] = 57600;
-		$data['bauds'][] = 115200;
-		$data['bauds'][] = 230400;
-		$data['bauds'][] = 460800;
-		$data['bauds'][] = 921600;
-		$data["calibration_menu"] = $this->konfigurasi_m->getConfigurationContent('calibration_menu');
-		
-		$this->temp_frontend->load('master/theme/theme', 'master/konfigurasi/konfigurasi', $data);
-	}	
 
-	public function edit($id = NULL){
+		$data['bauds'][] = "";
+		$data['bauds'][] = "110";
+		$data['bauds'][] = "300";
+		$data['bauds'][] = "1200";
+		$data['bauds'][] = "2400";
+		$data['bauds'][] = "4800";
+		$data['bauds'][] = "9600";
+		$data['bauds'][] = "19200";
+		$data['bauds'][] = "38400";
+		$data['bauds'][] = "57600";
+		$data['bauds'][] = "115200";
+		$data['bauds'][] = "230400";
+		$data['bauds'][] = "460800";
+		$data['bauds'][] = "921600";
+		$data["calibration_menu"] = $this->konfigurasi_m->getConfigurationContent('calibration_menu');
+
+		$this->temp_frontend->load('master/theme/theme', 'master/konfigurasi/konfigurasi', $data);
+	}
+
+	public function edit($id = NULL)
+	{
 		$data['alldata'] = $this->konfigurasi_m->getDataKonfigurasi($id);
 		$data['title'] = 'Edit Konfigurasi';
 
-		if(empty($data['alldata'])){
+		if (empty($data['alldata'])) {
 			show_404();
 		}
 
@@ -168,7 +186,7 @@ class Konfigurasi extends CI_Controller {
 
 		$this->form_validation->set_message('required', '%s Tidak Boleh Kosong ..');
 
-		if($this->form_validation->run() === FALSE){
+		if ($this->form_validation->run() === FALSE) {
 			$this->temp_frontend->load('master/theme/theme', 'master/konfigurasi/konfigurasi_form_edit', $data);
 		} else {
 			$this->konfigurasi_m->update_konfigurasi();
@@ -180,10 +198,10 @@ class Konfigurasi extends CI_Controller {
 	{
 		$post = $this->input->post(null, TRUE);
 		$query = $this->db->query("SELECT * FROM aqm_configuration WHERE data = '$post[data]' AND id != '$post[id]'");
-		if($query->num_rows() > 0){
+		if ($query->num_rows() > 0) {
 			$this->form_validation->set_message('data_check', '{field} Sudah Ada, Silakan Input Data Yang Berbada');
 			return FALSE;
 		}
-			return TRUE;
+		return TRUE;
 	}
 }

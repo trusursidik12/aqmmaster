@@ -17,6 +17,14 @@ class sensors extends CI_Controller
 		@$AIN5 		= $sensors["AIN5"];
 		@$AIN6 		= $sensors["AIN6"];
 		@$AIN7 		= $sensors["AIN7"];
+		@$AIN8 		= @$sensors["AIN8"];
+		@$AIN9 		= @$sensors["AIN9"];
+		@$AIN10 	= @$sensors["AIN10"];
+		@$AIN11 	= @$sensors["AIN11"];
+		@$AIN12 	= @$sensors["AIN12"];
+		@$AIN13 	= @$sensors["AIN13"];
+		@$AIN14 	= @$sensors["AIN14"];
+		@$AIN15 	= @$sensors["AIN15"];
 		@$HC 		= $sensors["HC"];
 		@$PM25 		= $sensors["PM25"];
 		@$PM10 		= $sensors["PM10"];

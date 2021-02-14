@@ -9,7 +9,7 @@
 						<label>Voltage Field</label>
 						<select id="voltage_field" name="voltage_field" class="form-control">
 							<option value=""></option>
-							<?php for ($ii = 0; $ii < 8; $ii++) : ?>
+							<?php for ($ii = 0; $ii < 16; $ii++) : ?>
 								<option value="AIN<?= $ii; ?>" <?= ($param["voltage_field"] == "AIN" . $ii) ? "selected" : ""; ?>>AIN<?= $ii; ?></option>
 							<?php endfor ?>
 						</select>
@@ -18,13 +18,13 @@
 				<div class="col-sm-4">
 					<div class="form-group">
 						<label>Span Concentration</label>
-						<input type="number" id="span_concentration" name="span_concentration" value="<?= $param["span_concentration"]; ?>" class="form-control">
+						<input id="span_concentration" name="span_concentration" value="<?= $param["span_concentration"]; ?>" class="form-control">
 					</div>
 				</div>
 				<div class="col-sm-4">
 					<div class="form-group">
 						<label>Zero Voltage</label>
-						<input type="number" step="0.0000000000001" readonly id="zero_voltage" name="zero_voltage" value="<?= $param["zero_voltage"]; ?>" class="form-control">
+						<input readonly id="zero_voltage" name="zero_voltage" value="<?= $param["zero_voltage"]; ?>" class="form-control">
 					</div>
 				</div>
 			</div>
@@ -32,7 +32,7 @@
 				<div class="col-sm-4">
 					<div class="form-group">
 						<label>Voltage</label>
-						<input type="number" step="0.0000000000001" id="voltage" name="voltage" class="form-control">
+						<input id="voltage" name="voltage" class="form-control">
 					</div>
 				</div>
 				<div class="col-sm-8">

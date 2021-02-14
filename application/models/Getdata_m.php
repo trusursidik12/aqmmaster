@@ -6,6 +6,28 @@ class Getdata_m extends CI_Model
 
 	public function getAll($id = FALSE)
 	{
+		if (@count(@$this->db->get_where('aqm_configuration', ['data' => "param_labjack"])->row_array()) <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "param_labjack", "content" => "0,1"]);
+
+		if (@count(@$this->db->get_where('aqm_configuration', ['data' => "com_adc16pin"])->row_array()) <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "com_adc16pin"]);
+
+		if (@count(@$this->db->get_where('aqm_configuration', ['data' => "baud_adc16pin"])->row_array()) <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "baud_adc16pin", "content" => "9600"]);
+
+		if (@count(@$this->db->get_where('aqm_configuration', ['data' => "param_adc16pin"])->row_array()) <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "param_adc16pin", "content" => "2,3,4,5,6"]);
+
+
+		if (@count(@$this->db->get_where('aqm_configuration', ['data' => "com_digital_sensors"])->row_array()) <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "com_digital_sensors"]);
+
+		if (@count(@$this->db->get_where('aqm_configuration', ['data' => "baud_digital_sensors"])->row_array()) <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "baud_digital_sensors", "content" => "9600;"]);
+
+		if (@count(@$this->db->get_where('aqm_configuration', ['data' => "ain_digital_sensors"])->row_array()) <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "ain_digital_sensors", "content" => ""]);
+
 		if ($id === FALSE) {
 			$this->db->order_by('id', 'DESC');
 			$this->db->limit('1');
