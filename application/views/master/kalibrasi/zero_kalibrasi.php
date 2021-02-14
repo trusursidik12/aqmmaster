@@ -24,7 +24,12 @@
 				<div class="col-sm-4">
 					<div class="form-group">
 						<label>Zero Voltage</label>
-						<input readonly id="zero_voltage" name="zero_voltage" value="<?= $param["zero_voltage"]; ?>" class="form-control">
+						<div class="input-group">
+							<input id="zero_voltage" name="zero_voltage" value="<?= $param["zero_voltage"]; ?>" class="form-control">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-info btn-flat" onclick="$('#voltage').val($('#zero_voltage').val());$('#simpan').click();"><i class="fas fa-check"></i></button>
+							</span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -45,7 +50,7 @@
 				<div class="col-sm-4">
 					<div class="d-flex align-items-end flex-column">
 						<div class="p-2">
-							<input style="margin-bottom: 45px; margin-left: 10px;" type="submit" name="simpan" value="Simpan" class="position-fixed fixed-bottom btn btn-primary btn-circle ">
+							<input style="margin-bottom: 45px; margin-left: 10px;" type="submit" id="simpan" name="simpan" value="Simpan" class="position-fixed fixed-bottom btn btn-primary btn-circle ">
 						</div>
 					</div>
 				</div>
