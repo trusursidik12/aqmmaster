@@ -334,6 +334,9 @@
 					$("#tsp").html((sensor.tsp * 1000).toFixed(1) + " " + <?= (count($partikulats) > 2) ? "\"<div style='margin-top:10px;font-size:16px;'>(\" + sensor.tsp_unit + \")</div>\"" : "sensor.tsp_unit"; ?>);
 				} catch (ex) {}
 				try {
+					$("#tsp_flow").html(sensor.tsp_flow + " " + sensor.tsp_flow_unit);
+				} catch (ex) {}
+				try {
 					$("#so2").html(sensor.so2);
 				} catch (ex) {}
 				try {

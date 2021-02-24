@@ -18,7 +18,6 @@ class Getdata_m extends CI_Model
 		if (@count(@$this->db->get_where('aqm_configuration', ['data' => "param_adc16pin"])->row_array()) <= 0)
 			$this->db->insert('aqm_configuration', ["data" => "param_adc16pin", "content" => "2,3,4,5,6"]);
 
-
 		if (@count(@$this->db->get_where('aqm_configuration', ['data' => "com_digital_sensors"])->row_array()) <= 0)
 			$this->db->insert('aqm_configuration', ["data" => "com_digital_sensors"]);
 
@@ -27,6 +26,37 @@ class Getdata_m extends CI_Model
 
 		if (@count(@$this->db->get_where('aqm_configuration', ['data' => "ain_digital_sensors"])->row_array()) <= 0)
 			$this->db->insert('aqm_configuration', ["data" => "ain_digital_sensors", "content" => ""]);
+
+		if (@count(@$this->db->get_where('aqm_configuration', ['data' => "com_ebam25"])->row_array()) <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "com_ebam25", "content" => ""]);
+
+		if (@count(@$this->db->get_where('aqm_configuration', ['data' => "baud_ebam25"])->row_array()) <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "baud_ebam25", "content" => ""]);
+
+		if (@count(@$this->db->get_where('aqm_configuration', ['data' => "com_ebam10"])->row_array()) <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "com_ebam10", "content" => ""]);
+
+		if (@count(@$this->db->get_where('aqm_configuration', ['data' => "baud_ebam10"])->row_array()) <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "baud_ebam10", "content" => ""]);
+
+		if (@count(@$this->db->get_where('aqm_configuration', ['data' => "com_ebamtsp"])->row_array()) <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "com_ebamtsp", "content" => ""]);
+
+		if (@count(@$this->db->get_where('aqm_configuration', ['data' => "baud_ebamtsp"])->row_array()) <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "baud_ebamtsp", "content" => ""]);
+
+		if (@count(@$this->db->get_where('aqm_params', ['param_id' => "tsp_flow"])->row_array()) <= 0) {
+			$data = [
+				"param_id" => "tsp_flow",
+				"caption" => "TSP Flow",
+				"default_unit" => "l/mnt",
+			];
+			$this->db->insert('aqm_params', $data);
+		}
+
+		// if (!$this->db->field_exists('TSP', 'aqm_sensor_values'))
+		// 	$this->dbforge->add_column('aqm_sensor_values', ['TSP' => ['type' => 'VARCHAR', 'constraint' => 255, 'default' => '']]);
+
 
 		if ($id === FALSE) {
 			$this->db->order_by('id', 'DESC');

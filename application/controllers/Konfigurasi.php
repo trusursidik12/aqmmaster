@@ -90,64 +90,82 @@ class Konfigurasi extends CI_Controller
 		$data['serial_devices'][2]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_pm10');
 
 		$data['serial_devices'][3]['com_id'] = "com_pm25";
-		$data['serial_devices'][3]['baud_id'] = "baud_pm125";
+		$data['serial_devices'][3]['baud_id'] = "baud_pm25";
 		$data['serial_devices'][3]['caption'] = "PM25";
 		$data['serial_devices'][3]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_pm25');
 		$data['serial_devices'][3]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_pm25');
 
-		$data['serial_devices'][4]['com_id'] = "com_ws";
-		$data['serial_devices'][4]['baud_id'] = "baud_ws";
-		$data['serial_devices'][4]['caption'] = "Weather Station";
-		$data['serial_devices'][4]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_ws');
-		$data['serial_devices'][4]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_ws');
+		$data['serial_devices'][4]['com_id'] = "com_ebam25";
+		$data['serial_devices'][4]['baud_id'] = "baud_ebam25";
+		$data['serial_devices'][4]['caption'] = "EBAM 25";
+		$data['serial_devices'][4]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_ebam25');
+		$data['serial_devices'][4]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_ebam25');
 
-		$data['serial_devices'][5]['com_id'] = "controller";
-		$data['serial_devices'][5]['baud_id'] = "controller_baud";
-		$data['serial_devices'][5]['caption'] = "Arduino";
-		$data['serial_devices'][5]['com_value'] = $this->konfigurasi_m->getConfigurationContent('controller');
-		$data['serial_devices'][5]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('controller_baud');
+		$data['serial_devices'][5]['com_id'] = "com_ebam10";
+		$data['serial_devices'][5]['baud_id'] = "baud_ebam10";
+		$data['serial_devices'][5]['caption'] = "EBAM 10";
+		$data['serial_devices'][5]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_ebam10');
+		$data['serial_devices'][5]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_ebam10');
 
-		$data['serial_devices'][6]['com_id'] = "com_modem";
-		$data['serial_devices'][6]['baud_id'] = "baud_modem";
-		$data['serial_devices'][6]['caption'] = "Modem";
-		$data['serial_devices'][6]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_modem');
-		$data['serial_devices'][6]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_modem');
+		$data['serial_devices'][6]['com_id'] = "com_ebamtsp";
+		$data['serial_devices'][6]['baud_id'] = "baud_ebamtsp";
+		$data['serial_devices'][6]['caption'] = "EBAM TSP";
+		$data['serial_devices'][6]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_ebamtsp');
+		$data['serial_devices'][6]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_ebamtsp');
 
-		$data['serial_devices'][7]['com_id'] = "com_airmar";
-		$data['serial_devices'][7]['baud_id'] = "baud_airmar";
-		$data['serial_devices'][7]['caption'] = "AIRMAR";
-		$data['serial_devices'][7]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_airmar');
-		$data['serial_devices'][7]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_airmar');
+		$data['serial_devices'][7]['com_id'] = "com_ws";
+		$data['serial_devices'][7]['baud_id'] = "baud_ws";
+		$data['serial_devices'][7]['caption'] = "Weather Station";
+		$data['serial_devices'][7]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_ws');
+		$data['serial_devices'][7]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_ws');
 
-		$data['serial_devices'][8]['com_id'] = "com_hc";
-		$data['serial_devices'][8]['baud_id'] = "baud_hc";
-		$data['serial_devices'][8]['caption'] = "HC";
-		$data['serial_devices'][8]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_hc');
-		$data['serial_devices'][8]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_hc');
+		$data['serial_devices'][8]['com_id'] = "controller";
+		$data['serial_devices'][8]['baud_id'] = "controller_baud";
+		$data['serial_devices'][8]['caption'] = "Arduino";
+		$data['serial_devices'][8]['com_value'] = $this->konfigurasi_m->getConfigurationContent('controller');
+		$data['serial_devices'][8]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('controller_baud');
 
-		$data['serial_devices'][9]['com_id'] = "com_pm_sds019";
-		$data['serial_devices'][9]['baud_id'] = "baud_pm_sds019";
-		$data['serial_devices'][9]['caption'] = "PM SDS 019 (Nova)";
-		$data['serial_devices'][9]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_pm_sds019');
-		$data['serial_devices'][9]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_pm_sds019');
+		$data['serial_devices'][9]['com_id'] = "com_modem";
+		$data['serial_devices'][9]['baud_id'] = "baud_modem";
+		$data['serial_devices'][9]['caption'] = "Modem";
+		$data['serial_devices'][9]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_modem');
+		$data['serial_devices'][9]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_modem');
 
-		$data['serial_devices'][10]['com_id'] = "com_ion_science";
-		$data['serial_devices'][10]['baud_id'] = "baud_ion_science";
-		$data['serial_devices'][10]['caption'] = "Gas Ion Science";
-		$data['serial_devices'][10]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_ion_science');
-		$data['serial_devices'][10]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_ion_science');
+		$data['serial_devices'][10]['com_id'] = "com_airmar";
+		$data['serial_devices'][10]['baud_id'] = "baud_airmar";
+		$data['serial_devices'][10]['caption'] = "AIRMAR";
+		$data['serial_devices'][10]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_airmar');
+		$data['serial_devices'][10]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_airmar');
 
-		$data['serial_devices'][11]['com_id'] = "com_rht";
-		$data['serial_devices'][11]['baud_id'] = "baud_rht";
-		$data['serial_devices'][11]['caption'] = "Relative Humidity & Temperature";
-		$data['serial_devices'][11]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_rht');
-		$data['serial_devices'][11]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_rht');
+		$data['serial_devices'][11]['com_id'] = "com_hc";
+		$data['serial_devices'][11]['baud_id'] = "baud_hc";
+		$data['serial_devices'][11]['caption'] = "HC";
+		$data['serial_devices'][11]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_hc');
+		$data['serial_devices'][11]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_hc');
 
-		$data['serial_devices'][12]['com_id'] = "com_gstar_iv";
-		$data['serial_devices'][12]['baud_id'] = "baud_gstar_iv";
-		$data['serial_devices'][12]['caption'] = "GPS G-Star IV";
-		$data['serial_devices'][12]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_gstar_iv');
-		$data['serial_devices'][12]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_gstar_iv');
+		$data['serial_devices'][12]['com_id'] = "com_pm_sds019";
+		$data['serial_devices'][12]['baud_id'] = "baud_pm_sds019";
+		$data['serial_devices'][12]['caption'] = "PM SDS 019 (Nova)";
+		$data['serial_devices'][12]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_pm_sds019');
+		$data['serial_devices'][12]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_pm_sds019');
+
+		$data['serial_devices'][13]['com_id'] = "com_ion_science";
+		$data['serial_devices'][13]['baud_id'] = "baud_ion_science";
+		$data['serial_devices'][13]['caption'] = "Gas Ion Science";
+		$data['serial_devices'][13]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_ion_science');
+		$data['serial_devices'][13]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_ion_science');
+
+		$data['serial_devices'][14]['com_id'] = "com_rht";
+		$data['serial_devices'][14]['baud_id'] = "baud_rht";
+		$data['serial_devices'][14]['caption'] = "Relative Humidity & Temperature";
+		$data['serial_devices'][14]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_rht');
+		$data['serial_devices'][14]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_rht');
+
+		$data['serial_devices'][15]['com_id'] = "com_gstar_iv";
+		$data['serial_devices'][15]['baud_id'] = "baud_gstar_iv";
+		$data['serial_devices'][15]['caption'] = "GPS G-Star IV";
+		$data['serial_devices'][15]['com_value'] = $this->konfigurasi_m->getConfigurationContent('com_gstar_iv');
+		$data['serial_devices'][15]['baud_value'] = $this->konfigurasi_m->getConfigurationContent('baud_gstar_iv');
 
 		$serial_ports = $this->konfigurasi_m->getSerialPorts();
 		foreach ($serial_ports as $serial_port) {
