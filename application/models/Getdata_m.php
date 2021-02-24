@@ -6,47 +6,48 @@ class Getdata_m extends CI_Model
 
 	public function getAll($id = FALSE)
 	{
-		// if (@$this->db->get_where('aqm_configuration', ['data' => "param_labjack"])->row_array()["id"] <= 0)
-		$this->db->insert('aqm_configuration', ["data" => "param_labjack", "content" => "0,1"]);
+		echo "AAAA";
+		if (@$this->db->get_where('aqm_configuration', ['data' => "param_labjack"])->row_array()["id"] <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "param_labjack", "content" => "0,1"]);
 
-		// if (@$this->db->get_where('aqm_configuration', ['data' => "com_adc16pin"])->row_array()["id"] <= 0)
-		$this->db->insert('aqm_configuration', ["data" => "com_adc16pin"]);
+		if (@$this->db->get_where('aqm_configuration', ['data' => "com_adc16pin"])->row_array()["id"] <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "com_adc16pin"]);
 
-		// if (@$this->db->get_where('aqm_configuration', ['data' => "baud_adc16pin"])->row_array()["id"] <= 0)
-		$this->db->insert('aqm_configuration', ["data" => "baud_adc16pin", "content" => "9600"]);
+		if (@$this->db->get_where('aqm_configuration', ['data' => "baud_adc16pin"])->row_array()["id"] <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "baud_adc16pin", "content" => "9600"]);
 
-		// if (@$this->db->get_where('aqm_configuration', ['data' => "param_adc16pin"])->row_array()["id"] <= 0)
-		$this->db->insert('aqm_configuration', ["data" => "param_adc16pin", "content" => "2,3,4,5,6"]);
+		if (@$this->db->get_where('aqm_configuration', ['data' => "param_adc16pin"])->row_array()["id"] <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "param_adc16pin", "content" => "2,3,4,5,6"]);
 
-		// if (@$this->db->get_where('aqm_configuration', ['data' => "com_digital_sensors"])->row_array()["id"] <= 0)
-		$this->db->insert('aqm_configuration', ["data" => "com_digital_sensors"]);
+		if (@$this->db->get_where('aqm_configuration', ['data' => "com_digital_sensors"])->row_array()["id"] <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "com_digital_sensors"]);
 
-		// if (@$this->db->get_where('aqm_configuration', ['data' => "baud_digital_sensors"])->row_array()["id"] <= 0)
-		$this->db->insert('aqm_configuration', ["data" => "baud_digital_sensors", "content" => "9600;"]);
+		if (@$this->db->get_where('aqm_configuration', ['data' => "baud_digital_sensors"])->row_array()["id"] <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "baud_digital_sensors", "content" => "9600;"]);
 
-		// if (@$this->db->get_where('aqm_configuration', ['data' => "ain_digital_sensors"])->row_array()["id"] <= 0)
-		$this->db->insert('aqm_configuration', ["data" => "ain_digital_sensors", "content" => ""]);
+		if (@$this->db->get_where('aqm_configuration', ['data' => "ain_digital_sensors"])->row_array()["id"] <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "ain_digital_sensors", "content" => ""]);
 
-		// if (@$this->db->get_where('aqm_configuration', ['data' => "com_ebam25"])->row_array()["id"] <= 0)
-		$this->db->insert('aqm_configuration', ["data" => "com_ebam25", "content" => ""]);
+		if (@$this->db->get_where('aqm_configuration', ['data' => "com_ebam25"])->row_array()["id"] <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "com_ebam25", "content" => ""]);
 
-		// if (@$this->db->get_where('aqm_configuration', ['data' => "baud_ebam25"])->row_array()["id"] <= 0)
-		$this->db->insert('aqm_configuration', ["data" => "baud_ebam25", "content" => ""]);
+		if (@$this->db->get_where('aqm_configuration', ['data' => "baud_ebam25"])->row_array()["id"] <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "baud_ebam25", "content" => ""]);
 
-		// if (@$this->db->get_where('aqm_configuration', ['data' => "com_ebam10"])->row_array()["id"] <= 0)
-		$this->db->insert('aqm_configuration', ["data" => "com_ebam10", "content" => ""]);
+		if (@$this->db->get_where('aqm_configuration', ['data' => "com_ebam10"])->row_array()["id"] <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "com_ebam10", "content" => ""]);
 
-		// if (@$this->db->get_where('aqm_configuration', ['data' => "baud_ebam10"])->row_array()["id"] <= 0)
-		$this->db->insert('aqm_configuration', ["data" => "baud_ebam10", "content" => ""]);
+		if (@$this->db->get_where('aqm_configuration', ['data' => "baud_ebam10"])->row_array()["id"] <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "baud_ebam10", "content" => ""]);
 
-		// if (@$this->db->get_where('aqm_configuration', ['data' => "com_ebamtsp"])->row_array()["id"] <= 0)
-		$this->db->insert('aqm_configuration', ["data" => "com_ebamtsp", "content" => ""]);
+		if (@$this->db->get_where('aqm_configuration', ['data' => "com_ebamtsp"])->row_array()["id"] <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "com_ebamtsp", "content" => ""]);
 
-		// if (@$this->db->get_where('aqm_configuration', ['data' => "baud_ebamtsp"])->row_array()["id"] <= 0)
-		$this->db->insert('aqm_configuration', ["data" => "baud_ebamtsp", "content" => ""]);
+		if (@$this->db->get_where('aqm_configuration', ['data' => "baud_ebamtsp"])->row_array()["id"] <= 0)
+			$this->db->insert('aqm_configuration', ["data" => "baud_ebamtsp", "content" => ""]);
 
-		// if (@$this->db->get_where('aqm_params', ['param_id' => "tsp_flow"])->row_array()["id"] <= 0)
-		$this->db->insert('aqm_params', ["param_id" => "tsp_flow", "caption" => "TSP Flow", "default_unit" => "l/mnt"]);
+		if (@$this->db->get_where('aqm_params', ['param_id' => "tsp_flow"])->row_array()["id"] <= 0)
+			$this->db->insert('aqm_params', ["param_id" => "tsp_flow", "caption" => "TSP Flow", "default_unit" => "l/mnt"]);
 
 		if ($id === FALSE) {
 			$this->db->order_by('id', 'DESC');
