@@ -54,10 +54,6 @@ class Getdata_m extends CI_Model
 			$this->db->insert('aqm_params', $data);
 		}
 
-		// if (!$this->db->field_exists('TSP', 'aqm_sensor_values'))
-		// 	$this->dbforge->add_column('aqm_sensor_values', ['TSP' => ['type' => 'VARCHAR', 'constraint' => 255, 'default' => '']]);
-
-
 		if ($id === FALSE) {
 			$this->db->order_by('id', 'DESC');
 			$this->db->limit('1');
