@@ -6,7 +6,6 @@ class Getdata_m extends CI_Model
 
 	public function getAll($id = FALSE)
 	{
-		echo "AAAA";
 		if (@$this->db->get_where('aqm_configuration', ['data' => "param_labjack"])->row_array()["id"] <= 0)
 			$this->db->insert('aqm_configuration', ["data" => "param_labjack", "content" => "0,1"]);
 

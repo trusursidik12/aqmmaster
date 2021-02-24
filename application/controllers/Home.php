@@ -28,7 +28,6 @@ class Home extends CI_Controller
 		if ($_GET["unit"] == "ppb") $data['nextunit'] = "ug";
 		if ($_GET["unit"] == "ug") $data['nextunit'] = "";
 		$data['title'] = 'AQM';
-		echo "XXXX";
 		$data['all'] = $this->getdata_m->getall();
 		$data['partikulats'] = $this->getdata_m->getParamsPartikulat();
 		$data['partikulatflows'] = $this->getdata_m->getParamsPartikulatFlow();
