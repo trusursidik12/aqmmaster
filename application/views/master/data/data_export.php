@@ -27,6 +27,9 @@
 	  						<th>No.</th>
 	  						<th>Stasiun</th>
 	  						<th>Waktu</th>
+	  						<th>Latitude</th>
+	  						<th>Longitude</th>
+	  						<th>Alamat</th>
 							<?php if(@$params["pm10"]) : ?> <th>PM10</th> <?php endif ?>
 	  						<?php if(@$params["pm25"]) : ?> <th>PM2.5</th> <?php endif ?>
 	  						<?php if(@$params["so2"]) : ?> <th>SO2</th> <?php endif ?>

@@ -103,6 +103,9 @@ class Data extends CI_Controller {
             $row[] = $no;
             $row[] = $post->id_stasiun;
             $row[] = $post->waktu;
+            $row[] = @$this->konfigurasi_m->getConfigurationContent('sta_lat');
+            $row[] = @$this->konfigurasi_m->getConfigurationContent('sta_lon');
+            $row[] = @$this->konfigurasi_m->getConfigurationContent('sta_alamat');
             if(@$params["pm10"]) $row[] = round($post->pm10);
 			if(@$params["pm25"]) $row[] = round($post->pm25);
             if(@$params["so2"]) $row[] = round($post->so2);
