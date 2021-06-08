@@ -11,6 +11,7 @@ $stat_co = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='co' LIMIT
 $stat_o3 = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='o3' LIMIT 1")->fetch_object()->is_view * 1;
 $stat_no2 = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='no2' LIMIT 1")->fetch_object()->is_view * 1;
 $stat_hc = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='hc' LIMIT 1")->fetch_object()->is_view * 1;
+
 if($result = $db->query("SELECT * FROM aqm_data WHERE (sent is NULL OR sent = 0) ORDER BY id LIMIT 50")){
 	$key = -1;
 	while($data = $result->fetch_object()){
