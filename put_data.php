@@ -4,7 +4,8 @@ define('BASEPATH', 'http://127.0.0.1/aqmmaster');
 define('ENVIRONMENT', 'production');
 include_once "application/config/database.php";
 $db = new mysqli($db['default']['hostname'], $db['default']['username'], $db['default']['password'], $db['default']['database']);
-
+echo getConfiguration($db,"sampler_operator_name").PHP_EOL;
+exit();
 $stat_pm10 = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='pm10' LIMIT 1")->fetch_object()->is_view * 1;
 $stat_pm25 = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='pm25' LIMIT 1")->fetch_object()->is_view * 1;
 $stat_so2 = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='so2' LIMIT 1")->fetch_object()->is_view * 1;
@@ -162,6 +163,21 @@ if(isset($arr)){
 				$db->query("UPDATE aqm_data SET sent2=1 WHERE id = '".$_data["data"]["id"]."'");
 			}
 		}
+	}
+}
+
+/**
+ *  Get Data Configuration AQM
+ * @param mixed $db = DB Connection
+ * @param mixed $data = Data configuration
+ */
+function getConfiguration($db,$data){
+	try{
+		$query = "SELECT content FROM aqm_configuration WHERE data = '{$data}'";
+		return @$db->query($query)->fetch_object()->content;
+	}catch(Exception $e){
+		echo $e->getMessage();
+		return null;
 	}
 }
 
