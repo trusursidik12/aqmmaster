@@ -72,7 +72,6 @@ if(isset($arr)){
 		$err = curl_error($curl);
 
 		curl_close($curl);
-
 		if ($err) {
 			echo "cURL Error #:" . $err;
 		} else {
