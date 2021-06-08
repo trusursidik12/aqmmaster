@@ -40,6 +40,7 @@ class Data extends CI_Controller {
 		if(!@$data["params"]["humidity"]) $data["params"]["humidity"] = @$partikulatattr["pm10_humid"]["is_view"];
 		
 		$data["calibration_menu"] = $this->konfigurasi_m->getConfigurationContent('calibration_menu');
+		$data["is_portable"] = @$this->konfigurasi_m->getConfigurationContent('is_portable');
         $this->temp_frontend->load('master/theme/theme', 'master/data/data_export', $data);
     }
 
@@ -103,9 +104,12 @@ class Data extends CI_Controller {
             $row[] = $no;
             $row[] = $post->id_stasiun;
             $row[] = $post->waktu;
-            $row[] = @$this->konfigurasi_m->getConfigurationContent('sta_lat');
-            $row[] = @$this->konfigurasi_m->getConfigurationContent('sta_lon');
-            $row[] = @$this->konfigurasi_m->getConfigurationContent('sta_alamat');
+            if(@$this->konfigurasi_m->getConfigurationContent('is_portable')){
+                $row[] = @$this->konfigurasi_m->getConfigurationContent('sta_lat');
+                $row[] = @$this->konfigurasi_m->getConfigurationContent('sta_lon');
+                $row[] = @$this->konfigurasi_m->getConfigurationContent('sta_alamat');
+                $row[] = @$this->konfigurasi_m->getConfigurationContent('sampler_operator_name');
+            }
             if(@$params["pm10"]) $row[] = round($post->pm10);
 			if(@$params["pm25"]) $row[] = round($post->pm25);
             if(@$params["so2"]) $row[] = round($post->so2);
