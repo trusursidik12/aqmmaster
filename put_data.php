@@ -11,7 +11,6 @@ $stat_co = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='co' LIMIT
 $stat_o3 = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='o3' LIMIT 1")->fetch_object()->is_view * 1;
 $stat_no2 = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='no2' LIMIT 1")->fetch_object()->is_view * 1;
 $stat_hc = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='hc' LIMIT 1")->fetch_object()->is_view * 1;
-
 if($result = $db->query("SELECT * FROM aqm_data WHERE (sent is NULL OR sent = 0) ORDER BY id LIMIT 50")){
 	$key = -1;
 	while($data = $result->fetch_object()){
@@ -19,11 +18,11 @@ if($result = $db->query("SELECT * FROM aqm_data WHERE (sent is NULL OR sent = 0)
 		$arr[$key]["data"]["id"] = $data->id;
 		$arr[$key]["data"]["id_stasiun"] = $data->id_stasiun;
 		// Added new field
-		if((boolean) getConfiguration($db, 'is_portable')){
-			$arr[$key]["data"]["sampler_operator_name"] = getConfiguration($db,"sampler_operator_name");
-			$arr[$key]["data"]["sta_alamat"] = getConfiguration($db,"sta_alamat");
-			$arr[$key]["data"]["sta_lat"] = getConfiguration($db,"sta_lat");
-			$arr[$key]["data"]["sta_lon"] = getConfiguration($db,"sta_lon");
+		if((boolean) getConfiguration( 'is_portable')){
+			$arr[$key]["data"]["sampler_operator_name"] = getConfiguration("sampler_operator_name");
+			$arr[$key]["data"]["sta_alamat"] = getConfiguration("sta_alamat");
+			$arr[$key]["data"]["sta_lat"] = getConfiguration("sta_lat");
+			$arr[$key]["data"]["sta_lon"] = getConfiguration("sta_lon");
 		}
 		// end
 		$arr[$key]["data"]["waktu"] = $data->waktu;
@@ -177,12 +176,12 @@ if(isset($arr)){
 
 /**
  *  Get Data Configuration AQM
- * @param Object $db = DB Connection
  * @param String $data = Data configuration
  */
-function getConfiguration($db,$data){
+function getConfiguration($data){
 	try{
 		$query = "SELECT content FROM aqm_configuration WHERE data = '{$data}'";
+		global $db;
 		return @$db->query($query)->fetch_object()->content;
 	}catch(Exception $e){
 		echo $e->getMessage();
