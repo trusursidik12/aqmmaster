@@ -4,8 +4,6 @@ define('BASEPATH', 'http://127.0.0.1/aqmmaster');
 define('ENVIRONMENT', 'production');
 include_once "application/config/database.php";
 $db = new mysqli($db['default']['hostname'], $db['default']['username'], $db['default']['password'], $db['default']['database']);
-echo getConfiguration($db,"sampler_operator_name").PHP_EOL;
-exit();
 $stat_pm10 = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='pm10' LIMIT 1")->fetch_object()->is_view * 1;
 $stat_pm25 = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='pm25' LIMIT 1")->fetch_object()->is_view * 1;
 $stat_so2 = @$db->query("SELECT is_view FROM aqm_params WHERE param_id='so2' LIMIT 1")->fetch_object()->is_view * 1;
@@ -20,6 +18,14 @@ if($result = $db->query("SELECT * FROM aqm_data WHERE (sent is NULL OR sent = 0)
 		$key++;
 		$arr[$key]["data"]["id"] = $data->id;
 		$arr[$key]["data"]["id_stasiun"] = $data->id_stasiun;
+		// Added new field
+		if((boolean) getConfiguration($db, 'is_portable')){
+			$arr[$key]["data"]["sampler_operator_name"] = getConfiguration($db,"sampler_operator_name");
+			$arr[$key]["data"]["sta_alamat"] = getConfiguration($db,"sta_alamat");
+			$arr[$key]["data"]["sta_lat"] = getConfiguration($db,"sta_lat");
+			$arr[$key]["data"]["sta_lon"] = getConfiguration($db,"sta_lon");
+		}
+		// end
 		$arr[$key]["data"]["waktu"] = $data->waktu;
 		$arr[$key]["data"]["pm10"] = $data->pm10;
 		$arr[$key]["data"]["pm25"] = $data->pm25;
@@ -40,8 +46,11 @@ if($result = $db->query("SELECT * FROM aqm_data WHERE (sent is NULL OR sent = 0)
 		$arr[$key]["data"]["nh3"] = $data->nh3;
 		$arr[$key]["data"]["h2s"] = $data->h2s;
 		$arr[$key]["data"]["cs2"] = $data->cs2;
+		print_r($arr);
+		exit();
 	}
 }
+exit();
 if(isset($arr)){
 	foreach($arr as $key => $_data){
 		$data = json_encode($_data["data"]);
@@ -168,8 +177,8 @@ if(isset($arr)){
 
 /**
  *  Get Data Configuration AQM
- * @param mixed $db = DB Connection
- * @param mixed $data = Data configuration
+ * @param Object $db = DB Connection
+ * @param String $data = Data configuration
  */
 function getConfiguration($db,$data){
 	try{
