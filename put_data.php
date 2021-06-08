@@ -45,11 +45,8 @@ if($result = $db->query("SELECT * FROM aqm_data WHERE (sent is NULL OR sent = 0)
 		$arr[$key]["data"]["nh3"] = $data->nh3;
 		$arr[$key]["data"]["h2s"] = $data->h2s;
 		$arr[$key]["data"]["cs2"] = $data->cs2;
-		print_r($arr);
-		exit();
 	}
 }
-exit();
 if(isset($arr)){
 	foreach($arr as $key => $_data){
 		$data = json_encode($_data["data"]);
